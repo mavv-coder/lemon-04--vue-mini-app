@@ -1,7 +1,7 @@
 {
   "name": "vue-exercise",
   "version": "1.0.0",
-  "description": "",
+  "description": "vue recipes app",
   "main": "index.js",
   "scripts": {
     "start": "webpack-dev-server --open",
@@ -17,7 +17,7 @@
     "typescript",
     "webpack"
   ],
-  "author": "Lemoncode",
+  "author": "Miguel Ángel Vázquez Vera",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/Lemoncode/vuejs-by-sample/issues"
