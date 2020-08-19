@@ -4,7 +4,7 @@
       filled
       label="Name"
       :value="recipe.name"
-      :rules="[resultRecipeError]"
+      :rules="[resultRecipeTitleError]"
       @input="(name) => onUpdateRecipe('name', name)"
       @click:append="onAddIngredient(ingredient)"
     />
@@ -15,6 +15,7 @@
       placeholder="Add ingredient"
       append-icon="add"
       v-model="ingredient"
+      :rules="[resultRecipeIngredientError]"
       @click:append="onAddIngredient(ingredient)"
     />
 
@@ -67,8 +68,14 @@ export default Vue.extend({
     };
   },
   computed: {
-    resultRecipeError(): boolean | string {
+    resultRecipeTitleError(): boolean | string {
       return this.recipeError.name.succeeded || this.recipeError.name.message;
+    },
+    resultRecipeIngredientError(): boolean | string {
+      return (
+        this.recipeError.ingredients.succeeded ||
+        this.recipeError.ingredients.message
+      );
     },
     resultRecipeDescriptionError(): boolean | string {
       return (
