@@ -27,11 +27,12 @@ export default Vue.extend({
   computed: {
     routeEdit(): string {
       return `${baseRoutes.recipe}/${this.recipe.id}`;
-    }
+    },
   },
 });
 </script>
 
+<!-- <style scoped></style> Crea estilos no globales-->
 <style module>
 .name {
   width: 25%;

@@ -15,7 +15,7 @@ export default Vue.extend({
   components: { AppLayout, FormComponent },
   props: {
     recipe: { require: true },
-    recipeError: { required: true },    
+    recipeError: { required: true },
     onUpdateRecipe: { require: true },
     onSave: { require: true },
     onRemoveIngredient: { required: true },
