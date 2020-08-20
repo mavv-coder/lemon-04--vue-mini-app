@@ -6,7 +6,6 @@
       :value="recipe.name"
       :rules="[resultRecipeTitleError]"
       @input="(name) => onUpdateRecipe('name', name)"
-      @click:append="onAddIngredient(ingredient)"
     />
 
     <v-text-field
@@ -15,8 +14,7 @@
       placeholder="Add ingredient"
       append-icon="add"
       v-model="ingredient"
-      :rules="[resultRecipeIngredientError]"
-      @click:append="onAddIngredient(ingredient)"
+      @click:append="handleAddIngredient(ingredient)"
     />
 
     <ingredient-list-component
@@ -71,17 +69,24 @@ export default Vue.extend({
     resultRecipeTitleError(): boolean | string {
       return this.recipeError.name.succeeded || this.recipeError.name.message;
     },
-    resultRecipeIngredientError(): boolean | string {
-      return (
-        this.recipeError.ingredients.succeeded ||
-        this.recipeError.ingredients.message
-      );
-    },
     resultRecipeDescriptionError(): boolean | string {
       return (
         this.recipeError.description.succeeded ||
         this.recipeError.description.message
       );
+    },
+  },
+  methods: {
+    handleAddIngredient(ingredient: string): void {
+      if (this.checkifIngredientIsValid()) this.onAddIngredient(ingredient);
+    },
+
+    checkifIngredientIsValid(): boolean {
+      return this.ingredient === "" ||
+        this.ingredient === undefined ||
+        this.ingredient === null
+        ? false
+        : true;
     },
   },
 });
