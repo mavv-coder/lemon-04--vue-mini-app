@@ -8,28 +8,39 @@
           </v-card-title>
 
           <v-card-text>
-            <form-component v-bind="$props" />
+            <form-component
+              v-bind="{ login, updateLogin, loginRequest, loginError }"
+            />
           </v-card-text>
         </v-card>
       </v-col>
     </v-row>
+    <snackbar-component v-bind="{ snackbar, setSnackBarState }" />
   </center-layout>
 </template>
 
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
 import { CenterLayout } from "../../common/layouts";
-import { FormComponent } from "./components";
+import { FormComponent, SnackbarComponent } from "./components";
 import { FormProps } from "./formProps";
+// as FormProps,
 
 export default Vue.extend({
   name: "LoginPage",
-  components: { FormComponent, CenterLayout },
+  components: { FormComponent, SnackbarComponent, CenterLayout },
   props: {
+    setSnackBarState: { required: true },
     login: { required: true },
     loginError: { required: true },
     updateLogin: { required: true },
     loginRequest: { required: true },
-  } as FormProps,
+    snackbar: { required: true },
+  },
+  methods: {
+    console(v: string) {
+      console.log(v);
+    },
+  },
 });
 </script>

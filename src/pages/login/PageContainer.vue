@@ -1,5 +1,14 @@
 <template>
-  <login-page v-bind="{ login, updateLogin, loginRequest, loginError }" />
+  <login-page
+    v-bind="{
+      snackbar,
+      login,
+      updateLogin,
+      loginRequest,
+      loginError,
+    }"
+    :setSnackBarState="setSnackBarState"
+  />
 </template>
 
 <script lang="ts">
@@ -16,40 +25,39 @@ export default Vue.extend({
   components: { LoginPage },
   data() {
     return {
+      snackbar: false,
       login: createEmptyLogin(),
-      loginError: createEmptyLoginError()
+      loginError: createEmptyLoginError(),
     };
   },
   methods: {
+    setSnackBarState(v: boolean): void {
+      this.snackbar = v;
+    },
     updateLogin(field: string, value: string) {
       this.login = {
         ...this.login,
-        [field]: value
+        [field]: value,
       };
 
-      validation.validateField(field, value).then(result => {
+      validation.validateField(field, value).then((result) => {
         this.loginError = {
           ...this.loginError,
-          [field]: result
+          [field]: result,
         };
       });
     },
     loginRequest() {
-      validation.validateForm(this.login).then(result => {
+      validation.validateForm(this.login).then((result) => {
         if (result.succeeded) {
-
           const loginModel = mapLoginVMToModel(this.login);
           loginRequest(loginModel)
             .then(() => {
               this.$router.push(baseRoutes.recipe);
             })
-            .catch(error =>
-              alert(
-                `Este mensaje debes implementarlo con el componente Snackbar de Vuetify ;) => ${error}`
-              )
-            );
-
-
+            .catch((error) => {
+              this.snackbar = true;
+            });
         } else {
           this.loginError = {
             ...this.loginError,
@@ -57,7 +65,7 @@ export default Vue.extend({
           };
         }
       });
-    }
-  }
+    },
+  },
 });
 </script>
