@@ -8,7 +8,7 @@
         </div>
         <!-- <img :src="`../../../../assets/img/${recipe.imgUrl}`" /> -->
         <img src="../../../../assets/img/broccoli-cheesy-bread.jpg" />
-        <h4 class="recipe-title">{{ shortenTitleLength(recipe.name) }}</h4>
+        <h4 class="recipe-title">{{ recipe.name }}</h4>
         <v-divider></v-divider>
         <div class="text-container">
           {{ shortenDescriptionLength(recipe.description) }}
