@@ -1,18 +1,17 @@
 <template>
-  <!-- <recipe-edit-page :recipe="recipe" /> -->
-  <h1>detail</h1>
+  <recipe-detail-page :recipe="recipe" />
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import RecipeEditPage from "./Page.vue";
 import { fetchRecipeById } from "../../../rest-api/api/recipe";
 import { mapRecipeModelToVm } from "./mapper";
 import { createEmptyRecipe } from "./viewModel";
+import RecipeDetailPage from "./Page.vue";
 
 export default Vue.extend({
   name: "RecipeDetailPageContainer",
-  components: { RecipeEditPage },
+  components: { RecipeDetailPage },
   props: { id: String },
   data() {
     return {

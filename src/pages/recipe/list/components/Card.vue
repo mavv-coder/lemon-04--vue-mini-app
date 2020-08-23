@@ -3,9 +3,7 @@
     <v-col v-for="recipe in recipes" :key="recipe.id" cols="12" sm="4">
       <v-card class="pa-2 card relative">
         <div class="time-container">
-          <v-icon color="#F57F17" @click="deletebtn"
-            >mdi-clock-time-four-outline</v-icon
-          >
+          <v-icon color="#F57F17">mdi-clock-time-four-outline</v-icon>
           <span class="time-text">{{ `${recipe.time}'` }}</span>
         </div>
         <img src="../../../../assets/img/polenta-fries.jpg" alt="" />
