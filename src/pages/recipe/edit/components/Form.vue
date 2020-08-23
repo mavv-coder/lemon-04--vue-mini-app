@@ -34,7 +34,7 @@
       filled
       placeholder="Description...."
       rows="10"
-      :value="recipe.description"
+      :value="recipe.steps"
       :rules="[resultRecipeDescriptionError]"
       :no-resize="true"
       @input="(value) => onUpdateRecipe('description', value)"

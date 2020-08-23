@@ -1,9 +1,9 @@
 export interface Recipe {
   id: number;
   name: string;
-  vegetarian: boolean;
   imgUrl: string;
-  calories: number;
+  time: number;
   description: string;
   ingredients: string[];
+  steps: string;
 }

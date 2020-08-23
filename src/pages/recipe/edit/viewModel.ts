@@ -6,21 +6,21 @@ import {
 export interface Recipe {
   id: number;
   name: string;
-  vegetarian: boolean;
   imgUrl: string;
-  calories: number;
+  time: number;
   description: string;
   ingredients: string[];
+  steps: string;
 }
 
 export const createEmptyRecipe = (): Recipe => ({
   id: 0,
   name: "",
-  calories: 0,
   imgUrl: "",
-  vegetarian: false,
+  time: 0,
   description: "",
   ingredients: [],
+  steps: "",
 });
 
 export interface RecipeError {

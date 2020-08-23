@@ -6,9 +6,9 @@
           <v-icon color="#F57F17" @click="deletebtn"
             >mdi-clock-time-four-outline</v-icon
           >
-          <span class="time-text">60'</span>
+          <span class="time-text">{{ `${recipe.time}'` }}</span>
         </div>
-        <img src="../../../../assets/img/veggie-crustless-quiche.jpg" alt="" />
+        <img src="../../../../assets/img/polenta-fries.jpg" alt="" />
         <h4 class="recipe-title">{{ shortenTitleLength(recipe.name) }}</h4>
         <v-divider></v-divider>
         <div class="text-container">
@@ -16,9 +16,11 @@
         </div>
         <v-divider></v-divider>
         <div class="footer">
-          <v-btn outlined small color="#00B8D4">See more</v-btn>
+          <v-btn outlined small color="#F57F17">See more</v-btn>
           <div class="btn-container">
-            <v-icon class="edit-icon" @click="deletebtn">mdi-pencil</v-icon>
+            <v-icon class="edit-icon" @click="routeEdit(recipe.id)"
+              >mdi-pencil</v-icon
+            >
             <v-icon color="#FF6E40" @click="deletebtn"
               >mdi-trash-can-outline</v-icon
             >
@@ -31,6 +33,7 @@
 
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
+import { baseRoutes } from "../../../../router";
 import { Recipe } from "../viewModel";
 
 export default Vue.extend({
@@ -46,12 +49,15 @@ export default Vue.extend({
       return title.length > 22 ? `${title.slice(0, 22).trim()}...` : title;
     },
     shortenDescriptionLength(description: string): string {
-      return description.length > 160
-        ? `${description.slice(0, 160).trim()}...`
+      return description.length > 100
+        ? `${description.slice(0, 130).trim()}...`
         : description;
     },
     deletebtn() {
       console.log("click");
+    },
+    routeEdit(id: number) {
+      this.$router.push(`${baseRoutes.recipe}/${id}`);
     },
   },
 });
@@ -90,6 +96,7 @@ export default Vue.extend({
 
 .time-text {
   color: #263238;
+  margin-left: 2px;
 }
 
 .time-container::after {
