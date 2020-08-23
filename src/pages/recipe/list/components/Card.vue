@@ -16,9 +16,15 @@
         </div>
         <v-divider></v-divider>
         <div class="footer">
-          <v-btn outlined small color="#F57F17">See more</v-btn>
+          <v-btn
+            outlined
+            small
+            color="#F57F17"
+            @click="navigateToDetail(recipe.id)"
+            >See more</v-btn
+          >
           <div class="btn-container">
-            <v-icon class="edit-icon" @click="routeEdit(recipe.id)"
+            <v-icon class="edit-icon" @click="navigateToEdit(recipe.id)"
               >mdi-pencil</v-icon
             >
             <v-icon color="#FF6E40" @click="deletebtn"
@@ -56,7 +62,10 @@ export default Vue.extend({
     deletebtn() {
       console.log("click");
     },
-    routeEdit(id: number) {
+    navigateToEdit(id: number) {
+      this.$router.push(`${baseRoutes.recipe}/edit/${id}`);
+    },
+    navigateToDetail(id: number) {
       this.$router.push(`${baseRoutes.recipe}/${id}`);
     },
   },

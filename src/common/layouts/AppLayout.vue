@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="navbar">
-      <v-app-bar class="navbar" dense app dark color="amber">
+      <v-app-bar class="navbar" dense app dark color="#F57F17">
         <v-toolbar-title>Recipe App</v-toolbar-title>
       </v-app-bar>
     </div>
