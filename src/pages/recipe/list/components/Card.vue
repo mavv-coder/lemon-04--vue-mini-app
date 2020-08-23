@@ -1,22 +1,28 @@
 <template>
   <v-row no-gutters>
-    <!-- <img src="../../../../assets/img/veggie-crustless-quiche.jpg" alt="" /> -->
-    <!-- <img :src="require('../../../../assets/img/veggie-crustless-quiche.jpg')" /> -->
-    <!-- <img src="./assets/img/veggie-crustless-quiche.jpg" /> -->
-
     <v-col v-for="recipe in recipes" :key="recipe.id" cols="12" sm="4">
-      <v-card class="pa-2 card">
-        <h4 class="recipe-title">{{ recipe.name }}</h4>
-        <v-divider></v-divider>
-        <div class="text-container">{{ recipe.description }}</div>
-        <v-divider></v-divider>
-        <div class="btn-container">
-          <v-icon class="edit-icon">mdi-pencil</v-icon>
-          <v-icon color="error" @click="deletebtn"
-            >mdi-trash-can-outline</v-icon
+      <v-card class="pa-2 card relative">
+        <div class="time-container">
+          <v-icon color="#F57F17" @click="deletebtn"
+            >mdi-clock-time-four-outline</v-icon
           >
-          <!-- <img :src="imagen" alt="" /> -->
-          <img src="./01.jpg" alt="" />
+          <span class="time-text">60'</span>
+        </div>
+        <img src="../../../../assets/img/veggie-crustless-quiche.jpg" alt="" />
+        <h4 class="recipe-title">{{ shortenTitleLength(recipe.name) }}</h4>
+        <v-divider></v-divider>
+        <div class="text-container">
+          {{ shortenDescriptionLength(recipe.description) }}
+        </div>
+        <v-divider></v-divider>
+        <div class="footer">
+          <v-btn outlined small color="#689F38">See more</v-btn>
+          <div class="btn-container">
+            <v-icon class="edit-icon" @click="deletebtn">mdi-pencil</v-icon>
+            <v-icon color="#FF6E40" @click="deletebtn"
+              >mdi-trash-can-outline</v-icon
+            >
+          </div>
         </div>
       </v-card>
     </v-col>
@@ -27,20 +33,23 @@
 import Vue, { PropOptions } from "vue";
 import { Recipe } from "../viewModel";
 
-const imagen = require("./01.jpg");
-
 export default Vue.extend({
   name: "RecipeCard",
   props: {
     recipes: { required: true } as PropOptions<Recipe[]>,
   },
   data() {
-    return {
-      imagen,
-      url: require("./01.jpg"),
-    };
+    return {};
   },
   methods: {
+    shortenTitleLength(title: string): string {
+      return title.length > 22 ? `${title.slice(0, 22).trim()}...` : title;
+    },
+    shortenDescriptionLength(description: string): string {
+      return description.length > 160
+        ? `${description.slice(0, 160).trim()}...`
+        : description;
+    },
     deletebtn() {
       console.log("click");
     },
@@ -54,9 +63,53 @@ export default Vue.extend({
 }
 
 .recipe-title {
+  color: #3e2723;
   font-weight: 400;
   margin-bottom: 5px;
   text-transform: uppercase;
+  font-size: 16px;
+  letter-spacing: 0.5px;
+}
+.relative {
+  position: relative;
+}
+
+.time-container {
+  content: "";
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  top: 20px;
+  right: 20px;
+  width: 54px;
+  height: 54px;
+  z-index: 10;
+}
+
+.time-text {
+  color: #263238;
+}
+
+.time-container::after {
+  content: "";
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  align-items: center;
+  background-color: #ffee58;
+  border-radius: 50%;
+  top: 0px;
+  right: 0px;
+  width: 54px;
+  height: 54px;
+  z-index: -1;
+}
+
+img {
+  width: 100%;
 }
 
 .text-container {
@@ -65,10 +118,16 @@ export default Vue.extend({
   margin: 10px 0;
 }
 
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 0 2px 0;
+}
+
 .btn-container {
   display: flex;
   justify-content: flex-end;
-  padding: 10px 0 2px 0;
 }
 
 .edit-icon {
