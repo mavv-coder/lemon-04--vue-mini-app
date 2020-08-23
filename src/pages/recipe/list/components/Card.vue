@@ -3,7 +3,7 @@
     <!-- <img src="../../../../assets/img/veggie-crustless-quiche.jpg" alt="" /> -->
     <!-- <img :src="require('../../../../assets/img/veggie-crustless-quiche.jpg')" /> -->
     <!-- <img src="./assets/img/veggie-crustless-quiche.jpg" /> -->
-    <!-- <img :src="url" alt="" /> -->
+
     <v-col v-for="recipe in recipes" :key="recipe.id" cols="12" sm="4">
       <v-card class="pa-2 card">
         <h4 class="recipe-title">{{ recipe.name }}</h4>
@@ -15,6 +15,8 @@
           <v-icon color="error" @click="deletebtn"
             >mdi-trash-can-outline</v-icon
           >
+          <!-- <img :src="imagen" alt="" /> -->
+          <img src="./01.jpg" alt="" />
         </div>
       </v-card>
     </v-col>
@@ -25,6 +27,8 @@
 import Vue, { PropOptions } from "vue";
 import { Recipe } from "../viewModel";
 
+const imagen = require("./01.jpg");
+
 export default Vue.extend({
   name: "RecipeCard",
   props: {
@@ -32,7 +36,8 @@ export default Vue.extend({
   },
   data() {
     return {
-      url: require("./assets/img/veggie-crustless-quiche.jpg"),
+      imagen,
+      url: require("./01.jpg"),
     };
   },
   methods: {

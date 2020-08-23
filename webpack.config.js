@@ -100,17 +100,16 @@ module.exports = (env, argv) => {
           loader: "url-loader?limit=10000&mimetype=image/svg+xml",
         },
         {
-          test: /\.(gif|png|jpe?g|svg)$/i,
-          use: [
-            "file-loader",
-            {
-              loader: "image-webpack-loader",
-              options: {
-                bypassOnDebug: true, // webpack@1.x
-                disable: true, // webpack@2.x and newer
-              },
+          test: /\.(png|jpg)$/,
+          exclude: /node_modules/,
+          use: {
+            loader: "url-loader",
+            options: {
+              limit: 5000,
+              esModule: false,
+              name: "./img/[hash].[name].[ext]",
             },
-          ],
+          },
         },
       ],
     },
