@@ -15,11 +15,19 @@
 </template>
 
 <script lang="ts">
-import Vue, { PropOptions } from "vue";
+import Vue, { PropOptions, VueConstructor } from "vue";
 import { baseRoutes } from "../../../../router";
 import { Recipe } from "../viewModel";
 
-export default Vue.extend({
+interface Refs {
+  $style: {
+    name: string;
+    description: string;
+    editButton: string;
+  };
+}
+
+export default (Vue as VueConstructor<Vue & Refs>).extend({
   name: "RowComponent",
   props: {
     recipe: { required: true } as PropOptions<Recipe>,
