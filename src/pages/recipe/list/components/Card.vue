@@ -6,7 +6,8 @@
           <v-icon color="#F57F17">mdi-clock-time-four-outline</v-icon>
           <span class="time-text">{{ `${recipe.time}'` }}</span>
         </div>
-        <img src="../../../../assets/img/polenta-fries.jpg" alt="" />
+        <!-- <img :src="`../../../../assets/img/${recipe.imgUrl}`" /> -->
+        <img src="../../../../assets/img/broccoli-cheesy-bread.jpg" />
         <h4 class="recipe-title">{{ shortenTitleLength(recipe.name) }}</h4>
         <v-divider></v-divider>
         <div class="text-container">
@@ -58,7 +59,7 @@ export default Vue.extend({
         : description;
     },
     deletebtn() {
-      console.log("click");
+      console.log("delete");
     },
     navigateToEdit(id: number) {
       this.$router.push(`${baseRoutes.recipe}/edit/${id}`);

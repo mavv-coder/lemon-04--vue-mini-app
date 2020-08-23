@@ -4,7 +4,7 @@ export const mockRecipes: Recipe[] = [
   {
     id: 1,
     name: "Veggie Crustless Quiche",
-    imgUrl: "../../../../assets/img/veggie-crustless-quiche.jpg",
+    imgUrl: "veggie-crustless-quiche.jpg",
     time: 20,
     description:
       "Quiche is a French dish typically comprised of a pastry shell (not unlike a pie crust) filled with a savory egg custard and any number of ingredients like vegetables, meat and cheese. After baking, the custard's texture should be delicate, airy and slightly creamy. The egg flavor should not be too forward so it can act as the perfect vessel for the other delicious ingredients you add.",
@@ -26,7 +26,7 @@ export const mockRecipes: Recipe[] = [
   {
     id: 2,
     name: "Homemade Strawberry Cake",
-    imgUrl: "../../../../assets/img/strawberry-cake.jpg",
+    imgUrl: "strawberry-cake.jpg",
     time: 10,
     description:
       "Strawberry cake is sweet and tart and unmatched to other cakes. The cream cheese frosting is what really makes this cake. Making strawberry compote is easier than you'd think. All you're doing is cooking down the fresh berries with sugar and lemon juice. We used it in the batter and frosting to make sure that the cake has the best strawberry flavor possible. The compote will make a little more than you need, but you can use leftover just as you would jam! It will keep refrigerated for 1 week. ",
@@ -52,7 +52,7 @@ export const mockRecipes: Recipe[] = [
   {
     id: 3,
     name: "Broccoli Cheesy Bread",
-    imgUrl: "../../../../assets/img/broccoli-cheesy-bread.jpg",
+    imgUrl: "broccoli-cheesy-bread.jpg",
     time: 15,
     description:
       "Wringing the steamed broccoli out with paper towel or cheesecloth insures your cheesy bread is crisp, not sogg",
@@ -75,7 +75,7 @@ export const mockRecipes: Recipe[] = [
   {
     id: 4,
     name: "Perfect Omelet",
-    imgUrl: "../../../../assets/img/omelet.png",
+    imgUrl: "omelet.png",
     time: 5,
     description:
       "In culinary school we learned that a chef is only as good as the omelet they make. Well, that's intimidating. I've since learned that it really doesn't have to be. Omelets are no scarier than good scrambled eggs. A gentle drag then fold creates the perfect blanket for cheese and your favorite fillings. Here are a few tips so you can be a master chef of breakfast. ",
@@ -89,7 +89,7 @@ export const mockRecipes: Recipe[] = [
   {
     id: 5,
     name: "Sweet Potato Pancakes",
-    imgUrl: "../../../../assets/img/",
+    imgUrl: "potato-pancakes.jpg",
     time: 25,
     description:
       "Mornings are not complete until a stack of pancakes has been placed down in front of us. These sweet potato pancakes are an amazing twist on the original that is perfect for a fall morning. Roast sweet potatoes to make your own puree or use canned; either way, you'll still have a fluffy, homemade pancake that's better than any box mix could produce. The added pecans will really make you feel like you're eating dessert on Thanksgiving. Who doesn't need excuse to day dream about pie right after waking up?",
@@ -118,7 +118,7 @@ export const mockRecipes: Recipe[] = [
   {
     id: 6,
     name: "No-Bake Pumpkin Cheesecake",
-    imgUrl: "../../../../assets/img/pumpkin-cheesecake.png",
+    imgUrl: "pumpkin-cheesecake.png",
     time: 25,
     description:
       "Figuring out how to make all of the pumpkin desserts during Thanksgiving while the turkey is in the oven can be a nightmare. That's why you need this no-bake cheesecake. It's a major time saver and while we love our classic pumpkin cheesecake, we go crazy for the no-bake option The gingersnap crust is a must and adds that extra layer of fall. Gently fold the fresh whipped cream into the batter so you don't loose it's beautiful volume. You can make this cheesecake a couple of days ahead of time and it even freezes well. We love it straight from the freezer, which will make for prettier slices.",
@@ -143,7 +143,7 @@ export const mockRecipes: Recipe[] = [
   {
     id: 7,
     name: "Polenta Fries",
-    imgUrl: "../../../../assets/img/polenta-fries.jpg",
+    imgUrl: "polenta-fries.jpg",
     time: 40,
     description:
       "Craving a french fry style treat at home, but don't feel like frying? Polenta fries have a crispy outside yet creamy inside and are baked not fried. They take very little effort. A tube of prepared polenta (you can find in most grocery stores) is simply cut into fry shapes, drizzled with a little oil, seasoned, and baked. There's no dredging or soaking - easy. Serve it with ketchup or make your own garlic mayo. ",
