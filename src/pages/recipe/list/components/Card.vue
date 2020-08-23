@@ -16,7 +16,7 @@
         </div>
         <v-divider></v-divider>
         <div class="footer">
-          <v-btn outlined small color="#689F38">See more</v-btn>
+          <v-btn outlined small color="#00B8D4">See more</v-btn>
           <div class="btn-container">
             <v-icon class="edit-icon" @click="deletebtn">mdi-pencil</v-icon>
             <v-icon color="#FF6E40" @click="deletebtn"
@@ -63,7 +63,7 @@ export default Vue.extend({
 }
 
 .recipe-title {
-  color: #3e2723;
+  color: #263238;
   font-weight: 400;
   margin-bottom: 5px;
   text-transform: uppercase;
