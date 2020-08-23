@@ -7,7 +7,7 @@ import "vuetify/dist/vuetify.min.css";
 
 Vue.use(VueRouter);
 Vue.use(Vuetify);
-const vuetify = new Vuetify();
+const vuetify = new Vuetify({});
 
 new Vue({
   vuetify,

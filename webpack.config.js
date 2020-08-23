@@ -76,7 +76,10 @@ module.exports = (env, argv) => {
               ],
             },
             {
-              use: [isDev ? "vue-style-loader" : MiniCssExtractPlugin.loader, "css-loader"],
+              use: [
+                isDev ? "vue-style-loader" : MiniCssExtractPlugin.loader,
+                "css-loader",
+              ],
             },
           ],
         },
@@ -95,6 +98,19 @@ module.exports = (env, argv) => {
         {
           test: /\.svg(\?v=\d+\.\d+\.\d+)?$/,
           loader: "url-loader?limit=10000&mimetype=image/svg+xml",
+        },
+        {
+          test: /\.(gif|png|jpe?g|svg)$/i,
+          use: [
+            "file-loader",
+            {
+              loader: "image-webpack-loader",
+              options: {
+                bypassOnDebug: true, // webpack@1.x
+                disable: true, // webpack@2.x and newer
+              },
+            },
+          ],
         },
       ],
     },
