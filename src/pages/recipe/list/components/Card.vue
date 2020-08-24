@@ -6,8 +6,10 @@
           <v-icon color="#F57F17">mdi-clock-time-four-outline</v-icon>
           <span class="time-text">{{ `${recipe.time}'` }}</span>
         </div>
+        <!-- <img :src="url[index]" /> -->
         <!-- <img :src="`../../../../assets/img/${recipe.imgUrl}`" /> -->
-        <img src="../../../../assets/img/broccoli-cheesy-bread.jpg" />
+        <img :src="`./img/${recipe.imgUrl}`" />
+        <!-- <img src="../../../../assets/img/broccoli-cheesy-bread.jpg" /> -->
         <h4 class="recipe-title">{{ recipe.name }}</h4>
         <v-divider></v-divider>
         <div class="text-container">
@@ -47,7 +49,11 @@ export default Vue.extend({
     recipes: { required: true } as PropOptions<Recipe[]>,
   },
   data() {
-    return {};
+    return {
+      url: this.recipes.map((x) =>
+        require(`../../../../assets/img/${x.imgUrl}`)
+      ),
+    };
   },
   methods: {
     shortenTitleLength(title: string): string {
