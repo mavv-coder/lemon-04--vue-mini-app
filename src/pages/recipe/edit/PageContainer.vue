@@ -5,8 +5,10 @@
       recipeError,
       onUpdateRecipe,
       onAddIngredient,
-      onSave,
       onRemoveIngredient,
+      onSave,
+      onRemoveStep,
+      onAddStep,
     }"
   />
 </template>
@@ -70,6 +72,13 @@ export default Vue.extend({
       };
       this.validateRecipeField("ingredients", this.recipe.ingredients);
     },
+    onAddStep(step: string) {
+      this.recipe = {
+        ...this.recipe,
+        steps: [...this.recipe.steps, step],
+      };
+      this.validateRecipeField("steps", this.recipe.steps);
+    },
     onRemoveIngredient(ingredient: string) {
       this.recipe = {
         ...this.recipe,
@@ -78,6 +87,13 @@ export default Vue.extend({
         ),
       };
       this.validateRecipeField("ingredients", this.recipe.ingredients);
+    },
+    onRemoveStep(step: string) {
+      this.recipe = {
+        ...this.recipe,
+        steps: this.recipe.steps.filter((item) => item !== step),
+      };
+      this.validateRecipeField("step", this.recipe.steps);
     },
     validateRecipeField(field, value) {
       validations

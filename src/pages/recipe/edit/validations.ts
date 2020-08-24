@@ -27,13 +27,14 @@ const validationSchema: ValidationSchema = {
       },
       {
         validator: Validators.pattern,
-        customArgs: { pattern: "^[0-9][0-9]$" },
+        customArgs: { pattern: "^[0-9][0-9]?$" },
         message: "Time only accepts numerical characters",
       },
       {
         validator: Validators.required,
       },
     ],
+    steps: [hasItems],
   },
 };
 

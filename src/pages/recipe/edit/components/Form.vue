@@ -66,13 +66,13 @@
         label="Steps"
         placeholder="Add step"
         append-icon="add"
-        v-model="ingredient"
-        @click:append="handleAddIngredient(ingredient)"
+        v-model="step"
+        @click:append="handleAddStep(step)"
       />
 
       <step-list-component
         :steps="recipe.steps"
-        :on-remove-ingredient="onRemoveStep"
+        :on-remove-step="onRemoveStep"
       />
 
       <v-alert
@@ -102,10 +102,13 @@ export default Vue.extend({
     onSave: { required: true },
     onRemoveIngredient: { required: true },
     onAddIngredient: { required: true },
+    onAddStep: { required: true },
+    onRemoveStep: { required: true },
   } as FormProps,
   data() {
     return {
       ingredient: "",
+      step: "",
       difficultyLevels: ["Easy", "Medium", "Difficult"],
     };
   },
@@ -137,7 +140,14 @@ export default Vue.extend({
         ? false
         : true;
     },
-    onRemoveStep() {},
+    checkifStepIsValid(): boolean {
+      return this.step === "" || this.step === undefined || this.step === null
+        ? false
+        : true;
+    },
+    handleAddStep(step: string): void {
+      if (this.checkifStepIsValid()) this.onAddStep(step);
+    },
   },
 });
 </script>
