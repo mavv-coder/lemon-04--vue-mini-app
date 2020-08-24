@@ -10,7 +10,7 @@ export interface Recipe {
   time: number;
   description: string;
   ingredients: string[];
-  steps: string;
+  steps: string[];
 }
 
 export const createEmptyRecipe = (): Recipe => ({
@@ -20,7 +20,7 @@ export const createEmptyRecipe = (): Recipe => ({
   time: 0,
   description: "",
   ingredients: [],
-  steps: "",
+  steps: [],
 });
 
 export interface RecipeError {
