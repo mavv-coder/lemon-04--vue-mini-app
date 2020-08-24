@@ -28,6 +28,7 @@
             <v-icon class="edit-icon" @click="navigateToEdit(recipe.id)"
               >mdi-heart-outline</v-icon
             >
+            <!-- <v-icon class="edit-icon" color="#D32F2F">mdi-heart</v-icon> -->
             <v-icon class="edit-icon" @click="navigateToEdit(recipe.id)"
               >mdi-pencil</v-icon
             >

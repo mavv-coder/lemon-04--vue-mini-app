@@ -1,5 +1,7 @@
 <template>
-  <recipe-list-page v-bind="{ searchText, recipes: filteredRecipes, onSearch }" />
+  <recipe-list-page
+    v-bind="{ searchText, recipes: filteredRecipes, onSearch }"
+  />
 </template>
 
 <script lang="ts">

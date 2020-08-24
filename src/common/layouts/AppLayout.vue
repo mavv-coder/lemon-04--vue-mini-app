@@ -1,13 +1,15 @@
 <template>
-  <div>
+  <div v-if="authentication">
     <nav class="navbar">
       <v-app-bar app dark color="#F57F17">
         <div class="flex-container">
           <v-toolbar-title>Recipe App</v-toolbar-title>
           <div class="user-login-container">
-            <span class="user-text">Hello, admin</span>
+            <span class="user-text">Hello, {{ loginName }}</span>
             <v-icon class="fav-icon" color="#D32F2F">mdi-heart</v-icon>
-            <v-btn elevation="0" light small>Log out</v-btn>
+            <v-btn elevation="0" light small @click="handleLogOut"
+              >Log out</v-btn
+            >
           </div>
         </div>
       </v-app-bar>
@@ -20,8 +22,30 @@
 
 <script lang="ts">
 import Vue from "vue";
+import { baseRoutes } from "../../router";
 export default Vue.extend({
   name: "AppLayout",
+  data() {
+    return {
+      loginName: "",
+      authentication: false,
+    };
+  },
+  created() {
+    if (localStorage.getItem("login") === null) {
+      this.authentication = false;
+    } else {
+      this.authentication = true;
+      this.loginName = JSON.parse(localStorage.getItem("login") as string).name;
+    }
+  },
+  methods: {
+    handleLogOut(): void {
+      localStorage.removeItem("login");
+      this.authentication = false;
+      this.$router.push(baseRoutes.login);
+    },
+  },
 });
 </script>
 <style scoped>
@@ -43,7 +67,7 @@ export default Vue.extend({
   align-items: center;
 }
 .fav-icon {
-  margin: 0 10px;
+  margin: 0 12px;
   transition: all 0.4s ease;
 }
 

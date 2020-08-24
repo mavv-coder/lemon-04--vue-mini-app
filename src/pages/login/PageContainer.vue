@@ -54,6 +54,7 @@ export default Vue.extend({
           loginRequest(loginModel)
             .then(() => {
               this.$router.push(baseRoutes.recipe);
+              localStorage.setItem("login", JSON.stringify(this.login));
             })
             .catch((error) => {
               this.snackbar = true;
