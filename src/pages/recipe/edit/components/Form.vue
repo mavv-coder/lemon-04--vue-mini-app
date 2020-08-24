@@ -16,6 +16,13 @@
       @input="(time) => onUpdateRecipe('time', time)"
     />
 
+    <v-select
+      :items="difficultyLevels"
+      filled
+      :value="recipe.difficulty"
+      label="Difficulty"
+    ></v-select>
+
     <v-text-field
       filled
       label="Ingredients"
@@ -43,7 +50,7 @@
       placeholder="Description...."
       rows="10"
       :value="recipe.steps"
-      :rules="[resultRecipeDescriptionError]"
+      :rules="[resultRecipeFieldError('description')]"
       :no-resize="true"
       @input="(value) => onUpdateRecipe('description', value)"
     ></v-textarea>
@@ -71,19 +78,20 @@ export default Vue.extend({
   data() {
     return {
       ingredient: "",
+      difficultyLevels: ["Easy", "Medium", "Difficult"],
     };
   },
-  computed: {
-    resultRecipeTitleError(): boolean | string {
-      return this.recipeError.name.succeeded || this.recipeError.name.message;
-    },
-    resultRecipeDescriptionError(): boolean | string {
-      return (
-        this.recipeError.description.succeeded ||
-        this.recipeError.description.message
-      );
-    },
-  },
+  // computed: {
+  //   resultRecipeTitleError(): boolean | string {
+  //     return this.recipeError.name.succeeded || this.recipeError.name.message;
+  //   },
+  //   resultRecipeDescriptionError(): boolean | string {
+  //     return (
+  //       this.recipeError.description.succeeded ||
+  //       this.recipeError.description.message
+  //     );
+  //   },
+  // },
   methods: {
     resultRecipeFieldError(field: string): boolean | string {
       return (

@@ -4,6 +4,7 @@ export const mockRecipes: Recipe[] = [
   {
     id: 1,
     name: "Veggie Crustless Quiche",
+    difficulty: "Medium",
     imgUrl: "veggie-crustless-quiche.jpg",
     time: 20,
     description:
@@ -30,6 +31,7 @@ export const mockRecipes: Recipe[] = [
   {
     id: 2,
     name: "Homemade Strawberry Cake",
+    difficulty: "Medium",
     imgUrl: "strawberry-cake.jpg",
     time: 10,
     description:
@@ -64,6 +66,7 @@ export const mockRecipes: Recipe[] = [
   {
     id: 3,
     name: "Broccoli Cheesy Bread",
+    difficulty: "Difficult",
     imgUrl: "broccoli-cheesy-bread.jpg",
     time: 15,
     description:
@@ -93,6 +96,7 @@ export const mockRecipes: Recipe[] = [
   {
     id: 4,
     name: "Perfect Omelet",
+    difficulty: "Easy",
     imgUrl: "omelet.png",
     time: 5,
     description:
@@ -112,6 +116,7 @@ export const mockRecipes: Recipe[] = [
   {
     id: 5,
     name: "Sweet Potato Pancakes",
+    difficulty: "Easy",
     imgUrl: "potato-pancakes.jpg",
     time: 25,
     description:
@@ -148,6 +153,7 @@ export const mockRecipes: Recipe[] = [
   {
     id: 6,
     name: "No-Bake Pumpkin Cheesecake",
+    difficulty: "Medium",
     imgUrl: "pumpkin-cheesecake.png",
     time: 25,
     description:
@@ -180,6 +186,7 @@ export const mockRecipes: Recipe[] = [
   {
     id: 7,
     name: "Polenta Fries",
+    difficulty: "Difficult",
     imgUrl: "polenta-fries.jpg",
     time: 40,
     description:
