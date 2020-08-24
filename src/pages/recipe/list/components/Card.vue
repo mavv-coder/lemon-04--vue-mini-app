@@ -26,6 +26,9 @@
           >
           <div class="btn-container">
             <v-icon class="edit-icon" @click="navigateToEdit(recipe.id)"
+              >mdi-heart-outline</v-icon
+            >
+            <v-icon class="edit-icon" @click="navigateToEdit(recipe.id)"
               >mdi-pencil</v-icon
             >
             <v-icon color="#FF6E40" @click="deletebtn"

@@ -1,10 +1,17 @@
 <template>
   <div>
-    <div class="navbar">
-      <v-app-bar class="navbar" dense app dark color="#F57F17">
-        <v-toolbar-title>Recipe App</v-toolbar-title>
+    <nav class="navbar">
+      <v-app-bar app dark color="#F57F17">
+        <div class="flex-container">
+          <v-toolbar-title>Recipe App</v-toolbar-title>
+          <div class="user-login-container">
+            <span class="user-text">Hello, admin</span>
+            <v-icon class="fav-icon" color="#D32F2F">mdi-heart</v-icon>
+            <v-btn elevation="0" light small>Log out</v-btn>
+          </div>
+        </div>
       </v-app-bar>
-    </div>
+    </nav>
     <v-container class="py-10">
       <slot />
     </v-container>
@@ -22,5 +29,30 @@ export default Vue.extend({
   position: absolute;
   top: 0;
   z-index: 2000;
+}
+
+.flex-container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.user-login-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.fav-icon {
+  margin: 0 10px;
+  transition: all 0.4s ease;
+}
+
+.fav-icon:hover {
+  opacity: 0.8;
+  cursor: pointer;
+}
+
+.logout-btn {
+  color: black;
 }
 </style>
