@@ -93,7 +93,7 @@ export default Vue.extend({
         ...this.recipe,
         steps: this.recipe.steps.filter((item) => item !== step),
       };
-      this.validateRecipeField("step", this.recipe.steps);
+      this.validateRecipeField("steps", this.recipe.steps);
     },
     validateRecipeField(field, value) {
       validations

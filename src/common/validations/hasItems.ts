@@ -5,7 +5,7 @@ const hasItems: FieldValidationFunctionSync = ({ value }) => {
   return {
     type: "ARRAY_HAS_ITEMS",
     succeeded: isValid,
-    message: isValid ? "" : "Should has one or more ingredients",
+    message: isValid ? "" : `Should has one or more item`,
   };
 };
 

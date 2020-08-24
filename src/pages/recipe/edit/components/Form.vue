@@ -53,7 +53,7 @@
         filled
         placeholder="Description...."
         rows="10"
-        :value="recipe.steps"
+        :value="recipe.description"
         :rules="[resultRecipeFieldError('description')]"
         :no-resize="true"
         @input="(value) => onUpdateRecipe('description', value)"
@@ -75,12 +75,9 @@
         :on-remove-step="onRemoveStep"
       />
 
-      <v-alert
-        :value="!recipeError.ingredients.succeeded"
-        color="error"
-        outlined
-        >{{ recipeError.ingredients.message }}</v-alert
-      >
+      <v-alert :value="!recipeError.steps.succeeded" color="error" outlined>{{
+        recipeError.steps.message
+      }}</v-alert>
     </div>
     <v-btn type="button" color="success" @click.prevent="onSave">Save</v-btn>
   </v-form>
@@ -130,7 +127,10 @@ export default Vue.extend({
       );
     },
     handleAddIngredient(ingredient: string): void {
-      if (this.checkifIngredientIsValid()) this.onAddIngredient(ingredient);
+      if (this.checkifIngredientIsValid()) {
+        this.onAddIngredient(ingredient);
+        this.ingredient = "";
+      }
     },
 
     checkifIngredientIsValid(): boolean {
@@ -146,7 +146,10 @@ export default Vue.extend({
         : true;
     },
     handleAddStep(step: string): void {
-      if (this.checkifStepIsValid()) this.onAddStep(step);
+      if (this.checkifStepIsValid()) {
+        this.onAddStep(step);
+        this.step = "";
+      }
     },
   },
 });

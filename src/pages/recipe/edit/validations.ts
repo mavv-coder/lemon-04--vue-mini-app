@@ -8,7 +8,10 @@ import { hasItems } from "../../../common/validations/hasItems";
 const validationSchema: ValidationSchema = {
   field: {
     name: [Validators.required],
-    ingredients: [hasItems],
+    ingredients: [
+      { validator: hasItems, customArgs: { field: "ingredients" } },
+    ],
+    steps: [{ validator: hasItems, customArgs: { field: "steps" } }],
     description: [
       {
         validator: Validators.minLength,
@@ -34,7 +37,6 @@ const validationSchema: ValidationSchema = {
         validator: Validators.required,
       },
     ],
-    steps: [hasItems],
   },
 };
 
