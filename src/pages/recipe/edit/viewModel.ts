@@ -27,10 +27,12 @@ export interface RecipeError {
   name: ValidationResult;
   ingredients: ValidationResult;
   description: ValidationResult;
+  time: ValidationResult;
 }
 
 export const createEmptyRecipeError = (): RecipeError => ({
   name: createDefaultValidationResult(),
   ingredients: createDefaultValidationResult(),
   description: createDefaultValidationResult(),
+  time: createDefaultValidationResult(),
 });

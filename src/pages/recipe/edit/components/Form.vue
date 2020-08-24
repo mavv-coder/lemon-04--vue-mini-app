@@ -4,8 +4,16 @@
       filled
       label="Name"
       :value="recipe.name"
-      :rules="[resultRecipeTitleError]"
+      :rules="[resultRecipeFieldError('name')]"
       @input="(name) => onUpdateRecipe('name', name)"
+    />
+
+    <v-text-field
+      filled
+      label="Time"
+      :value="recipe.time"
+      :rules="[resultRecipeFieldError('time')]"
+      @input="(time) => onUpdateRecipe('time', time)"
     />
 
     <v-text-field
@@ -77,6 +85,11 @@ export default Vue.extend({
     },
   },
   methods: {
+    resultRecipeFieldError(field: string): boolean | string {
+      return (
+        this.recipeError[field].succeeded || this.recipeError[field].message
+      );
+    },
     handleAddIngredient(ingredient: string): void {
       if (this.checkifIngredientIsValid()) this.onAddIngredient(ingredient);
     },

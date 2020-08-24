@@ -10,6 +10,15 @@ const validationSchema: ValidationSchema = {
     name: [Validators.required],
     ingredients: [hasItems],
     description: [Validators.required],
+    time: [
+      {
+        validator: Validators.maxLength,
+        customArgs: { length: 2 },
+      },
+      {
+        validator: Validators.required,
+      },
+    ],
   },
 };
 
