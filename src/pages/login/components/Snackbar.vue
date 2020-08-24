@@ -28,7 +28,7 @@ export default Vue.extend({
     return {
       color: "error",
       text: "Invalid login or password",
-      timeout: 5000,
+      timeout: -1,
       top: true,
     };
   },

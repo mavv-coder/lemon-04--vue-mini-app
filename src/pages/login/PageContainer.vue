@@ -57,6 +57,9 @@ export default Vue.extend({
             })
             .catch((error) => {
               this.snackbar = true;
+              setTimeout(() => {
+                this.snackbar = false;
+              }, 5000);
             });
         } else {
           this.loginError = {
