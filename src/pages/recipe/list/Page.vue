@@ -1,9 +1,14 @@
 <template>
   <app-layout>
     <v-card>
-      <v-card-title class="text-h4">
-        Recipes
-      </v-card-title>
+      <div class="card-header">
+        <v-card-title class="text-h4">
+          Recipes
+        </v-card-title>
+        <v-btn color="#F57F17" outlined
+          >Add new<v-icon color="#F57F17">mdi-plus</v-icon></v-btn
+        >
+      </div>
       <v-card-text>
         <search-bar-component :search-text="searchText" :on-search="onSearch" />
         <!-- <table-component :recipes="recipes" /> -->
@@ -30,3 +35,12 @@ export default Vue.extend({
   },
 });
 </script>
+
+<style scoped>
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 16px;
+}
+</style>
