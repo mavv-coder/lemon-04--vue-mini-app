@@ -62,6 +62,13 @@ export default Vue.extend({
         deleteFromLocalStorage("recipes");
         saveInLocalStorage("recipes", newRecipes);
         this.recipes = newRecipes;
+        //
+        const newfavList = getFromLocalStorage("favList").filter(
+          (x) => x.id !== id
+        );
+        deleteFromLocalStorage("favList");
+        saveInLocalStorage("favList", newfavList);
+        this.recipes = newfavList;
       }
     },
   },
