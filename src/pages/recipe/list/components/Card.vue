@@ -7,6 +7,7 @@
           <span class="time-text">{{ `${recipe.time}'` }}</span>
         </div>
         <img :src="`./img/${recipe.imgUrl}`" />
+        <!-- <img src="../../../../assets/img/veggie-crustless-quiche.jpg" /> -->
         <h4 class="recipe-title">{{ recipe.name }}</h4>
         <v-divider></v-divider>
         <div class="text-container">
@@ -176,7 +177,7 @@ export default Vue.extend({
   justify-content: center;
   align-content: center;
   align-items: center;
-  background-color: #ffee58;
+  background-color: #f9ec79;
   border-radius: 50%;
   top: 0px;
   right: 0px;

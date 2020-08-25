@@ -9,11 +9,11 @@
 </template>
 <script lang="ts">
 import Vue from "vue";
-import { AppbarComponent, AppbarFavList } from "../components";
+import { AppbarComponent } from "../components";
 
 export default Vue.extend({
   name: "AppLayout",
-  components: { AppbarComponent, AppbarFavList },
+  components: { AppbarComponent },
   data() {
     return {
       favRecipeListState: false,
