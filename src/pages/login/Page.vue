@@ -1,7 +1,7 @@
 <template>
   <center-layout>
     <snackbar-component
-      v-bind="{ snackbarText, snackbarColor, snackbarState, setSnackbarState }"
+      v-bind="{ snackbarText, snackbarColor, snackbarState, closeSnackbar }"
     />
     <v-row align="center" justify="center">
       <v-col cols="12" sm="8" md="4">
@@ -36,7 +36,7 @@ export default Vue.extend({
     loginError: { required: true },
     updateLogin: { required: true },
     loginRequest: { required: true },
-    setSnackbarState: { required: true },
+    closeSnackbar: { required: true },
     snackbarState: { required: true },
     snackbarColor: { required: true },
     snackbarText: { required: true },

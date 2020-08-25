@@ -8,7 +8,7 @@
       updateLogin,
       loginRequest,
       loginError,
-      setSnackbarState,
+      closeSnackbar,
     }"
   />
 </template>
@@ -35,7 +35,7 @@ export default Vue.extend({
     };
   },
   methods: {
-    setSnackbarState(v: boolean): void {
+    closeSnackbar(v: boolean): void {
       this.snackbarState = v;
     },
     updateLogin(field: string, value: string) {

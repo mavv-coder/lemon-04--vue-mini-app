@@ -8,7 +8,7 @@
   >
     {{ snackbarText }}
     <template v-slot:action="{ attrs }">
-      <v-btn text v-bind="attrs" @click="setSnackbarState(false)">
+      <v-btn text v-bind="attrs" @click="closeSnackbar(false)">
         Close
       </v-btn>
     </template>
@@ -19,7 +19,7 @@
 import Vue, { PropOptions } from "vue";
 
 interface SnackbarProps {
-  setSnackbarState: PropOptions<(v: boolean) => void>;
+  closeSnackbar: PropOptions<(v: boolean) => void>;
   snackbarState: PropOptions<boolean>;
   snackbarColor: PropOptions<string>;
   snackbarText: PropOptions<string>;
@@ -28,7 +28,7 @@ interface SnackbarProps {
 export default Vue.extend({
   name: "SnackbarComponent",
   props: {
-    setSnackbarState: { required: true },
+    closeSnackbar: { required: true },
     snackbarState: { required: true },
     snackbarColor: { required: true },
     snackbarText: { required: true },

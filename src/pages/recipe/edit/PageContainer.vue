@@ -7,8 +7,12 @@
       onAddIngredient,
       onRemoveIngredient,
       onSave,
+      closeSnackbar,
       onRemoveStep,
       onAddStep,
+      snackbarState,
+      snackbarColor,
+      snackbarText,
     }"
   />
 </template>
@@ -20,6 +24,12 @@ import { fetchRecipeById, save } from "../../../rest-api/api/recipe";
 import { mapRecipeModelToVm, mapRecipeVmToModel } from "./mapper";
 import { createEmptyRecipe, createEmptyRecipeError } from "./viewModel";
 import { validations } from "./validations";
+import { Recipe } from "../../../rest-api/model";
+import {
+  saveInLocalStorage,
+  deleteFromLocalStorage,
+  getFromLocalStorage,
+} from "../../../common/helpers";
 
 export default Vue.extend({
   name: "RecipeEditPageContainer",
@@ -29,6 +39,9 @@ export default Vue.extend({
     return {
       recipe: createEmptyRecipe(),
       recipeError: createEmptyRecipeError(),
+      snackbarState: false,
+      snackbarColor: "",
+      snackbarText: "",
     };
   },
   beforeMount() {
@@ -40,6 +53,9 @@ export default Vue.extend({
       .catch((error) => console.log(error));
   },
   methods: {
+    closeSnackbar(v: boolean): void {
+      this.snackbarState = v;
+    },
     onUpdateRecipe(field: string, value: string) {
       this.recipe = {
         ...this.recipe,
@@ -53,11 +69,14 @@ export default Vue.extend({
           const recipe = mapRecipeVmToModel(this.recipe);
           save(recipe)
             .then((message) => {
-              console.log(message);
               this.$router.back();
+              this.saveRecipeToLocalStorage(recipe);
             })
-            .catch((error) => console.log(error));
+            .catch((error) => {
+              this.showSnackbarError(error);
+            });
         } else {
+          this.showSnackbarError("");
           this.recipeError = {
             ...this.recipeError,
             ...result.fieldErrors,
@@ -105,6 +124,22 @@ export default Vue.extend({
         ...this.recipeError,
         [field]: result,
       };
+    },
+    showSnackbarError(msg: string) {
+      msg
+        ? (this.snackbarText = msg)
+        : (this.snackbarText = "Check the form again, please");
+      this.snackbarColor = "error";
+      this.snackbarState = true;
+      setTimeout(() => {
+        this.snackbarState = false;
+      }, 5000);
+    },
+    saveRecipeToLocalStorage(recipe: Recipe): void {
+      const recipes = getFromLocalStorage("recipes");
+      const newRecipes = recipes.map((x) => (x.id === recipe.id ? recipe : x));
+      deleteFromLocalStorage("recipes");
+      saveInLocalStorage("recipes", newRecipes);
     },
   },
 });
