@@ -12,7 +12,7 @@
       <v-card-text>
         <search-bar-component :search-text="searchText" :on-search="onSearch" />
         <!-- <table-component :recipes="recipes" /> -->
-        <recipe-card :recipes="recipes" />
+        <recipe-card v-bind="{ recipes, deleteRecipe }" />
       </v-card-text>
     </v-card>
   </app-layout>
@@ -29,6 +29,7 @@ export default Vue.extend({
   name: "RecipeListPage",
   components: { AppLayout, RecipeCard, TableComponent, SearchBarComponent },
   props: {
+    deleteRecipe: { required: true } as PropOptions<(id: number) => void>,
     recipes: { required: true } as PropOptions<Recipe[]>,
     searchText: String,
     onSearch: { required: true } as PropOptions<(value: string) => void>,

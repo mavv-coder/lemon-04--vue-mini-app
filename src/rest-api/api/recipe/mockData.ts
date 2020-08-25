@@ -70,7 +70,7 @@ export const mockRecipes: Recipe[] = [
     imgUrl: "broccoli-cheesy-bread.jpg",
     time: 15,
     description:
-      "Wringing the steamed broccoli out with paper towel or cheesecloth insures your cheesy bread is crisp, not sogg",
+      "Wringing the steamed broccoli out with paper towel or cheesecloth insures your cheesy bread is crisp, not sogg. Broccoli is one of the healthiest vegetables all over the world. The most broccoli you eat, the best is going to be your health.",
     ingredients: [
       "egg",
       "broccoli",

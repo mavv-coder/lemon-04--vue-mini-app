@@ -32,7 +32,7 @@
             <v-icon class="edit-icon" @click="navigateToEdit(recipe.id)"
               >mdi-pencil</v-icon
             >
-            <v-icon color="#FF6E40" @click="deletebtn"
+            <v-icon color="#FF6E40" @click="deleteRecipe(recipe.id)"
               >mdi-trash-can-outline</v-icon
             >
           </div>
@@ -51,6 +51,7 @@ export default Vue.extend({
   name: "RecipeCard",
   props: {
     recipes: { required: true } as PropOptions<Recipe[]>,
+    deleteRecipe: { required: true } as PropOptions<(id: number) => void>,
   },
   data() {
     return {

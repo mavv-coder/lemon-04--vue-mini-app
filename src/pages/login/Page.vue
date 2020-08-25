@@ -1,12 +1,14 @@
 <template>
   <center-layout>
+    <snackbar-component
+      v-bind="{ snackbarText, snackbarColor, snackbarState, setSnackbarState }"
+    />
     <v-row align="center" justify="center">
       <v-col cols="12" sm="8" md="4">
         <v-card>
           <v-card-title primary-title>
             <h3 class="headline">Login</h3>
           </v-card-title>
-
           <v-card-text>
             <form-component
               v-bind="{ login, updateLogin, loginRequest, loginError }"
@@ -15,9 +17,6 @@
         </v-card>
       </v-col>
     </v-row>
-    <snackbar-component
-      v-bind="{ snackbarText, snackbarColor, snackbarState, setSnackbarState }"
-    />
   </center-layout>
 </template>
 

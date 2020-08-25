@@ -1,12 +1,18 @@
 <template>
   <recipe-list-page
-    v-bind="{ searchText, recipes: filteredRecipes, onSearch }"
+    v-bind="{ searchText, recipes: filteredRecipes, onSearch, deleteRecipe }"
   />
 </template>
 
 <script lang="ts">
 import Vue from "vue";
 import { fetchRecipes } from "../../../rest-api/api/recipe";
+import {
+  checkInLocalStorage,
+  getFromLocalStorage,
+  saveInLocalStorage,
+  deleteFromLocalStorage,
+} from "../../../common/helpers";
 import { filterRecipesByCommaSeparatedText } from "./business/filterRecipeBusiness";
 import { mapRecipeListModelToVm } from "./mapper";
 import { Recipe } from "./viewModel";
@@ -29,15 +35,30 @@ export default Vue.extend({
     },
   },
   created() {
-    fetchRecipes()
-      .then((recipes) => {
-        this.recipes = mapRecipeListModelToVm(recipes);
-      })
-      .catch((error) => console.log(error));
+    if (checkInLocalStorage("recipes")) {
+      this.recipes = getFromLocalStorage("recipes");
+    } else {
+      fetchRecipes()
+        .then((recipes) => {
+          this.recipes = mapRecipeListModelToVm(recipes);
+          saveInLocalStorage("recipes", recipes);
+        })
+        .catch((error) => console.log(error));
+    }
   },
   methods: {
-    onSearch(value: string) {
+    onSearch(value: string): void {
       this.searchText = value;
+    },
+    deleteRecipe(id: number): void {
+      if (window.confirm("Are you sure to delete this recipe")) {
+        const newRecipes = getFromLocalStorage("recipes").filter(
+          (x) => x.id !== id
+        );
+        deleteFromLocalStorage("recipes");
+        saveInLocalStorage("recipes", newRecipes);
+        this.recipes = newRecipes;
+      }
     },
   },
 });

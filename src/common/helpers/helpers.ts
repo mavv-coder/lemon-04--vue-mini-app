@@ -7,3 +7,7 @@ export const saveInLocalStorage = (key: string, value: any): void => {
 
 export const getFromLocalStorage = (key: string): any =>
   JSON.parse(localStorage.getItem(key) as string);
+
+export const deleteFromLocalStorage = (key: string): void => {
+  localStorage.removeItem(key);
+};
