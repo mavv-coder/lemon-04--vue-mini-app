@@ -36,15 +36,15 @@ export default Vue.extend({
   },
   created() {
     if (checkInLocalStorage("login")) {
-      this.authentication = false;
-    } else {
       this.authentication = true;
-      this.loginName = getFromLocalStorage("login");
+      this.loginName = getFromLocalStorage("login").name;
+    } else {
+      this.authentication = false;
     }
   },
   methods: {
     handleLogOut(): void {
-      localStorage.removeItem("login");
+      localStorage.clear();
       this.authentication = false;
       this.$router.push(baseRoutes.login);
     },
