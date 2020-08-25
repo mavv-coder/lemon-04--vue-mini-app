@@ -7,12 +7,12 @@
 <script lang="ts">
 import Vue from "vue";
 import { fetchRecipes } from "../../../rest-api/api/recipe";
-import {
-  checkInLocalStorage,
-  getFromLocalStorage,
-  saveInLocalStorage,
-  deleteFromLocalStorage,
-} from "../../../common/helpers";
+// import {
+//   checkInLocalStorage,
+//   getFromLocalStorage,
+//   saveInLocalStorage,
+//   deleteFromLocalStorage,
+// } from "../../../common/helpers";
 import { filterRecipesByCommaSeparatedText } from "./business/filterRecipeBusiness";
 import { mapRecipeListModelToVm } from "./mapper";
 import { Recipe } from "./viewModel";
