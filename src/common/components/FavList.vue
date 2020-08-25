@@ -1,6 +1,6 @@
 <template>
   <div class="fav-list-container">
-    <ul class="fav-list" v-if="isFavList">
+    <ul class="fav-list" v-if="favList">
       <v-divider color="#D32F2F"></v-divider>
       <template v-for="recipe in favList">
         <div :key="recipe.id">
@@ -30,9 +30,9 @@ export default Vue.extend({
     };
   },
   created() {
-    if (checkInLocalStorage("recipes")) {
+    if (checkInLocalStorage("favList")) {
       this.isFavList = true;
-      this.favList = getFromLocalStorage("recipes");
+      this.favList = getFromLocalStorage("favList");
     } else {
       this.isFavList = false;
     }

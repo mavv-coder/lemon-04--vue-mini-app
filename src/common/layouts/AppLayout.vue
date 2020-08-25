@@ -1,7 +1,7 @@
 <template>
   <div>
     <appbar-component :toggle-fav-list="toggleFavList" />
-    <appbar-fav-list v-if="favListState" />
+    <appbar-fav-list v-if="favRecipeListState" />
     <v-container class="py-10">
       <slot />
     </v-container>
@@ -16,12 +16,12 @@ export default Vue.extend({
   components: { AppbarComponent, AppbarFavList },
   data() {
     return {
-      favListState: false,
+      favRecipeListState: false,
     };
   },
   methods: {
     toggleFavList(): void {
-      this.favListState = !this.favListState;
+      this.favRecipeListState = !this.favRecipeListState;
     },
   },
 });

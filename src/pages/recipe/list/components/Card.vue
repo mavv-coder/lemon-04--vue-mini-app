@@ -6,10 +6,7 @@
           <v-icon color="#F57F17">mdi-clock-time-four-outline</v-icon>
           <span class="time-text">{{ `${recipe.time}'` }}</span>
         </div>
-        <!-- <img :src="url[index]" /> -->
-        <!-- <img :src="`../../../../assets/img/${recipe.imgUrl}`" /> -->
         <img :src="`./img/${recipe.imgUrl}`" />
-        <!-- <img src="../../../../assets/img/broccoli-cheesy-bread.jpg" /> -->
         <h4 class="recipe-title">{{ recipe.name }}</h4>
         <v-divider></v-divider>
         <div class="text-container">
@@ -25,10 +22,19 @@
             >See more</v-btn
           >
           <div class="btn-container">
-            <v-icon class="edit-icon" @click="navigateToEdit(recipe.id)"
+            <v-icon
+              v-if="!checkIsFav(recipe.id)"
+              @click="toggleRecipeFav(recipe)"
+              class="edit-icon"
               >mdi-heart-outline</v-icon
             >
-            <!-- <v-icon class="edit-icon" color="#D32F2F">mdi-heart</v-icon> -->
+            <v-icon
+              v-if="checkIsFav(recipe.id)"
+              @click="toggleRecipeFav(recipe)"
+              class="edit-icon"
+              color="#D32F2F"
+              >mdi-heart</v-icon
+            >
             <v-icon class="edit-icon" @click="navigateToEdit(recipe.id)"
               >mdi-pencil</v-icon
             >
@@ -46,6 +52,12 @@
 import Vue, { PropOptions } from "vue";
 import { baseRoutes } from "../../../../router";
 import { Recipe } from "../viewModel";
+import {
+  checkInLocalStorage,
+  getFromLocalStorage,
+  deleteFromLocalStorage,
+  saveInLocalStorage,
+} from "../../../../common/helpers";
 
 export default Vue.extend({
   name: "RecipeCard",
@@ -55,12 +67,16 @@ export default Vue.extend({
   },
   data() {
     return {
-      url: this.recipes.map((x) =>
-        require(`../../../../assets/img/${x.imgUrl}`)
-      ),
+      favList: [] as Recipe[],
     };
   },
   methods: {
+    checkIsFav(id: number): boolean {
+      if (this.favList.length > 0) {
+        return this.favList.findIndex((x) => x.id === id) !== -1;
+      }
+      return false;
+    },
     shortenTitleLength(title: string): string {
       return title.length > 22 ? `${title.slice(0, 22).trim()}...` : title;
     },
@@ -69,14 +85,36 @@ export default Vue.extend({
         ? `${description.slice(0, 130).trim()}...`
         : description;
     },
-    deletebtn() {
-      console.log("delete");
-    },
     navigateToEdit(id: number) {
       this.$router.push(`${baseRoutes.recipe}/edit/${id}`);
     },
     navigateToDetail(id: number) {
       this.$router.push(`${baseRoutes.recipe}/${id}`);
+    },
+    toggleRecipeFav(recipe): void {
+      if (checkInLocalStorage("favList")) {
+        let newfavList = getFromLocalStorage("favList");
+        if (this.checkIsFav(recipe.id)) {
+          newfavList = newfavList.filter((x) => x.id !== recipe.id);
+          if (newfavList.length <= 0) {
+            deleteFromLocalStorage("favList");
+          } else {
+            deleteFromLocalStorage("favList");
+            saveInLocalStorage("favList", newfavList);
+            this.favList = newfavList;
+          }
+        } else {
+          newfavList = [...newfavList, recipe];
+          deleteFromLocalStorage("favList");
+          saveInLocalStorage("favList", newfavList);
+          this.favList = newfavList;
+        }
+      } else {
+        const newfavList = [recipe];
+        deleteFromLocalStorage("favList");
+        saveInLocalStorage("favList", newfavList);
+        this.favList = newfavList;
+      }
     },
   },
 });

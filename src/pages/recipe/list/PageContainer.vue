@@ -26,6 +26,7 @@ export default Vue.extend({
   data() {
     return {
       recipes: [] as Recipe[],
+      favList: [] as Recipe[],
       searchText: "",
     };
   },
@@ -44,6 +45,9 @@ export default Vue.extend({
           saveInLocalStorage("recipes", recipes);
         })
         .catch((error) => console.log(error));
+    }
+    if (checkInLocalStorage("favList")) {
+      this.favList = getFromLocalStorage("favList");
     }
   },
   methods: {
