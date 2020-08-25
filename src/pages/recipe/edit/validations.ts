@@ -9,9 +9,19 @@ const validationSchema: ValidationSchema = {
   field: {
     name: [Validators.required],
     ingredients: [
-      { validator: hasItems, customArgs: { field: "ingredients" } },
+      {
+        validator: hasItems,
+        customArgs: { field: "ingredients" },
+        message: "Should has one or more ingredients",
+      },
     ],
-    steps: [{ validator: hasItems, customArgs: { field: "steps" } }],
+    steps: [
+      {
+        validator: hasItems,
+        customArgs: { field: "steps" },
+        message: "Should has one or more steps",
+      },
+    ],
     description: [
       {
         validator: Validators.minLength,

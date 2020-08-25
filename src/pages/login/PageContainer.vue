@@ -1,13 +1,15 @@
 <template>
   <login-page
     v-bind="{
-      snackbar,
+      snackbarText,
+      snackbarColor,
+      snackbarState,
       login,
       updateLogin,
       loginRequest,
       loginError,
+      setSnackbarState,
     }"
-    :setSnackBarState="setSnackBarState"
   />
 </template>
 
@@ -18,21 +20,23 @@ import { baseRoutes } from "../../router";
 import LoginPage from "./Page.vue";
 import { createEmptyLogin, Login, createEmptyLoginError } from "./viewModel";
 import { mapLoginVMToModel } from "./mapper";
-import { validation } from "./validations";
+import { formValidation } from "./validations";
 
 export default Vue.extend({
   name: "PageLoginContainer",
   components: { LoginPage },
   data() {
     return {
-      snackbar: false,
       login: createEmptyLogin(),
       loginError: createEmptyLoginError(),
+      snackbarState: false,
+      snackbarColor: "",
+      snackbarText: "",
     };
   },
   methods: {
-    setSnackBarState(v: boolean): void {
-      this.snackbar = v;
+    setSnackbarState(v: boolean): void {
+      this.snackbarState = v;
     },
     updateLogin(field: string, value: string) {
       this.login = {
@@ -40,7 +44,7 @@ export default Vue.extend({
         [field]: value,
       };
 
-      validation.validateField(field, value).then((result) => {
+      formValidation.validateField(field, value).then((result) => {
         this.loginError = {
           ...this.loginError,
           [field]: result,
@@ -48,7 +52,7 @@ export default Vue.extend({
       });
     },
     loginRequest() {
-      validation.validateForm(this.login).then((result) => {
+      formValidation.validateForm(this.login).then((result) => {
         if (result.succeeded) {
           const loginModel = mapLoginVMToModel(this.login);
           loginRequest(loginModel)
@@ -57,10 +61,7 @@ export default Vue.extend({
               localStorage.setItem("login", JSON.stringify(this.login));
             })
             .catch((error) => {
-              this.snackbar = true;
-              setTimeout(() => {
-                this.snackbar = false;
-              }, 5000);
+              this.showSnackbarError();
             });
         } else {
           this.loginError = {
@@ -69,6 +70,14 @@ export default Vue.extend({
           };
         }
       });
+    },
+    showSnackbarError() {
+      this.snackbarColor = "error";
+      this.snackbarText = "Invalid username or password";
+      this.snackbarState = true;
+      setTimeout(() => {
+        this.snackbarState = false;
+      }, 5000);
     },
   },
 });

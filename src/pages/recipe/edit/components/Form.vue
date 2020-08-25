@@ -1,5 +1,5 @@
 <template>
-  <v-form>
+  <v-form ref="form" v-model="isFormValid">
     <h3>Select name, preparation time and difficulty level for the recipe</h3>
     <div class="form-field">
       <v-text-field
@@ -79,17 +79,25 @@
         recipeError.steps.message
       }}</v-alert>
     </div>
-    <v-btn type="button" color="success" @click.prevent="onSave">Save</v-btn>
+    <v-btn type="button" color="success" @click.prevent="handleOnSave"
+      >Save</v-btn
+    >
   </v-form>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { VueConstructor } from "vue";
 import IngredientListComponent from "./IngredientList.vue";
 import StepListComponent from "./StepList.vue";
 import { FormProps } from "../formProps";
 
-export default Vue.extend({
+interface Refs {
+  $refs: {
+    form: HTMLFormElement;
+  };
+}
+
+export default (Vue as VueConstructor<Vue & Refs>).extend({
   name: "FormComponent",
   components: { IngredientListComponent, StepListComponent },
   props: {
@@ -104,6 +112,7 @@ export default Vue.extend({
   } as FormProps,
   data() {
     return {
+      isFormValid: true,
       ingredient: "",
       step: "",
       difficultyLevels: ["Easy", "Medium", "Difficult"],
@@ -150,6 +159,10 @@ export default Vue.extend({
         this.onAddStep(step);
         this.step = "";
       }
+    },
+    handleOnSave() {
+      this.$refs.form.validate();
+      this.onSave();
     },
   },
 });

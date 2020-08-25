@@ -15,27 +15,32 @@
         </v-card>
       </v-col>
     </v-row>
-    <snackbar-component v-bind="{ snackbar, setSnackBarState }" />
+    <snackbar-component
+      v-bind="{ snackbarText, snackbarColor, snackbarState, setSnackbarState }"
+    />
   </center-layout>
 </template>
 
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
 import { CenterLayout } from "../../common/layouts";
-import { FormComponent, SnackbarComponent } from "./components";
+import { FormComponent } from "./components";
 import { FormProps } from "./formProps";
+import { SnackbarComponent } from "../../common/components/";
 // as FormProps,
 
 export default Vue.extend({
   name: "LoginPage",
   components: { FormComponent, SnackbarComponent, CenterLayout },
   props: {
-    setSnackBarState: { required: true },
     login: { required: true },
     loginError: { required: true },
     updateLogin: { required: true },
     loginRequest: { required: true },
-    snackbar: { required: true },
+    setSnackbarState: { required: true },
+    snackbarState: { required: true },
+    snackbarColor: { required: true },
+    snackbarText: { required: true },
   },
   methods: {
     console(v: string) {

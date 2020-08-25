@@ -1,5 +1,5 @@
 <template>
-  <v-form ref="form" v-model="valid">
+  <v-form ref="form" v-model="isFormValid">
     <v-text-field
       label="Name"
       :value="login.name"
@@ -15,7 +15,9 @@
       @input="(password) => updateLogin('password', password)"
       @blur="() => updateLogin('password', login.password)"
     />
-    <v-btn type="submit" color="info" @click.prevent="handleOnClick">Login</v-btn>
+    <v-btn type="submit" color="info" @click.prevent="handleOnSave"
+      >Login</v-btn
+    >
   </v-form>
 </template>
 
@@ -40,7 +42,7 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
   } as FormProps,
   data() {
     return {
-      valid: true,
+      isFormValid: true,
     };
   },
   computed: {
@@ -57,9 +59,8 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
     },
   },
   methods: {
-    handleOnClick() {
+    handleOnSave() {
       this.$refs.form.validate();
-      // Comprobar si la validación del formulario es correcta antes de ejecutar loginRequest
       this.loginRequest();
     },
   },
