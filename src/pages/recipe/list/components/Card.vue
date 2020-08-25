@@ -98,6 +98,7 @@ export default Vue.extend({
           newfavList = newfavList.filter((x) => x.id !== recipe.id);
           if (newfavList.length <= 0) {
             deleteFromLocalStorage("favList");
+            this.favList = [];
           } else {
             deleteFromLocalStorage("favList");
             saveInLocalStorage("favList", newfavList);
