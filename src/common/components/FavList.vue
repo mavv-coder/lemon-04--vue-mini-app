@@ -14,6 +14,9 @@
         </div>
       </template>
     </ul>
+    <div v-if="!isFavList" class="empty-msg">
+      <p>The list is empty</p>
+    </div>
   </div>
 </template>
 
@@ -21,11 +24,22 @@
 import Vue, { PropOptions } from "vue";
 import { checkInLocalStorage, getFromLocalStorage } from "../helpers";
 
+interface Recipe {
+  id: number;
+  name: string;
+  difficulty: string;
+  imgUrl: string;
+  time: number;
+  description: string;
+  ingredients: string[];
+  steps: string[];
+}
+
 export default Vue.extend({
   name: "FavListComponent",
   data() {
     return {
-      favList: [],
+      favList: [] as PropOptions<Recipe[]>,
       isFavList: false,
     };
   },
@@ -42,7 +56,6 @@ export default Vue.extend({
 </script>
 <style scoped>
 .fav-list-container {
-  padding-bottom: 10px;
   position: fixed;
   top: 64px;
   right: 110px;
@@ -99,7 +112,10 @@ img {
   margin: 0;
 }
 
-.divider {
-  margin: 0 10px;
+.empty-msg {
+  text-align: center;
+  color: white;
+  margin: 0;
+  padding: 20px 0;
 }
 </style>

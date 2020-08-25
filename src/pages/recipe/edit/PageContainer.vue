@@ -25,11 +25,11 @@ import { mapRecipeModelToVm, mapRecipeVmToModel } from "./mapper";
 import { createEmptyRecipe, createEmptyRecipeError } from "./viewModel";
 import { validations } from "./validations";
 import { Recipe } from "../../../rest-api/model";
-import {
-  saveInLocalStorage,
-  deleteFromLocalStorage,
-  getFromLocalStorage,
-} from "../../../common/helpers";
+// import {
+//   saveInLocalStorage,
+//   deleteFromLocalStorage,
+//   getFromLocalStorage,
+// } from "../../../common/helpers";
 
 export default Vue.extend({
   name: "RecipeEditPageContainer",
@@ -70,7 +70,7 @@ export default Vue.extend({
           save(recipe)
             .then((message) => {
               this.$router.back();
-              this.saveRecipeToLocalStorage(recipe);
+              // this.saveRecipeToLocalStorage(recipe);
             })
             .catch((error) => {
               this.showSnackbarError(error);
@@ -135,12 +135,12 @@ export default Vue.extend({
         this.snackbarState = false;
       }, 5000);
     },
-    saveRecipeToLocalStorage(recipe: Recipe): void {
-      const recipes = getFromLocalStorage("recipes");
-      const newRecipes = recipes.map((x) => (x.id === recipe.id ? recipe : x));
-      deleteFromLocalStorage("recipes");
-      saveInLocalStorage("recipes", newRecipes);
-    },
+    // saveRecipeToLocalStorage(recipe: Recipe): void {
+    //   const recipes = getFromLocalStorage("recipes");
+    //   const newRecipes = recipes.map((x) => (x.id === recipe.id ? recipe : x));
+    //   deleteFromLocalStorage("recipes");
+    //   saveInLocalStorage("recipes", newRecipes);
+    // },
   },
 });
 </script>

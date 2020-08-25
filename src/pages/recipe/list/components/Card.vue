@@ -21,7 +21,7 @@
             @click="navigateToDetail(recipe.id)"
             >See more</v-btn
           >
-          <div class="btn-container">
+          <!-- <div class="btn-container">
             <v-icon
               v-if="!checkIsFav(recipe.id)"
               @click="toggleRecipeFav(recipe)"
@@ -34,7 +34,10 @@
               class="edit-icon"
               color="#D32F2F"
               >mdi-heart</v-icon
-            >
+            > -->
+          <div class="btn-container">
+            <v-icon class="edit-icon">mdi-heart-outline</v-icon>
+            <!-- <v-icon class="edit-icon" color="#D32F2F">mdi-heart</v-icon> -->
             <v-icon class="edit-icon" @click="navigateToEdit(recipe.id)"
               >mdi-pencil</v-icon
             >
@@ -67,16 +70,25 @@ export default Vue.extend({
   },
   data() {
     return {
-      favList: [] as Recipe[],
+      // favList: [] as Recipe[],
     };
   },
+  // created() {
+  //   if (checkInLocalStorage("favList")) {
+  //     const newFavList = getFromLocalStorage("favList");
+  //     return newFavList.map(
+  //       (y) => newFavList.findIndex((x) => x.id === y.id) !== -1
+  //     );
+  //   }
+  //   return false;
+  // },
   methods: {
-    checkIsFav(id: number): boolean {
-      if (this.favList.length > 0) {
-        return this.favList.findIndex((x) => x.id === id) !== -1;
-      }
-      return false;
-    },
+    // checkIsFav(id: number): boolean {
+    //   if (this.favList.length > 0) {
+    //     return this.favList.findIndex((x) => x.id === id) !== -1;
+    //   }
+    //   return false;
+    // },
     shortenTitleLength(title: string): string {
       return title.length > 22 ? `${title.slice(0, 22).trim()}...` : title;
     },
@@ -91,32 +103,32 @@ export default Vue.extend({
     navigateToDetail(id: number) {
       this.$router.push(`${baseRoutes.recipe}/${id}`);
     },
-    toggleRecipeFav(recipe): void {
-      if (checkInLocalStorage("favList")) {
-        let newfavList = getFromLocalStorage("favList");
-        if (this.checkIsFav(recipe.id)) {
-          newfavList = newfavList.filter((x) => x.id !== recipe.id);
-          if (newfavList.length <= 0) {
-            deleteFromLocalStorage("favList");
-            this.favList = [];
-          } else {
-            deleteFromLocalStorage("favList");
-            saveInLocalStorage("favList", newfavList);
-            this.favList = newfavList;
-          }
-        } else {
-          newfavList = [...newfavList, recipe];
-          deleteFromLocalStorage("favList");
-          saveInLocalStorage("favList", newfavList);
-          this.favList = newfavList;
-        }
-      } else {
-        const newfavList = [recipe];
-        deleteFromLocalStorage("favList");
-        saveInLocalStorage("favList", newfavList);
-        this.favList = newfavList;
-      }
-    },
+    // toggleRecipeFav(recipe): void {
+    //   if (checkInLocalStorage("favList")) {
+    //     let newfavList = getFromLocalStorage("favList");
+    //     if (this.checkIsFav(recipe.id)) {
+    //       newfavList = newfavList.filter((x) => x.id !== recipe.id);
+    //       if (newfavList.length <= 0) {
+    //         deleteFromLocalStorage("favList");
+    //         this.favList = [];
+    //       } else {
+    //         deleteFromLocalStorage("favList");
+    //         saveInLocalStorage("favList", newfavList);
+    //         this.favList = newfavList;
+    //       }
+    //     } else {
+    //       newfavList = [...newfavList, recipe];
+    //       deleteFromLocalStorage("favList");
+    //       saveInLocalStorage("favList", newfavList);
+    //       this.favList = newfavList;
+    //     }
+    //   } else {
+    //     const newfavList = [recipe];
+    //     deleteFromLocalStorage("favList");
+    //     saveInLocalStorage("favList", newfavList);
+    //     this.favList = newfavList;
+    //   }
+    // },
   },
 });
 </script>
