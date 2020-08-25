@@ -6,7 +6,9 @@
           <v-toolbar-title>Recipe App</v-toolbar-title>
           <div class="user-login-container">
             <span class="user-text">Hello, {{ loginName }}</span>
-            <v-icon class="fav-icon" color="#D32F2F">mdi-heart</v-icon>
+            <v-icon class="fav-icon" @click="toggleFavList()" color="#D32F2F"
+              >mdi-heart</v-icon
+            >
             <v-btn elevation="0" light small @click="handleLogOut"
               >Log out</v-btn
             >
@@ -18,7 +20,7 @@
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { PropOptions } from "vue";
 import { baseRoutes } from "../../router";
 import {
   checkInLocalStorage,
@@ -28,6 +30,9 @@ import {
 
 export default Vue.extend({
   name: "AppbarComponent",
+  props: {
+    toggleFavList: { required: true } as PropOptions<() => void>,
+  },
   data() {
     return {
       loginName: "",
@@ -74,9 +79,21 @@ export default Vue.extend({
   transition: all 0.4s ease;
 }
 
+.fav-icon::after {
+  background-color: #f57f17;
+  opacity: 0 !important;
+}
+.fav-icon:checked {
+  opacity: 0;
+}
+
 .fav-icon:hover {
   opacity: 0.8;
   cursor: pointer;
+}
+
+.fav-icon:active {
+  opacity: 0;
 }
 
 .logout-btn {
