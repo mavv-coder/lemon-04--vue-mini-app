@@ -2,7 +2,7 @@
   <app-layout>
     <v-card class="card">
       <div class="img-container">
-        <img :src="`./img/${recipe.imgUrl}`" :alt="recipe.name" />
+        <img :src="recipe.imgUrl" :alt="recipe.name" />
       </div>
 
       <div class="title-container">

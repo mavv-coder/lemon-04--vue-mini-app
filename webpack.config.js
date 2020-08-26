@@ -107,8 +107,7 @@ module.exports = (env, argv) => {
             options: {
               limit: 5000,
               esModule: false,
-              // name: "./img/[hash].[name].[ext]",
-              name: "./img/[name].[ext]",
+              name: "./img/[hash].[name].[ext]",
             },
           },
         },

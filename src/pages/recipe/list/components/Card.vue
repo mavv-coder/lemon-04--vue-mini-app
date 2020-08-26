@@ -6,7 +6,7 @@
           <v-icon color="#F57F17">mdi-clock-time-four-outline</v-icon>
           <span class="time-text">{{ `${recipe.time}'` }}</span>
         </div>
-        <img :src="`./img/${recipe.imgUrl}`" />
+        <img :src="recipe.imgUrl" />
         <!-- <img src="../../../../assets/img/veggie-crustless-quiche.jpg" /> -->
         <h4 class="recipe-title">{{ recipe.name }}</h4>
         <v-divider></v-divider>
