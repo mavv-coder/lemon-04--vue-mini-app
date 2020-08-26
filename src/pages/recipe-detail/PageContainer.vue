@@ -4,7 +4,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { fetchRecipeById } from "../../../rest-api/api/recipe";
+import { fetchRecipeById } from "../../rest-api/api/recipe";
 import { mapRecipeModelToVm } from "./mapper";
 import { createEmptyRecipe } from "./viewModel";
 import RecipeDetailPage from "./Page.vue";

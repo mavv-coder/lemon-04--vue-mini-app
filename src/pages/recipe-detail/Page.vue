@@ -55,7 +55,7 @@
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
 import { Recipe } from "./viewModel";
-import { AppLayout } from "../../../common/layouts";
+import { AppLayout } from "../../common/layouts";
 
 export default Vue.extend({
   name: "RecipeDetailPage",
