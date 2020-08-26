@@ -4,15 +4,21 @@ import { RecipeListPageContainer } from "./pages/recipe/list";
 import { EditRecipePageContainer } from "./pages/recipe/edit";
 import { RecipeDetailPageContainer } from "./pages/recipe/detail";
 
-export const baseRoutes = {
+interface BaseRoutes {
+  root: string;
+  login: string;
+  recipe: string;
+  detail: string;
+  edit: string;
+}
+
+export const baseRoutes: BaseRoutes = {
   root: "/",
   login: "/login",
   recipe: "/recipe",
   detail: "/recipe/:id",
   edit: "/recipe/edit/:id",
 };
-
-export type BaseRoutes = typeof baseRoutes;
 
 const routes: RouteConfig[] = [
   { path: baseRoutes.root, redirect: baseRoutes.login },
