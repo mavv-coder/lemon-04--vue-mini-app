@@ -3,6 +3,7 @@ import { LoginPageContainer } from "./pages/login";
 import { RecipeListPageContainer } from "./pages/recipe/list";
 import { EditRecipePageContainer } from "./pages/recipe/edit";
 import { RecipeDetailPageContainer } from "./pages/recipe/detail";
+import { checkInLocalStorage } from "./common/helpers";
 
 interface BaseRoutes {
   root: string;
@@ -21,12 +22,22 @@ export const baseRoutes: BaseRoutes = {
 };
 
 const routes: RouteConfig[] = [
-  { path: baseRoutes.root, redirect: baseRoutes.login },
-  { path: baseRoutes.login, component: LoginPageContainer },
-  { path: baseRoutes.recipe, component: RecipeListPageContainer },
-  { path: baseRoutes.edit, component: EditRecipePageContainer, props: true },
+  { path: baseRoutes.root, name: "root", redirect: baseRoutes.login },
+  { path: baseRoutes.login, name: "login", component: LoginPageContainer },
+  {
+    path: baseRoutes.recipe,
+    name: "recipe-list",
+    component: RecipeListPageContainer,
+  },
+  {
+    path: baseRoutes.edit,
+    name: "recipe-edit",
+    component: EditRecipePageContainer,
+    props: true,
+  },
   {
     path: baseRoutes.detail,
+    name: "recipe-detail",
     component: RecipeDetailPageContainer,
     props: true,
   },
@@ -34,4 +45,19 @@ const routes: RouteConfig[] = [
 
 export const router = new Router({
   routes,
+});
+
+router.beforeEach((to, from, next) => {
+  const authentication: boolean = checkInLocalStorage("login");
+  const privatePages: string[] = [
+    "recipe-list",
+    "recipe-edit",
+    "recipe-detail",
+  ];
+
+  if (privatePages.findIndex((x) => x === to.name) !== -1 && !authentication) {
+    console.log(authentication);
+    return next(baseRoutes.login);
+  }
+  return next();
 });
