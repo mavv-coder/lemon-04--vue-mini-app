@@ -78,8 +78,8 @@
       />
     </div>
     <div class="btn-container">
-      <v-btn type="button" color="primary" @click.prevent="navigateBack"
-        >Go back</v-btn
+      <v-btn type="button" color="error" @click.prevent="navigateToListPage"
+        >Cancel</v-btn
       >
       <v-btn type="button" color="success" @click.prevent="handleOnSave"
         >Save</v-btn
@@ -90,6 +90,7 @@
 
 <script lang="ts">
 import Vue, { VueConstructor } from "vue";
+import { baseRoutes } from "../../../router";
 import IngredientListComponent from "./IngredientList.vue";
 import StepListComponent from "./StepList.vue";
 import { FormProps } from "../formProps";
@@ -133,8 +134,8 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
   //   },
   // },
   methods: {
-    navigateBack() {
-      this.$router.back();
+    navigateToListPage() {
+      this.$router.push(baseRoutes.recipe);
     },
     resultRecipeFieldError(field: string): boolean | string {
       return (

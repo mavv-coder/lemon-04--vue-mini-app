@@ -10,9 +10,9 @@
           {{ recipe.name }}
         </h1>
         <div class="icon-container">
-          <v-icon class="fav-icon" size="25" color="#D32F2F">mdi-heart</v-icon>
-          <v-icon class="edit-icon">mdi-pencil</v-icon
-          ><v-icon color="#FF6E40">mdi-trash-can-outline</v-icon>
+          <v-icon class="edit-icon" @click="navigateToEdit(recipe.id)"
+            >mdi-pencil</v-icon
+          >
         </div>
       </div>
       <div class="time-container">
@@ -46,7 +46,7 @@
           </template>
         </ul>
         <v-divider></v-divider>
-        <v-btn small color="primary" @click="handleGoBackBtn">Go back</v-btn>
+        <v-btn small color="primary" @click="navigateBack">Go back</v-btn>
       </div>
     </v-card>
   </app-layout>
@@ -54,8 +54,9 @@
 
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
-import { Recipe } from "./viewModel";
 import { AppLayout } from "../../common/layouts";
+import { baseRoutes } from "../../router";
+import { Recipe } from "./viewModel";
 
 export default Vue.extend({
   name: "RecipeDetailPage",
@@ -64,8 +65,11 @@ export default Vue.extend({
     recipe: { require: true } as PropOptions<Recipe>,
   },
   methods: {
-    handleGoBackBtn() {
+    navigateBack() {
       this.$router.back();
+    },
+    navigateToEdit(id: number): void {
+      this.$router.push(`${baseRoutes.recipe}/edit/${id}`);
     },
   },
 });
