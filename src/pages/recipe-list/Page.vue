@@ -11,8 +11,7 @@
       </div>
       <v-card-text>
         <search-bar-component :search-text="searchText" :on-search="onSearch" />
-        <!-- <table-component :recipes="recipes" /> -->
-        <recipe-card v-bind="{ recipes, deleteRecipe }" />
+        <card-component v-bind="{ recipes, deleteRecipe }" />
       </v-card-text>
     </v-card>
   </app-layout>
@@ -20,14 +19,14 @@
 
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
-import { AppLayout } from "../../../common/layouts";
+import { AppLayout } from "../../common/layouts";
 import { Recipe } from "./viewModel";
-import { TableComponent, SearchBarComponent } from "./components";
-import { RecipeCard } from "./components";
+import { SearchBarComponent } from "./components";
+import { CardComponent } from "./components";
 
 export default Vue.extend({
   name: "RecipeListPage",
-  components: { AppLayout, RecipeCard, TableComponent, SearchBarComponent },
+  components: { AppLayout, CardComponent, SearchBarComponent },
   props: {
     deleteRecipe: { required: true } as PropOptions<(id: number) => void>,
     recipes: { required: true } as PropOptions<Recipe[]>,

@@ -7,46 +7,15 @@
           <span class="time-text">{{ `${recipe.time}'` }}</span>
         </div>
         <img :src="recipe.imgUrl" />
-        <!-- <img src="../../../../assets/img/veggie-crustless-quiche.jpg" /> -->
         <h4 class="recipe-title">{{ recipe.name }}</h4>
         <v-divider></v-divider>
         <div class="text-container">
           {{ shortenDescriptionLength(recipe.description) }}
         </div>
         <v-divider></v-divider>
-        <div class="footer">
-          <v-btn
-            outlined
-            small
-            color="#F57F17"
-            @click="navigateToDetail(recipe.id)"
-            >See more</v-btn
-          >
-          <!-- <div class="btn-container">
-            <v-icon
-              v-if="!checkIsFav(recipe.id)"
-              @click="toggleRecipeFav(recipe)"
-              class="edit-icon"
-              >mdi-heart-outline</v-icon
-            >
-            <v-icon
-              v-if="checkIsFav(recipe.id)"
-              @click="toggleRecipeFav(recipe)"
-              class="edit-icon"
-              color="#D32F2F"
-              >mdi-heart</v-icon
-            > -->
-          <div class="btn-container">
-            <v-icon class="edit-icon">mdi-heart-outline</v-icon>
-            <!-- <v-icon class="edit-icon" color="#D32F2F">mdi-heart</v-icon> -->
-            <v-icon class="edit-icon" @click="navigateToEdit(recipe.id)"
-              >mdi-pencil</v-icon
-            >
-            <v-icon color="#FF6E40" @click="deleteRecipe(recipe.id)"
-              >mdi-trash-can-outline</v-icon
-            >
-          </div>
-        </div>
+        <card-footer-component
+          v-bind="{ recipe, navigateToEdit, navigateToDetail, deleteRecipe }"
+        />
       </v-card>
     </v-col>
   </v-row>
@@ -54,17 +23,19 @@
 
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
-import { baseRoutes } from "../../../../router";
+import { baseRoutes } from "../../../router";
 import { Recipe } from "../viewModel";
 import {
   checkInLocalStorage,
   getFromLocalStorage,
   deleteFromLocalStorage,
   saveInLocalStorage,
-} from "../../../../common/helpers";
+} from "../../../common/helpers";
+import CardFooterComponent from "./CardFooter.vue";
 
 export default Vue.extend({
-  name: "RecipeCard",
+  name: "CardComponent",
+  components: { CardFooterComponent },
   props: {
     recipes: { required: true } as PropOptions<Recipe[]>,
     deleteRecipe: { required: true } as PropOptions<(id: number) => void>,
@@ -98,10 +69,10 @@ export default Vue.extend({
         ? `${description.slice(0, 130).trim()}...`
         : description;
     },
-    navigateToEdit(id: number) {
+    navigateToEdit(id: number): void {
       this.$router.push(`${baseRoutes.recipe}/edit/${id}`);
     },
-    navigateToDetail(id: number) {
+    navigateToDetail(id: number): void {
       this.$router.push(`${baseRoutes.recipe}/${id}`);
     },
     // toggleRecipeFav(recipe): void {
@@ -196,7 +167,7 @@ img {
   margin: 10px 0;
 }
 
-.footer {
+/* .footer {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -210,5 +181,5 @@ img {
 
 .edit-icon {
   margin-right: 10px;
-}
+} */
 </style>

@@ -6,7 +6,7 @@
 
 <script lang="ts">
 import Vue from "vue";
-import { fetchRecipes } from "../../../rest-api/api/recipe";
+import { fetchRecipes } from "../../rest-api/api/recipe";
 // import {
 //   checkInLocalStorage,
 //   getFromLocalStorage,

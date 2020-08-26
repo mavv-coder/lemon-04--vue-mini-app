@@ -9,11 +9,16 @@
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
 
+interface Props {
+  searchText: string;
+  onSearch: PropOptions<(value: string) => void>;
+}
+
 export default Vue.extend({
   name: "SearchBarComponent",
   props: {
-    searchText: String,
-    onSearch: {} as PropOptions<(value: string) => void>,
+    searchText: { required: true },
+    onSearch: { required: true },
   },
 });
 </script>
