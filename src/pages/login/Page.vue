@@ -23,10 +23,20 @@
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
 import { CenterLayout } from "../../common/layouts";
-import { FormComponent } from "./components";
-import { FormProps } from "./formProps";
 import { SnackbarComponent } from "../../common/components/";
-// as FormProps,
+import { Login, LoginError } from "./viewModel";
+import { FormComponent } from "./components";
+
+interface Props {
+  login: PropOptions<Login>;
+  loginError: PropOptions<LoginError>;
+  updateLogin: PropOptions<(field: string, value: string) => void>;
+  loginRequest: PropOptions<() => void>;
+  closeSnackbar: PropOptions<(value: boolean) => void>;
+  snackbarState: PropOptions<boolean>;
+  snackbarColor: PropOptions<string>;
+  snackbarText: PropOptions<string>;
+}
 
 export default Vue.extend({
   name: "LoginPage",
@@ -40,11 +50,6 @@ export default Vue.extend({
     snackbarState: { required: true },
     snackbarColor: { required: true },
     snackbarText: { required: true },
-  },
-  methods: {
-    console(v: string) {
-      console.log(v);
-    },
-  },
+  } as Props,
 });
 </script>

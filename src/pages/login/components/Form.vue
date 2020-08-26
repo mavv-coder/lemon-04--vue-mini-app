@@ -15,21 +15,29 @@
       @input="(password) => updateLogin('password', password)"
       @blur="() => updateLogin('password', login.password)"
     />
-    <v-btn type="submit" color="info" @click.prevent="handleOnSave"
-      >Login</v-btn
-    >
+    <div class="btn-container">
+      <v-btn type="submit" color="info" @click.prevent="handleOnSave"
+        >Login</v-btn
+      >
+    </div>
   </v-form>
 </template>
 
 <script lang="ts">
 import Vue, { PropOptions, VueConstructor } from "vue";
-import { FormProps } from "../formProps";
-import { ResultLoginError } from "../viewModel";
+import { ResultLoginError, LoginError, Login } from "../viewModel";
 
 interface Refs {
   $refs: {
     form: HTMLFormElement;
   };
+}
+
+export interface Props {
+  login: PropOptions<Login>;
+  loginError: PropOptions<LoginError>;
+  updateLogin: PropOptions<(field: string, value: string) => void>;
+  loginRequest: PropOptions<() => void>;
 }
 
 export default (Vue as VueConstructor<Vue & Refs>).extend({
@@ -39,7 +47,7 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
     loginError: { required: true },
     updateLogin: { required: true },
     loginRequest: { required: true },
-  } as FormProps,
+  } as Props,
   data() {
     return {
       isFormValid: true,
@@ -66,3 +74,11 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
   },
 });
 </script>
+
+<style scoped>
+.btn-container {
+  display: flex;
+  justify-content: center;
+  padding-top: 20px;
+}
+</style>

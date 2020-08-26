@@ -1,13 +1,13 @@
 <template>
   <login-page
     v-bind="{
+      login,
+      loginRequest,
+      loginError,
+      updateLogin,
       snackbarText,
       snackbarColor,
       snackbarState,
-      login,
-      updateLogin,
-      loginRequest,
-      loginError,
       closeSnackbar,
     }"
   />
@@ -17,10 +17,10 @@
 import Vue from "vue";
 import { loginRequest } from "../../rest-api/api/login";
 import { baseRoutes } from "../../router";
-import LoginPage from "./Page.vue";
 import { createEmptyLogin, Login, createEmptyLoginError } from "./viewModel";
 import { mapLoginVMToModel } from "./mapper";
 import { formValidation } from "./validations";
+import LoginPage from "./Page.vue";
 
 export default Vue.extend({
   name: "PageLoginContainer",
@@ -35,15 +35,11 @@ export default Vue.extend({
     };
   },
   methods: {
-    closeSnackbar(v: boolean): void {
-      this.snackbarState = v;
-    },
-    updateLogin(field: string, value: string) {
+    updateLogin(field: string, value: string): void {
       this.login = {
         ...this.login,
         [field]: value,
       };
-
       formValidation.validateField(field, value).then((result) => {
         this.loginError = {
           ...this.loginError,
@@ -51,7 +47,7 @@ export default Vue.extend({
         };
       });
     },
-    loginRequest() {
+    loginRequest(): void {
       formValidation.validateForm(this.login).then((result) => {
         if (result.succeeded) {
           const loginModel = mapLoginVMToModel(this.login);
@@ -78,6 +74,9 @@ export default Vue.extend({
       setTimeout(() => {
         this.snackbarState = false;
       }, 5000);
+    },
+    closeSnackbar(value: boolean): void {
+      this.snackbarState = value;
     },
   },
 });
