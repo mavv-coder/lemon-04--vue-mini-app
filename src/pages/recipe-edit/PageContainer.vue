@@ -20,11 +20,11 @@
 <script lang="ts">
 import Vue from "vue";
 import RecipeEditPage from "./Page.vue";
-import { fetchRecipeById, save } from "../../../rest-api/api/recipe";
+import { fetchRecipeById, save } from "../../rest-api/api/recipe";
 import { mapRecipeModelToVm, mapRecipeVmToModel } from "./mapper";
 import { createEmptyRecipe, createEmptyRecipeError } from "./viewModel";
 import { validations } from "./validations";
-import { Recipe } from "../../../rest-api/model";
+import { Recipe } from "../../rest-api/model";
 // import {
 //   saveInLocalStorage,
 //   deleteFromLocalStorage,

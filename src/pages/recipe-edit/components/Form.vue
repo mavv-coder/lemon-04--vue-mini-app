@@ -69,19 +69,19 @@
         v-model="step"
         @click:append="handleAddStep(step)"
       />
-
+      <v-alert :value="!recipeError.steps.succeeded" color="error" outlined>{{
+        recipeError.steps.message
+      }}</v-alert>
       <step-list-component
         :steps="recipe.steps"
         :on-remove-step="onRemoveStep"
       />
-
-      <v-alert :value="!recipeError.steps.succeeded" color="error" outlined>{{
-        recipeError.steps.message
-      }}</v-alert>
     </div>
-    <v-btn type="button" color="success" @click.prevent="handleOnSave"
-      >Save</v-btn
-    >
+    <div class="btn-container">
+      <v-btn type="button" color="success" @click.prevent="handleOnSave"
+        >Save</v-btn
+      >
+    </div>
   </v-form>
 </template>
 
@@ -176,5 +176,10 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
 }
 h3 {
   color: #424242;
+}
+
+.btn-container {
+  display: flex;
+  justify-content: center;
 }
 </style>

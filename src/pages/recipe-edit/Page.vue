@@ -9,11 +9,11 @@
 
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
-import { AppLayout } from "../../../common/layouts";
+import { AppLayout } from "../../common/layouts";
 import { FormProps } from "./formProps";
 import { FormComponent } from "./components";
 import { Recipe, RecipeError } from "./viewModel";
-import { SnackbarComponent } from "../../../common/components";
+import { SnackbarComponent } from "../../common/components";
 
 export default Vue.extend({
   name: "RecipeEditPage",
