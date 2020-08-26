@@ -25,8 +25,11 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+img {
+  width: 100%;
+}
+
 .time-container {
-  content: "";
   position: absolute;
   display: flex;
   justify-content: center;
@@ -39,11 +42,6 @@ export default Vue.extend({
   z-index: 10;
 }
 
-.time-text {
-  color: #263238;
-  margin-left: 2px;
-}
-
 .time-container::after {
   content: "";
   position: absolute;
@@ -51,7 +49,7 @@ export default Vue.extend({
   justify-content: center;
   align-content: center;
   align-items: center;
-  background-color: #f9ec79;
+  background-color: #fff;
   border-radius: 50%;
   top: 0px;
   right: 0px;
@@ -60,7 +58,25 @@ export default Vue.extend({
   z-index: -1;
 }
 
-img {
-  width: 100%;
+.time-text {
+  color: #263238;
+  margin-left: 2px;
+}
+
+@media only screen and (min-width: 599px) and (max-width: 1263px) {
+  .time-container {
+    width: 48px;
+    height: 48px;
+  }
+
+  .time-container::after {
+    width: 48px;
+    height: 48px;
+  }
+
+  .time-text {
+    font-size: 12px;
+    margin-left: 1px;
+  }
 }
 </style>

@@ -37,7 +37,7 @@ export default Vue.extend({
 }
 
 .text-container {
-  height: 90px;
+  height: 70px;
   overflow: hidden;
   margin: 10px 0;
 }
