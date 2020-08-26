@@ -1,13 +1,13 @@
 import { Recipe } from "../../model";
 
 // Images imports
-const veggieCrustlessQuiche = require("../mock-img/veggie-crustless-quiche.jpg");
-const homemadeStrawberryCake = require("../mock-img/strawberry-cake.jpg");
-const broccoliCheesyBread = require("../mock-img/broccoli-cheesy-bread.jpg");
-const perfectOmelet = require("../mock-img/omelet.png");
-const sweetPotatoPancakes = require("../mock-img/potato-pancakes.jpg");
-const noBakePumpkinCheesecake = require("../mock-img/pumpkin-cheesecake.png");
-const polentaFries = require("../mock-img/polenta-fries.jpg");
+const veggieCrustlessQuiche = require("./mock-img/veggie-crustless-quiche.jpg");
+const homemadeStrawberryCake = require("./mock-img/strawberry-cake.jpg");
+const broccoliCheesyBread = require("./mock-img/broccoli-cheesy-bread.jpg");
+const perfectOmelet = require("./mock-img/omelet.png");
+const sweetPotatoPancakes = require("./mock-img/potato-pancakes.jpg");
+const noBakePumpkinCheesecake = require("./mock-img/pumpkin-cheesecake.png");
+const polentaFries = require("./mock-img/polenta-fries.jpg");
 
 export const mockRecipes: Recipe[] = [
   {
