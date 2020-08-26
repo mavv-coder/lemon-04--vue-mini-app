@@ -17,13 +17,13 @@
               color="#D32F2F"
               >mdi-heart</v-icon
             > -->
-    <div class="btn-container">
-      <v-icon class="edit-icon">mdi-heart-outline</v-icon>
+    <div class="icon-container">
+      <v-icon class="icon edit-icon">mdi-heart-outline</v-icon>
       <!-- <v-icon class="edit-icon" color="#D32F2F">mdi-heart</v-icon> -->
-      <v-icon class="edit-icon" @click="navigateToEdit(recipe.id)"
+      <v-icon class="icon edit-icon" @click="navigateToEdit(recipe.id)"
         >mdi-pencil</v-icon
       >
-      <v-icon color="#FF6E40" @click="deleteRecipe(recipe.id)"
+      <v-icon class="icon" color="#FF6E40" @click="deleteRecipe(recipe.id)"
         >mdi-trash-can-outline</v-icon
       >
     </div>
@@ -60,9 +60,13 @@ export default Vue.extend({
   padding: 10px 0 2px 0;
 }
 
-.btn-container {
+.icon-container {
   display: flex;
   justify-content: flex-end;
+}
+
+.icon::after {
+  opacity: 0 !important;
 }
 
 .edit-icon {

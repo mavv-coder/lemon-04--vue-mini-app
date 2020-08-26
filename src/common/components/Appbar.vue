@@ -79,21 +79,14 @@ export default Vue.extend({
   transition: all 0.4s ease;
 }
 
-.fav-icon::after {
-  background-color: #f57f17;
+.fav-icon::after,
+.fav-icon:active {
   opacity: 0 !important;
-}
-.fav-icon:checked {
-  opacity: 0;
 }
 
 .fav-icon:hover {
   opacity: 0.8;
   cursor: pointer;
-}
-
-.fav-icon:active {
-  opacity: 0;
 }
 
 .logout-btn {
