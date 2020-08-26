@@ -57,8 +57,8 @@ export default Vue.extend({
           const loginModel = mapLoginVMToModel(this.login);
           loginRequest(loginModel)
             .then(() => {
-              this.$router.push(baseRoutes.recipe);
               localStorage.setItem("login", JSON.stringify(this.login));
+              this.$router.push(baseRoutes.recipe);
             })
             .catch((error) => {
               this.showSnackbarError();

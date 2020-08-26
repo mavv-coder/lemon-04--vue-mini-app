@@ -55,9 +55,7 @@ router.beforeEach((to, from, next) => {
     "recipe-detail",
   ];
 
-  if (privatePages.findIndex((x) => x === to.name) !== -1 && !authentication) {
-    console.log(authentication);
-    return next(baseRoutes.login);
-  }
-  return next();
+  return privatePages.findIndex((x) => x === to.name) !== -1 && !authentication
+    ? next(baseRoutes.login)
+    : next();
 });
