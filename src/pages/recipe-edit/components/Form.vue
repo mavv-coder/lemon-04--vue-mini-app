@@ -78,6 +78,9 @@
       />
     </div>
     <div class="btn-container">
+      <v-btn type="button" color="primary" @click.prevent="navigateBack"
+        >Go back</v-btn
+      >
       <v-btn type="button" color="success" @click.prevent="handleOnSave"
         >Save</v-btn
       >
@@ -130,6 +133,9 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
   //   },
   // },
   methods: {
+    navigateBack() {
+      this.$router.back();
+    },
     resultRecipeFieldError(field: string): boolean | string {
       return (
         this.recipeError[field].succeeded || this.recipeError[field].message
@@ -181,5 +187,9 @@ h3 {
 .btn-container {
   display: flex;
   justify-content: center;
+}
+
+.btn-container button {
+  margin: 0 10px;
 }
 </style>
