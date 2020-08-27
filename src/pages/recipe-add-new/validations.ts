@@ -9,6 +9,7 @@ const validationSchema: ValidationSchema = {
   field: {
     name: [Validators.required],
     imgUrl: [Validators.required],
+    difficulty: [Validators.required],
     ingredients: [
       {
         validator: hasItems,
