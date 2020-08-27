@@ -19,6 +19,7 @@ interface Props {
   recipe: PropOptions<Recipe>;
   navigateToEdit: PropOptions<(id: number) => void>;
 }
+
 export default Vue.extend({
   name: "CardTitleComponent",
   props: {

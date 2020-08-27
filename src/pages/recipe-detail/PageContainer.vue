@@ -1,14 +1,15 @@
 <template>
-  <recipe-detail-page :recipe="recipe" />
+  <recipe-detail-page v-bind="{ recipe, navigateBack, navigateToEdit }" />
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import { fetchRecipeById } from "../../rest-api/api/recipe";
-import { mapRecipeModelToVm } from "./mapper";
+// import { fetchRecipeById } from "../../rest-api/api/recipe";
+import { baseRoutes } from "../../router";
+import { getRecipeById, getFromLocalStorage } from "../../common/helpers";
+// import { mapRecipeModelToVm } from "./mapper";
 import { createEmptyRecipe } from "./viewModel";
 import RecipeDetailPage from "./Page.vue";
-import { getRecipeById, getFromLocalStorage } from "../../common/helpers";
 
 export default Vue.extend({
   name: "RecipeDetailPageContainer",
@@ -24,7 +25,7 @@ export default Vue.extend({
     const recipes = getFromLocalStorage("recipes");
     getRecipeById(recipes, id)
       .then((recipe) => {
-        this.recipe = mapRecipeModelToVm(recipe);
+        this.recipe = recipe;
       })
       .catch((error) => console.log(error));
 
@@ -34,6 +35,14 @@ export default Vue.extend({
     //     this.recipe = mapRecipeModelToVm(recipe);
     //   })
     //   .catch((error) => console.log(error));
+  },
+  methods: {
+    navigateBack() {
+      this.$router.back();
+    },
+    navigateToEdit(id: number): void {
+      this.$router.push(`${baseRoutes.recipe}/edit/${id}`);
+    },
   },
 });
 </script>

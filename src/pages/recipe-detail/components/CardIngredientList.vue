@@ -1,12 +1,15 @@
 <template>
-  <ul class="ingredient-list">
-    <template v-for="(ingredient, index) in recipe.ingredients">
-      <li :key="`${ingredient}-${index}`" class="ingredient-container">
-        <v-icon size="20" color="#D32F2F">mdi-chevron-right</v-icon>
-        <div class="ingredient">{{ ingredient }}</div>
-      </li>
-    </template>
-  </ul>
+  <div>
+    <p class="ingredient-title">Ingredients:</p>
+    <ul class="ingredient-list">
+      <template v-for="(ingredient, index) in recipe.ingredients">
+        <li :key="`${ingredient}-${index}`" class="ingredient-container">
+          <v-icon size="20" color="#D32F2F">mdi-chevron-right</v-icon>
+          <div class="ingredient">{{ ingredient }}</div>
+        </li>
+      </template>
+    </ul>
+  </div>
 </template>
 
 <script lang="ts">
@@ -26,6 +29,10 @@ export default Vue.extend({
 </script>
 
 <style scoped>
+.ingredient-title {
+  font-weight: 700;
+}
+
 .ingredient-list {
   list-style: none;
   margin: 0;

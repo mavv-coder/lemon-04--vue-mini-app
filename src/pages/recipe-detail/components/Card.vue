@@ -2,11 +2,16 @@
   <v-card class="card">
     <card-image-component :recipe="recipe" />
     <card-title-component v-bind="{ recipe, navigateToEdit }" />
-    <p class="recipe-description">
-      {{ recipe.description }}
-    </p>
-    <p class="ingredient-title">Ingredients:</p>
-    <card-ingredient-list :recipe="recipe" />
+    <div class="recipe-text-container">
+      <p class="recipe-description">
+        {{ recipe.description }}
+      </p>
+      <div class="ingredients-and-detail-container">
+        <card-ingredient-list :recipe="recipe" />
+        <card-details-component :recipe="recipe" />
+      </div>
+      <card-step-list :recipe="recipe" />
+    </div>
     <v-divider></v-divider>
     <div class="btn-container">
       <v-btn small color="primary" @click="navigateBack">Go back</v-btn>
@@ -20,6 +25,8 @@ import { Recipe } from "../../../common/model";
 import CardImageComponent from "./CardImage.vue";
 import CardTitleComponent from "./CardTitle.vue";
 import CardIngredientList from "./CardIngredientList.vue";
+import CardStepList from "./CardStepList.vue";
+import CardDetailsComponent from "./CardDetails.vue";
 
 interface Props {
   recipe: PropOptions<Recipe>;
@@ -29,7 +36,13 @@ interface Props {
 
 export default Vue.extend({
   name: "cardComponent",
-  components: { CardImageComponent, CardTitleComponent, CardIngredientList },
+  components: {
+    CardImageComponent,
+    CardTitleComponent,
+    CardIngredientList,
+    CardDetailsComponent,
+    CardStepList,
+  },
   props: {
     recipe: { required: true },
     navigateBack: { required: true },
@@ -45,13 +58,19 @@ export default Vue.extend({
   padding: 20px;
 }
 
+.recipe-text {
+  width: 100%;
+  margin-top: 15px;
+}
+
 .recipe-description {
   margin-top: 30px;
 }
 
-.ingredient-title {
-  font-weight: 700;
-  margin-top: 30px;
+.ingredients-and-detail-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0;
 }
 
 .btn-container {
