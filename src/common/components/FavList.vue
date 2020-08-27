@@ -6,7 +6,7 @@
         <div :key="recipe.id">
           <li class="list-item">
             <div class="img-container">
-              <img :src="`./img/${recipe.imgUrl}`" alt="" />
+              <img :src="recipe.imgUrl" alt="" />
             </div>
             <p class="recipe-name">{{ recipe.name }}</p>
           </li>
@@ -28,6 +28,7 @@ interface Recipe {
   id: number;
   name: string;
   difficulty: string;
+  favorite: boolean;
   imgUrl: string;
   time: number;
   description: string;
@@ -44,9 +45,14 @@ export default Vue.extend({
     };
   },
   created() {
-    if (checkInLocalStorage("favList")) {
+    if (checkInLocalStorage("recipes")) {
       this.isFavList = true;
-      this.favList = getFromLocalStorage("favList");
+      const favRecipes: Recipe[] = getFromLocalStorage("recipes").filter(
+        (x) => {
+          if (x.favorite) return x;
+        }
+      );
+      this.favList = favRecipes;
     } else {
       this.isFavList = false;
     }

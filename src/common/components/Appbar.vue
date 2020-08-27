@@ -6,7 +6,11 @@
           <v-toolbar-title>Recipe App</v-toolbar-title>
           <div class="user-login-container">
             <span class="user-text">Hello, {{ loginName }}</span>
-            <v-icon class="fav-icon" @click="toggleFavList()" color="#D32F2F"
+            <v-icon
+              class="fav-icon"
+              @mouseover="toggleFavList(true)"
+              @mouseleave="toggleFavList(false)"
+              color="#D32F2F"
               >mdi-heart</v-icon
             >
             <v-btn elevation="0" light small @click="handleLogOut"
@@ -31,7 +35,7 @@ import {
 export default Vue.extend({
   name: "AppbarComponent",
   props: {
-    toggleFavList: { required: true } as PropOptions<() => void>,
+    toggleFavList: { required: true } as PropOptions<(value: boolean) => void>,
   },
   data() {
     return {
