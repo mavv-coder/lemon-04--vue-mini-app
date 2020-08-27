@@ -24,6 +24,7 @@
       <v-text-field
         filled
         label="Time"
+        :value="recipe.time"
         :rules="[resultRecipeFieldError('time')]"
         @input="(time) => onUpdateRecipe('time', time)"
       />

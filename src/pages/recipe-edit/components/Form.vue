@@ -2,21 +2,30 @@
   <v-form ref="form" v-model="isFormValid">
     <h3>Select name, preparation time and difficulty level for the recipe</h3>
     <div class="form-field">
-      <v-text-field
+      <text-field-component
+        field="name"
+        v-bind="{ onUpdateRecipe, resultRecipeFieldError, recipe }"
+      />
+      <text-field-component
+        field="time"
+        v-bind="{ onUpdateRecipe, resultRecipeFieldError, recipe }"
+      />
+
+      <!-- <v-text-field
         filled
         label="Name"
         :value="recipe.name"
         :rules="[resultRecipeFieldError('name')]"
         @input="(name) => onUpdateRecipe('name', name)"
-      />
+      /> -->
 
-      <v-text-field
+      <!-- <v-text-field
         filled
         label="Time"
         :value="recipe.time"
         :rules="[resultRecipeFieldError('time')]"
         @input="(time) => onUpdateRecipe('time', time)"
-      />
+      /> -->
 
       <v-select
         :items="difficultyLevels"
@@ -94,6 +103,7 @@ import { baseRoutes } from "../../../router";
 import IngredientListComponent from "./IngredientList.vue";
 import StepListComponent from "./StepList.vue";
 import { FormProps } from "../formProps";
+import { TextFieldComponent } from "../../../common/components";
 
 interface Refs {
   $refs: {
@@ -103,7 +113,11 @@ interface Refs {
 
 export default (Vue as VueConstructor<Vue & Refs>).extend({
   name: "FormComponent",
-  components: { IngredientListComponent, StepListComponent },
+  components: {
+    TextFieldComponent,
+    IngredientListComponent,
+    StepListComponent,
+  },
   props: {
     recipe: { required: true },
     recipeError: { required: true },
