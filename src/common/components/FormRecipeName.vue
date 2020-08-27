@@ -1,11 +1,26 @@
 <template>
-  <v-text-field
-    filled
-    :label="capitalize(field)"
-    :value="recipe[field]"
-    :rules="[resultRecipeFieldError(field)]"
-    @input="(v) => onUpdateRecipe(field, v)"
-  />
+  <div class="form-field">
+    <v-text-field
+      filled
+      label="Name"
+      :value="recipe.name"
+      :rules="[resultRecipeFieldError('name')]"
+      @input="(name) => onUpdateRecipe('name', name)"
+    />
+    <v-text-field
+      filled
+      label="Time"
+      :value="recipe.time"
+      :rules="[resultRecipeFieldError('time')]"
+      @input="(time) => onUpdateRecipe('time', time)"
+    />
+    <v-select
+      filled
+      label="Difficulty"
+      :items="difficultyLevels"
+      :value="recipe.difficulty"
+    ></v-select>
+  </div>
 </template>
 
 <script lang="ts">
@@ -27,6 +42,11 @@ export default Vue.extend({
     resultRecipeFieldError: { required: true },
     onUpdateRecipe: { required: true },
   } as Props,
+  data() {
+    return {
+      difficultyLevels: ["Easy", "Medium", "Difficult"],
+    };
+  },
   methods: {
     capitalize(x: string) {
       return x.charAt(0).toUpperCase() + x.slice(1);

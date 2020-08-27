@@ -1,17 +1,12 @@
 <template>
   <v-form ref="form" v-model="isFormValid">
     <h3>Select name, preparation time and difficulty level for the recipe</h3>
-    <div class="form-field">
-      <text-field-component
-        field="name"
-        v-bind="{ onUpdateRecipe, resultRecipeFieldError, recipe }"
-      />
-      <text-field-component
-        field="time"
-        v-bind="{ onUpdateRecipe, resultRecipeFieldError, recipe }"
-      />
-
-      <!-- <v-text-field
+    <form-recipe-name-component
+      field="time"
+      v-bind="{ onUpdateRecipe, resultRecipeFieldError, recipe }"
+    />
+    <!-- <div class="form-field"> -->
+    <!-- <v-text-field
         filled
         label="Name"
         :value="recipe.name"
@@ -19,7 +14,7 @@
         @input="(name) => onUpdateRecipe('name', name)"
       /> -->
 
-      <!-- <v-text-field
+    <!-- <v-text-field
         filled
         label="Time"
         :value="recipe.time"
@@ -27,13 +22,13 @@
         @input="(time) => onUpdateRecipe('time', time)"
       /> -->
 
-      <v-select
+    <!-- <v-select
         :items="difficultyLevels"
         filled
         :value="recipe.difficulty"
         label="Difficulty"
       ></v-select>
-    </div>
+    </div> -->
     <h3>Select ingredients for the recipe</h3>
     <div class="form-field">
       <v-text-field
@@ -103,7 +98,7 @@ import { baseRoutes } from "../../../router";
 import IngredientListComponent from "./IngredientList.vue";
 import StepListComponent from "./StepList.vue";
 import { FormProps } from "../formProps";
-import { TextFieldComponent } from "../../../common/components";
+import { FormRecipeNameComponent } from "../../../common/components";
 
 interface Refs {
   $refs: {
@@ -114,7 +109,7 @@ interface Refs {
 export default (Vue as VueConstructor<Vue & Refs>).extend({
   name: "FormComponent",
   components: {
-    TextFieldComponent,
+    FormRecipeNameComponent,
     IngredientListComponent,
     StepListComponent,
   },
@@ -195,6 +190,7 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
   padding: 25px 25px 0 25px;
   margin-bottom: 40px;
 }
+
 h3 {
   color: #424242;
 }
