@@ -25,20 +25,18 @@
 
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
-import { Recipe } from "../model";
+import { Recipe } from "../../model";
 
 interface Props {
   recipe: PropOptions<Recipe>;
-  field: PropOptions<string>;
   resultRecipeFieldError: PropOptions<(field: string) => boolean | string>;
   onUpdateRecipe: PropOptions<(field: string, value: string) => void>;
 }
 
 export default Vue.extend({
-  name: "TextFieldComponent",
+  name: "FormRecipeNameComponent",
   props: {
     recipe: { required: true },
-    field: { required: true },
     resultRecipeFieldError: { required: true },
     onUpdateRecipe: { required: true },
   } as Props,

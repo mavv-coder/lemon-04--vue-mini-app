@@ -30,7 +30,18 @@
       ></v-select>
     </div> -->
     <h3>Select ingredients for the recipe</h3>
-    <div class="form-field">
+    <form-recipe-ingredients-component
+      v-bind="{
+        recipe,
+        ingredient,
+        recipeError,
+        recipeErrorIngredients,
+        handleAddIngredient,
+        onRemoveIngredient,
+        handleIngredientValue,
+      }"
+    />
+    <!-- <div class="form-field">
       <v-text-field
         filled
         label="Ingredients"
@@ -49,7 +60,7 @@
         :ingredients="recipe.ingredients"
         :on-remove-ingredient="onRemoveIngredient"
       />
-    </div>
+    </div> -->
     <h3>Select a description for the recipe</h3>
     <div class="form-field">
       <v-textarea
@@ -98,7 +109,10 @@ import { baseRoutes } from "../../../router";
 import IngredientListComponent from "./IngredientList.vue";
 import StepListComponent from "./StepList.vue";
 import { FormProps } from "../formProps";
-import { FormRecipeNameComponent } from "../../../common/components";
+import {
+  FormRecipeNameComponent,
+  FormRecipeIngredientsComponent,
+} from "../../../common/components";
 
 interface Refs {
   $refs: {
@@ -110,7 +124,8 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
   name: "FormComponent",
   components: {
     FormRecipeNameComponent,
-    IngredientListComponent,
+    FormRecipeIngredientsComponent,
+    // IngredientListComponent,
     StepListComponent,
   },
   props: {
@@ -128,7 +143,9 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
       isFormValid: true,
       ingredient: "",
       step: "",
-      difficultyLevels: ["Easy", "Medium", "Difficult"],
+      recipeErrorIngredients: this.recipeError.ingredients,
+      recipeErrorStep: this.recipeError.steps,
+      // difficultyLevels: ["Easy", "Medium", "Difficult"],
     };
   },
   // computed: {
@@ -143,8 +160,11 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
   //   },
   // },
   methods: {
+    handleIngredientValue(value: string): void {
+      this.ingredient = value;
+    },
     navigateToListPage() {
-      this.$router.push(baseRoutes.recipe);
+      this.$router.back();
     },
     resultRecipeFieldError(field: string): boolean | string {
       return (
@@ -152,6 +172,7 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
       );
     },
     handleAddIngredient(ingredient: string): void {
+      console.log(this.recipeErrorIngredients);
       if (this.checkifIngredientIsValid()) {
         this.onAddIngredient(ingredient);
         this.ingredient = "";
