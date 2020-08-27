@@ -27,34 +27,38 @@
         handleStepValue,
       }"
     />
-    <div class="btn-container">
-      <v-btn type="button" color="error" @click.prevent="navigateToListPage"
-        >Cancel</v-btn
-      >
-      <v-btn type="button" color="success" @click.prevent="handleOnSave"
-        >Save</v-btn
-      >
-    </div>
+    <form-recipe-buttons-component v-bind="{ handleOnSave, navigateBack }" />
   </v-form>
 </template>
 
 <script lang="ts">
-import Vue, { VueConstructor } from "vue";
+import Vue, { VueConstructor, PropOptions } from "vue";
 import { baseRoutes } from "../../../router";
-import IngredientListComponent from "./IngredientList.vue";
-import StepListComponent from "./StepList.vue";
-import { FormProps } from "../formProps";
 import {
   FormRecipeNameComponent,
   FormRecipeIngredientsComponent,
   FormRecipeDescriptionComponent,
   FormRecipeStepsComponent,
+  FormRecipeButtonsComponent,
 } from "../../../common/components";
+import { Recipe, RecipeError } from "../viewModel";
 
 interface Refs {
   $refs: {
     form: HTMLFormElement;
   };
+}
+
+export interface Props {
+  recipe: PropOptions<Recipe>;
+  recipeError: PropOptions<RecipeError>;
+  onUpdateRecipe: PropOptions<(field: string, value: string) => void>;
+  onSave: PropOptions<() => void>;
+  onRemoveIngredient: PropOptions<(ingredient: string) => void>;
+  onAddIngredient: PropOptions<(ingredient: string) => void>;
+  onRemoveStep: PropOptions<(step: string) => void>;
+  onAddStep: PropOptions<(step: string) => void>;
+  navigateBack: PropOptions<() => void>;
 }
 
 export default (Vue as VueConstructor<Vue & Refs>).extend({
@@ -64,8 +68,7 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
     FormRecipeIngredientsComponent,
     FormRecipeDescriptionComponent,
     FormRecipeStepsComponent,
-    // IngredientListComponent,
-    StepListComponent,
+    FormRecipeButtonsComponent,
   },
   props: {
     recipe: { required: true },
@@ -76,26 +79,15 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
     onAddIngredient: { required: true },
     onAddStep: { required: true },
     onRemoveStep: { required: true },
-  } as FormProps,
+    navigateBack: { required: true },
+  } as Props,
   data() {
     return {
-      isFormValid: true,
+      isFormValid: false,
       ingredient: "",
       step: "",
-      // difficultyLevels: ["Easy", "Medium", "Difficult"],
     };
   },
-  // computed: {
-  //   resultRecipeTitleError(): boolean | string {
-  //     return this.recipeError.name.succeeded || this.recipeError.name.message;
-  //   },
-  //   resultRecipeDescriptionError(): boolean | string {
-  //     return (
-  //       this.recipeError.description.succeeded ||
-  //       this.recipeError.description.message
-  //     );
-  //   },
-  // },
   methods: {
     handleIngredientValue(value: string): void {
       this.ingredient = value;
@@ -103,21 +95,18 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
     handleStepValue(value: string): void {
       this.step = value;
     },
-    navigateToListPage() {
-      this.$router.back();
-    },
-    resultRecipeFieldError(field: string): boolean | string {
-      return (
-        this.recipeError[field].succeeded || this.recipeError[field].message
-      );
-    },
     handleAddIngredient(ingredient: string): void {
       if (this.checkifIngredientIsValid()) {
         this.onAddIngredient(ingredient);
         this.ingredient = "";
       }
     },
-
+    handleAddStep(step: string): void {
+      if (this.checkifStepIsValid()) {
+        this.onAddStep(step);
+        this.step = "";
+      }
+    },
     checkifIngredientIsValid(): boolean {
       return this.ingredient === "" ||
         this.ingredient === undefined ||
@@ -130,11 +119,10 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
         ? false
         : true;
     },
-    handleAddStep(step: string): void {
-      if (this.checkifStepIsValid()) {
-        this.onAddStep(step);
-        this.step = "";
-      }
+    resultRecipeFieldError(field: string): boolean | string {
+      return (
+        this.recipeError[field].succeeded || this.recipeError[field].message
+      );
     },
     handleOnSave() {
       this.$refs.form.validate();
@@ -144,13 +132,4 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
 });
 </script>
 
-<style scoped>
-.btn-container {
-  display: flex;
-  justify-content: center;
-}
-
-.btn-container button {
-  margin: 0 10px;
-}
-</style>
+<style scoped></style>

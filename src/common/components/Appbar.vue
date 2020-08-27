@@ -23,6 +23,7 @@ import {
   checkInLocalStorage,
   saveInLocalStorage,
   getFromLocalStorage,
+  deleteFromLocalStorage,
 } from "../helpers";
 
 export default Vue.extend({
@@ -43,6 +44,8 @@ export default Vue.extend({
   },
   methods: {
     handleLogOut(): void {
+      deleteFromLocalStorage("recipes");
+      deleteFromLocalStorage("login");
       localStorage.clear();
       this.authentication = false;
       this.$router.push(baseRoutes.login);

@@ -13,6 +13,7 @@
       snackbarState,
       snackbarColor,
       snackbarText,
+      navigateBack,
     }"
   />
 </template>
@@ -20,16 +21,16 @@
 <script lang="ts">
 import Vue from "vue";
 import RecipeEditPage from "./Page.vue";
-import { fetchRecipeById, save } from "../../rest-api/api/recipe";
-import { mapRecipeModelToVm, mapRecipeVmToModel } from "./mapper";
-import { createEmptyRecipe, createEmptyRecipeError } from "./viewModel";
-import { validations } from "./validations";
 import { Recipe } from "../../rest-api/model";
+import { fetchRecipeById, save } from "../../rest-api/api/recipe";
 import {
   saveInLocalStorage,
   getFromLocalStorage,
   getRecipeById,
 } from "../../common/helpers";
+import { mapRecipeModelToVm, mapRecipeVmToModel } from "./mapper";
+import { createEmptyRecipe, createEmptyRecipeError } from "./viewModel";
+import { validations } from "./validations";
 
 export default Vue.extend({
   name: "RecipeEditPageContainer",
@@ -52,6 +53,8 @@ export default Vue.extend({
         this.recipe = mapRecipeModelToVm(recipe);
       })
       .catch((error) => console.log(error));
+
+    // To get the recipe from the api
     // fetchRecipeById(id)
     //   .then((recipe) => {
     //     this.recipe = mapRecipeModelToVm(recipe);
@@ -59,15 +62,18 @@ export default Vue.extend({
     //   .catch((error) => console.log(error));
   },
   methods: {
-    closeSnackbar(v: boolean): void {
-      this.snackbarState = v;
-    },
     onUpdateRecipe(field: string, value: string) {
       this.recipe = {
         ...this.recipe,
         [field]: value,
       };
       this.validateRecipeField(field, value);
+    },
+    updateRecipeError(field, result) {
+      this.recipeError = {
+        ...this.recipeError,
+        [field]: result,
+      };
     },
     onSave() {
       validations.validateForm(this.recipe).then((result) => {
@@ -125,12 +131,17 @@ export default Vue.extend({
         .validateField(field, value)
         .then((result) => this.updateRecipeError(field, result));
     },
-    updateRecipeError(field, result) {
-      this.recipeError = {
-        ...this.recipeError,
-        [field]: result,
-      };
+    saveRecipeToLocalStorage(recipe: Recipe): void {
+      console.log(recipe);
+      const recipes = getFromLocalStorage("recipes");
+      const newRecipes = recipes.map((x) => (x.id === recipe.id ? recipe : x));
+      saveInLocalStorage("recipes", newRecipes);
     },
+    // Navigation ======================= \\
+    navigateBack() {
+      this.$router.back();
+    },
+    // Snackbar ========================== \\
     showSnackbarError(msg: string) {
       msg
         ? (this.snackbarText = msg)
@@ -141,10 +152,8 @@ export default Vue.extend({
         this.snackbarState = false;
       }, 5000);
     },
-    saveRecipeToLocalStorage(recipe: Recipe): void {
-      const recipes = getFromLocalStorage("recipes");
-      const newRecipes = recipes.map((x) => (x.id === recipe.id ? recipe : x));
-      saveInLocalStorage("recipes", newRecipes);
+    closeSnackbar(v: boolean): void {
+      this.snackbarState = v;
     },
   },
 });
