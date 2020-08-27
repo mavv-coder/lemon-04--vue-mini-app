@@ -1,8 +1,12 @@
 <template>
   <div>
-    <div class="time-container">
-      <v-icon>mdi-clock-time-four-outline</v-icon>
-      <span class="time-text">{{ `${recipe.time}'` }}</span>
+    <div class="flex-container">
+      <v-icon class="icon" color="#D32F2F">mdi-clock-time-four-outline</v-icon>
+      <span class="time-text">{{ `${recipe.time} min` }}</span>
+    </div>
+    <div class="flex-container">
+      <v-icon class="icon" color="#D32F2F">mdi-silverware-fork-knife</v-icon>
+      <span class="difficulty-text">{{ recipe.difficulty }}</span>
     </div>
   </div>
 </template>
@@ -23,4 +27,14 @@ export default Vue.extend({
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.flex-container {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.icon {
+  margin-right: 5px;
+}
+</style>
