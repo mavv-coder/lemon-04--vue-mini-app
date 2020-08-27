@@ -13,6 +13,7 @@
       snackbarState,
       snackbarColor,
       snackbarText,
+      handleFileInput,
     }"
   />
 </template>
@@ -81,6 +82,13 @@ export default Vue.extend({
           };
         }
       });
+    },
+    handleFileInput(file): void {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onload = (event) => {
+        this.recipe.imgUrl = reader.result as string;
+      };
     },
     generateId(): number {
       return Math.ceil(Math.random() * 75433) + Math.ceil(Math.random() * 224);

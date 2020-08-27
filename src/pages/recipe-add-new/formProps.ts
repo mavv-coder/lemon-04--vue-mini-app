@@ -10,4 +10,5 @@ export interface FormProps {
   onAddIngredient: PropOptions<(ingredient: string) => void>;
   onRemoveStep: PropOptions<(ingredient: string) => void>;
   onAddStep: PropOptions<(ingredient: string) => void>;
+  handleFileInput: PropOptions<(files: FileList) => void>;
 }

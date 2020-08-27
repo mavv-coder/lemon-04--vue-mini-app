@@ -33,6 +33,7 @@ export default Vue.extend({
     snackbarState: { required: true },
     snackbarColor: { required: true },
     snackbarText: { required: true },
+    handleFileInput: { required: true },
   },
 });
 </script>

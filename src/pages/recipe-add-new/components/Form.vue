@@ -2,13 +2,17 @@
   <v-form ref="form" v-model="isFormValid">
     <h3>Select name, preparation time and difficulty level for the recipe</h3>
     <div class="form-field">
-      <v-text-field
+      <v-file-input
+        @change="handleFileInput"
+        label="Upload image"
+      ></v-file-input>
+      <!-- <v-text-field
         filled
         label="Image url"
         :value="recipe.imgUrl"
         :rules="[resultRecipeFieldError('imgUrl')]"
         @input="(imgUrl) => onUpdateRecipe('imgUrl', imgUrl)"
-      />
+      /> -->
       <v-text-field
         filled
         label="Name"
@@ -25,10 +29,10 @@
       />
 
       <v-select
-        :items="difficultyLevels"
         filled
-        :value="recipe.difficulty"
         label="Difficulty"
+        :items="difficultyLevels"
+        :value="recipe.difficulty"
       ></v-select>
     </div>
     <h3>Select ingredients for the recipe</h3>
@@ -119,6 +123,7 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
     onAddIngredient: { required: true },
     onAddStep: { required: true },
     onRemoveStep: { required: true },
+    handleFileInput: { required: true },
   } as FormProps,
   data() {
     return {
