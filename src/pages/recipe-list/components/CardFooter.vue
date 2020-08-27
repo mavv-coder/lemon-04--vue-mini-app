@@ -3,20 +3,6 @@
     <v-btn outlined small color="#F57F17" @click="navigateToDetail(recipe.id)"
       >See more</v-btn
     >
-    <!-- <div class="btn-container">
-            <v-icon
-              v-if="!checkIsFav(recipe.id)"
-              @click="toggleRecipeFav(recipe)"
-              class="edit-icon"
-              >mdi-heart-outline</v-icon
-            >
-            <v-icon
-              v-if="checkIsFav(recipe.id)"
-              @click="toggleRecipeFav(recipe)"
-              class="edit-icon"
-              color="#D32F2F"
-              >mdi-heart</v-icon
-            > -->
     <div class="icon-container">
       <v-icon
         v-if="!recipe.favorite"
@@ -76,6 +62,15 @@ export default Vue.extend({
 .icon-container {
   display: flex;
   justify-content: flex-end;
+}
+
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+  .footer {
+    flex-direction: column-reverse;
+  }
+  .icon-container {
+    margin-bottom: 10px;
+  }
 }
 
 .icon {

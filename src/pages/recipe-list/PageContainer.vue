@@ -34,7 +34,6 @@ export default Vue.extend({
   data() {
     return {
       recipes: [] as Recipe[],
-      // favList: [] as Recipe[],
       searchText: "",
     };
   },
@@ -44,7 +43,7 @@ export default Vue.extend({
     },
   },
   created() {
-    // Get recipes from Local Storage if they are there
+    // Get recipes from Local Storage if there are some
     if (checkInLocalStorage("recipes")) {
       this.recipes = getFromLocalStorage("recipes");
     } else {
@@ -56,9 +55,6 @@ export default Vue.extend({
         })
         .catch((error) => console.log(error));
     }
-    // if (checkInLocalStorage("favList")) {
-    //   this.favList = getFromLocalStorage("favList");
-    // }
   },
   methods: {
     onSearch(value: string): void {
@@ -67,24 +63,8 @@ export default Vue.extend({
     deleteRecipe(id: number): void {
       if (window.confirm("Are you sure to delete this recipe?")) {
         const newRecipes = this.recipes.filter((x) => x.id !== id);
-        // Delete from app
         this.recipes = newRecipes;
-        // Delete from LocalStorage
         saveInLocalStorage("recipes", newRecipes);
-
-        // const newRecipes = getFromLocalStorage("recipes").filter(
-        //   (x) => x.id !== id
-        // );
-        // deleteFromLocalStorage("recipes");
-        // saveInLocalStorage("recipes", newRecipes);
-        // this.recipes = newRecipes;
-        // //
-        // const newfavList = getFromLocalStorage("favList").filter(
-        //   (x) => x.id !== id
-        // );
-        // deleteFromLocalStorage("favList");
-        // saveInLocalStorage("favList", newfavList);
-        // this.recipes = newfavList;
       }
     },
     toggleFavorite(id: number, value: boolean): void {

@@ -62,8 +62,21 @@ img {
   color: #263238;
   margin-left: 2px;
 }
+@media only screen and (min-width: 600px) and (max-width: 800px) {
+  .time-container {
+    display: none;
+  }
 
-@media only screen and (min-width: 599px) and (max-width: 1263px) {
+  .time-container::after {
+    display: none;
+  }
+
+  .time-text {
+    display: none;
+  }
+}
+
+@media only screen and (min-width: 801px) and (max-width: 1263px) {
   .time-container {
     width: 48px;
     height: 48px;

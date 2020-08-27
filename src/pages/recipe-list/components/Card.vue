@@ -23,12 +23,6 @@
 import Vue, { PropOptions } from "vue";
 import { baseRoutes } from "../../../router";
 import { Recipe } from "../viewModel";
-import {
-  checkInLocalStorage,
-  getFromLocalStorage,
-  deleteFromLocalStorage,
-  saveInLocalStorage,
-} from "../../../common/helpers";
 import CardFooterComponent from "./CardFooter.vue";
 import CardImageComponent from "./CardImage.vue";
 import CardTextComponent from "./CardText.vue";
@@ -47,20 +41,6 @@ export default Vue.extend({
     deleteRecipe: { required: true },
     toggleFavorite: { required: true },
   } as Props,
-  data() {
-    return {
-      // favList: [] as Recipe[],
-    };
-  },
-  // created() {
-  //   if (checkInLocalStorage("favList")) {
-  //     const newFavList = getFromLocalStorage("favList");
-  //     return newFavList.map(
-  //       (y) => newFavList.findIndex((x) => x.id === y.id) !== -1
-  //     );
-  //   }
-  //   return false;
-  // },
   methods: {
     shortenDescriptionLength(descript: string): string {
       return descript.length > 100
@@ -73,38 +53,6 @@ export default Vue.extend({
     navigateToDetail(id: number): void {
       this.$router.push(`${baseRoutes.recipe}/${id}`);
     },
-    // checkIsFav(id: number): boolean {
-    //   if (this.favList.length > 0) {
-    //     return this.favList.findIndex((x) => x.id === id) !== -1;
-    //   }
-    //   return false;
-    // },
-    // toggleRecipeFav(recipe): void {
-    //   if (checkInLocalStorage("favList")) {
-    //     let newfavList = getFromLocalStorage("favList");
-    //     if (this.checkIsFav(recipe.id)) {
-    //       newfavList = newfavList.filter((x) => x.id !== recipe.id);
-    //       if (newfavList.length <= 0) {
-    //         deleteFromLocalStorage("favList");
-    //         this.favList = [];
-    //       } else {
-    //         deleteFromLocalStorage("favList");
-    //         saveInLocalStorage("favList", newfavList);
-    //         this.favList = newfavList;
-    //       }
-    //     } else {
-    //       newfavList = [...newfavList, recipe];
-    //       deleteFromLocalStorage("favList");
-    //       saveInLocalStorage("favList", newfavList);
-    //       this.favList = newfavList;
-    //     }
-    //   } else {
-    //     const newfavList = [recipe];
-    //     deleteFromLocalStorage("favList");
-    //     saveInLocalStorage("favList", newfavList);
-    //     this.favList = newfavList;
-    //   }
-    // },
   },
 });
 </script>

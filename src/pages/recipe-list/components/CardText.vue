@@ -28,17 +28,17 @@ export default Vue.extend({
 
 <style scoped>
 .recipe-title {
-  color: #263238;
-  font-weight: 400;
   margin-bottom: 5px;
+  font-weight: 400;
   text-transform: uppercase;
   font-size: 16px;
   letter-spacing: 0.5px;
+  color: #263238;
 }
 
 .text-container {
   height: 70px;
-  overflow: hidden;
   margin: 10px 0;
+  overflow: hidden;
 }
 </style>
