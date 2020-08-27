@@ -15,17 +15,20 @@
       outlined
       >{{ recipeError.ingredients.message }}</v-alert
     >
-    <ingredient-list-component
-      :ingredients="recipe.ingredients"
-      :on-remove-ingredient="onRemoveIngredient"
-    />
+    <template v-for="(ingredient, index) in recipe.ingredients">
+      <v-chip outlined class="ma-2" :key="`${ingredient}_${index}`">
+        {{ ingredient }}
+        <v-icon right @click="() => onRemoveIngredient(ingredient)"
+          >close</v-icon
+        >
+      </v-chip>
+    </template>
   </div>
 </template>
 
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
 import { Recipe, RecipeError } from "../../model";
-import IngredientListComponent from "./IngredientList.vue";
 
 interface Props {
   recipe: PropOptions<Recipe>;
@@ -38,7 +41,6 @@ interface Props {
 
 export default Vue.extend({
   name: "FormRecipeIngredientsComponent",
-  components: { IngredientListComponent },
   props: {
     recipe: { required: true },
     ingredient: { required: true },

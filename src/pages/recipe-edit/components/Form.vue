@@ -61,7 +61,10 @@
       />
     </div> -->
     <h3>Select a description for the recipe</h3>
-    <div class="form-field">
+    <form-recipe-description-component
+      v-bind="{ onUpdateRecipe, resultRecipeFieldError, recipe }"
+    />
+    <!-- <div class="form-field">
       <v-textarea
         label="Description"
         filled
@@ -72,7 +75,7 @@
         :no-resize="true"
         @input="(value) => onUpdateRecipe('description', value)"
       ></v-textarea>
-    </div>
+    </div> -->
     <h3>Select the preparation steps for the recipe</h3>
     <div class="form-field">
       <v-text-field
@@ -111,6 +114,7 @@ import { FormProps } from "../formProps";
 import {
   FormRecipeNameComponent,
   FormRecipeIngredientsComponent,
+  FormRecipeDescriptionComponent,
 } from "../../../common/components";
 
 interface Refs {
@@ -124,6 +128,7 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
   components: {
     FormRecipeNameComponent,
     FormRecipeIngredientsComponent,
+    FormRecipeDescriptionComponent,
     // IngredientListComponent,
     StepListComponent,
   },
