@@ -77,7 +77,17 @@
       ></v-textarea>
     </div> -->
     <h3>Select the preparation steps for the recipe</h3>
-    <div class="form-field">
+    <form-recipe-steps-component
+      v-bind="{
+        recipe,
+        step,
+        recipeError,
+        handleAddStep,
+        onRemoveStep,
+        handleStepValue,
+      }"
+    />
+    <!-- <div class="form-field">
       <v-text-field
         filled
         label="Steps"
@@ -93,7 +103,7 @@
         :steps="recipe.steps"
         :on-remove-step="onRemoveStep"
       />
-    </div>
+    </div> -->
     <div class="btn-container">
       <v-btn type="button" color="error" @click.prevent="navigateToListPage"
         >Cancel</v-btn
@@ -115,6 +125,7 @@ import {
   FormRecipeNameComponent,
   FormRecipeIngredientsComponent,
   FormRecipeDescriptionComponent,
+  FormRecipeStepsComponent,
 } from "../../../common/components";
 
 interface Refs {
@@ -129,6 +140,7 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
     FormRecipeNameComponent,
     FormRecipeIngredientsComponent,
     FormRecipeDescriptionComponent,
+    FormRecipeStepsComponent,
     // IngredientListComponent,
     StepListComponent,
   },
@@ -164,6 +176,9 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
   methods: {
     handleIngredientValue(value: string): void {
       this.ingredient = value;
+    },
+    handleStepValue(value: string): void {
+      this.step = value;
     },
     navigateToListPage() {
       this.$router.back();
