@@ -19,7 +19,7 @@
 import Vue, { PropOptions } from "vue";
 
 interface SnackbarProps {
-  closeSnackbar: PropOptions<(v: boolean) => void>;
+  closeSnackbar: PropOptions<(value: boolean) => void>;
   snackbarState: PropOptions<boolean>;
   snackbarColor: PropOptions<string>;
   snackbarText: PropOptions<string>;

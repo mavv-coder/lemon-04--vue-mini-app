@@ -6,13 +6,6 @@
           <v-toolbar-title>Recipe App</v-toolbar-title>
           <div class="user-login-container">
             <span class="user-text">Hello, {{ loginName }}</span>
-            <v-icon
-              class="fav-icon"
-              @mouseover="toggleFavList(true)"
-              @mouseleave="toggleFavList(false)"
-              color="#D32F2F"
-              >mdi-heart</v-icon
-            >
             <v-btn elevation="0" light small @click="handleLogOut"
               >Log out</v-btn
             >
@@ -34,9 +27,6 @@ import {
 
 export default Vue.extend({
   name: "AppbarComponent",
-  props: {
-    toggleFavList: { required: true } as PropOptions<(value: boolean) => void>,
-  },
   data() {
     return {
       loginName: "",
@@ -78,19 +68,9 @@ export default Vue.extend({
   justify-content: space-between;
   align-items: center;
 }
-.fav-icon {
+
+.user-text {
   margin: 0 12px;
-  transition: all 0.4s ease;
-}
-
-.fav-icon::after,
-.fav-icon:active {
-  opacity: 0 !important;
-}
-
-.fav-icon:hover {
-  opacity: 0.8;
-  cursor: pointer;
 }
 
 .logout-btn {
