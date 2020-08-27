@@ -18,9 +18,20 @@
               >mdi-heart</v-icon
             > -->
     <div class="icon-container">
-      <v-icon class="icon edit-icon">mdi-heart-outline</v-icon>
-      <!-- <v-icon class="edit-icon" color="#D32F2F">mdi-heart</v-icon> -->
-      <v-icon class="icon edit-icon" @click="navigateToEdit(recipe.id)"
+      <v-icon
+        v-if="!recipe.favorite"
+        class="icon"
+        @click="toggleFavorite(recipe.id, true)"
+        >mdi-heart-outline</v-icon
+      >
+      <v-icon
+        v-if="recipe.favorite"
+        class="icon"
+        color="#D32F2F"
+        @click="toggleFavorite(recipe.id, false)"
+        >mdi-heart</v-icon
+      >
+      <v-icon class="icon" @click="navigateToEdit(recipe.id)"
         >mdi-pencil</v-icon
       >
       <v-icon class="icon" color="#FF6E40" @click="deleteRecipe(recipe.id)"
@@ -39,6 +50,7 @@ interface Props {
   deleteRecipe: PropOptions<(id: number) => void>;
   navigateToEdit: PropOptions<(id: number) => void>;
   navigateToDetail: PropOptions<(id: number) => void>;
+  toggleFavorite: PropOptions<(id: number, value: boolean) => void>;
 }
 
 export default Vue.extend({
@@ -48,6 +60,7 @@ export default Vue.extend({
     deleteRecipe: { required: true },
     navigateToEdit: { required: true },
     navigateToDetail: { required: true },
+    toggleFavorite: { required: true },
   } as Props,
 });
 </script>
@@ -65,11 +78,15 @@ export default Vue.extend({
   justify-content: flex-end;
 }
 
+.icon {
+  margin-right: 10px;
+}
+
 .icon::after {
   opacity: 0 !important;
 }
 
-.edit-icon {
-  margin-right: 10px;
+.icon:last-of-type {
+  margin-right: 0px;
 }
 </style>

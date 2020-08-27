@@ -1,6 +1,12 @@
 <template>
   <recipe-list-page
-    v-bind="{ searchText, recipes: filteredRecipes, onSearch, deleteRecipe }"
+    v-bind="{
+      searchText,
+      recipes: filteredRecipes,
+      onSearch,
+      deleteRecipe,
+      toggleFavorite,
+    }"
   />
 </template>
 
@@ -78,6 +84,13 @@ export default Vue.extend({
         // saveInLocalStorage("favList", newfavList);
         // this.recipes = newfavList;
       }
+    },
+    toggleFavorite(id: number, value: boolean): void {
+      const newRecipes = this.recipes.map((x) =>
+        x.id === id ? { ...x, favorite: value } : x
+      );
+      this.recipes = newRecipes;
+      saveInLocalStorage("recipes", newRecipes);
     },
   },
 });

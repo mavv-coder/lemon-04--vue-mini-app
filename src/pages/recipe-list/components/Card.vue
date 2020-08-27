@@ -6,7 +6,13 @@
         <card-text-component v-bind="{ recipe, shortenDescriptionLength }" />
         <v-divider></v-divider>
         <card-footer-component
-          v-bind="{ recipe, navigateToEdit, navigateToDetail, deleteRecipe }"
+          v-bind="{
+            recipe,
+            navigateToEdit,
+            navigateToDetail,
+            deleteRecipe,
+            toggleFavorite,
+          }"
         />
       </v-card>
     </v-col>
@@ -30,6 +36,7 @@ import CardTextComponent from "./CardText.vue";
 interface Props {
   recipes: PropOptions<Recipe[]>;
   deleteRecipe: PropOptions<(id: number) => void>;
+  toggleFavorite: PropOptions<(id: number, value: boolean) => void>;
 }
 
 export default Vue.extend({
@@ -38,6 +45,7 @@ export default Vue.extend({
   props: {
     recipes: { required: true },
     deleteRecipe: { required: true },
+    toggleFavorite: { required: true },
   } as Props,
   data() {
     return {

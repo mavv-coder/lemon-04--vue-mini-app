@@ -11,7 +11,7 @@
       </div>
       <v-card-text>
         <search-bar-component :search-text="searchText" :on-search="onSearch" />
-        <card-component v-bind="{ recipes, deleteRecipe }" />
+        <card-component v-bind="{ recipes, deleteRecipe, toggleFavorite }" />
       </v-card-text>
     </v-card>
   </app-layout>
@@ -32,6 +32,9 @@ export default Vue.extend({
     recipes: { required: true } as PropOptions<Recipe[]>,
     searchText: String,
     onSearch: { required: true } as PropOptions<(value: string) => void>,
+    toggleFavorite: { required: true } as PropOptions<
+      (id: number, value: boolean) => void
+    >,
   },
 });
 </script>

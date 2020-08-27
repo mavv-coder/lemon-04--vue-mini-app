@@ -7,6 +7,7 @@ export interface Recipe {
   id: number;
   name: string;
   difficulty: string;
+  favorite: boolean;
   imgUrl: string;
   time: number;
   description: string;
@@ -18,6 +19,7 @@ export const createEmptyRecipe = (): Recipe => ({
   id: 0,
   name: "",
   imgUrl: "",
+  favorite: false,
   difficulty: "",
   time: 0,
   description: "",
