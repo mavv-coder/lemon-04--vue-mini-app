@@ -1,3 +1,5 @@
+import { Recipe } from "../model";
+
 export const checkInLocalStorage = (key: string): boolean =>
   localStorage.getItem(key) === null ? false : true;
 
@@ -10,4 +12,12 @@ export const getFromLocalStorage = (key: string): any =>
 
 export const deleteFromLocalStorage = (key: string): void => {
   localStorage.removeItem(key);
+};
+
+export const getRecipeById = (
+  recipes: Recipe[],
+  id: number
+): Promise<Recipe> => {
+  const recipe = recipes.find((x) => x.id === id);
+  return Promise.resolve(recipe as Recipe);
 };

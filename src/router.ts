@@ -3,6 +3,7 @@ import { LoginPageContainer } from "./pages/login";
 import { RecipeListPageContainer } from "./pages/recipe-list";
 import { EditRecipePageContainer } from "./pages/recipe-edit";
 import { RecipeDetailPageContainer } from "./pages/recipe-detail";
+import { RecipeAddNewPageContainer } from "./pages/recipe-add-new";
 import { checkInLocalStorage } from "./common/helpers";
 
 interface BaseRoutes {
@@ -11,6 +12,7 @@ interface BaseRoutes {
   recipe: string;
   detail: string;
   edit: string;
+  addNew: string;
 }
 
 export const baseRoutes: BaseRoutes = {
@@ -19,6 +21,7 @@ export const baseRoutes: BaseRoutes = {
   recipe: "/recipe",
   detail: "/recipe/:id",
   edit: "/recipe/edit/:id",
+  addNew: "/recipe/add",
 };
 
 const routes: RouteConfig[] = [
@@ -28,6 +31,11 @@ const routes: RouteConfig[] = [
     path: baseRoutes.recipe,
     name: "recipe-list",
     component: RecipeListPageContainer,
+  },
+  {
+    path: baseRoutes.addNew,
+    name: "recipe-add-new",
+    component: RecipeAddNewPageContainer,
   },
   {
     path: baseRoutes.edit,
@@ -53,6 +61,7 @@ router.beforeEach((to, from, next) => {
     "recipe-list",
     "recipe-edit",
     "recipe-detail",
+    "recipe-add-new",
   ];
 
   return privatePages.findIndex((x) => x === to.name) !== -1 && !authentication

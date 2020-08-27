@@ -165,6 +165,7 @@ export default Vue.extend({
   padding-right: 4px;
 }
 .step {
+  max-width: 100%;
   border-left: 2px solid #d32f2f;
   padding-top: 0;
   padding-left: 10px;

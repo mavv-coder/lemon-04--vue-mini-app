@@ -5,7 +5,7 @@
         <v-card-title class="text-h4">
           Recipes
         </v-card-title>
-        <v-btn color="#F57F17" outlined
+        <v-btn color="#F57F17" @click="navigateToAddNew" outlined
           >Add new<v-icon color="#F57F17">mdi-plus</v-icon></v-btn
         >
       </div>
@@ -28,6 +28,7 @@ export default Vue.extend({
   name: "RecipeListPage",
   components: { AppLayout, CardComponent, SearchBarComponent },
   props: {
+    navigateToAddNew: { required: true } as PropOptions<() => void>,
     deleteRecipe: { required: true } as PropOptions<(id: number) => void>,
     recipes: { required: true } as PropOptions<Recipe[]>,
     searchText: String,

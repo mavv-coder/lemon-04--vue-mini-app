@@ -1,5 +1,5 @@
 <template>
-  <recipe-edit-page
+  <recipe-add-new-page
     v-bind="{
       recipe,
       recipeError,
@@ -19,22 +19,22 @@
 
 <script lang="ts">
 import Vue from "vue";
-import RecipeEditPage from "./Page.vue";
+import RecipeAddNewPage from "./Page.vue";
 import { fetchRecipeById, save } from "../../rest-api/api/recipe";
 import { mapRecipeModelToVm, mapRecipeVmToModel } from "./mapper";
 import { createEmptyRecipe, createEmptyRecipeError } from "./viewModel";
 import { validations } from "./validations";
 import { Recipe } from "../../rest-api/model";
-import {
-  saveInLocalStorage,
-  deleteFromLocalStorage,
-  getFromLocalStorage,
-  getRecipeById,
-} from "../../common/helpers";
+import { getFromLocalStorage, saveInLocalStorage } from "../../common/helpers";
+// import {
+//   saveInLocalStorage,
+//   deleteFromLocalStorage,
+//   getFromLocalStorage,
+// } from "../../../common/helpers";
 
 export default Vue.extend({
-  name: "RecipeEditPageContainer",
-  components: { RecipeEditPage },
+  name: "RecipeAddNewPageContainer",
+  components: { RecipeAddNewPage },
   props: { id: String },
   data() {
     return {
@@ -45,20 +45,7 @@ export default Vue.extend({
       snackbarText: "",
     };
   },
-  beforeMount() {
-    const id = Number(this.id || 0);
-    const recipes = getFromLocalStorage("recipes");
-    getRecipeById(recipes, id)
-      .then((recipe) => {
-        this.recipe = mapRecipeModelToVm(recipe);
-      })
-      .catch((error) => console.log(error));
-    // fetchRecipeById(id)
-    //   .then((recipe) => {
-    //     this.recipe = mapRecipeModelToVm(recipe);
-    //   })
-    //   .catch((error) => console.log(error));
-  },
+
   methods: {
     closeSnackbar(v: boolean): void {
       this.snackbarState = v;
@@ -73,15 +60,19 @@ export default Vue.extend({
     onSave() {
       validations.validateForm(this.recipe).then((result) => {
         if (result.succeeded) {
-          const recipe = mapRecipeVmToModel(this.recipe);
-          save(recipe)
-            .then((message) => {
-              this.$router.back();
-              // this.saveRecipeToLocalStorage(recipe);
-            })
-            .catch((error) => {
-              this.showSnackbarError(error);
-            });
+          this.recipe.id = this.generateId();
+          const newRecipes = getFromLocalStorage("recipes");
+          newRecipes.push(this.recipe);
+          saveInLocalStorage("recipes", newRecipes);
+          // const recipe = mapRecipeVmToModel(this.recipe);
+          // save(recipe)
+          //   .then((message) => {
+          this.$router.back();
+          //     // this.saveRecipeToLocalStorage(recipe);
+          //   })
+          //   .catch((error) => {
+          //     this.showSnackbarError(error);
+          //   });
         } else {
           this.showSnackbarError("");
           this.recipeError = {
@@ -90,6 +81,9 @@ export default Vue.extend({
           };
         }
       });
+    },
+    generateId(): number {
+      return Math.ceil(Math.random() * 75433) + Math.ceil(Math.random() * 224);
     },
     onAddIngredient(ingredient: string) {
       this.recipe = {

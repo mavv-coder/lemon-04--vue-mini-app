@@ -14,7 +14,7 @@
         </div>
       </template>
     </ul>
-    <div v-if="!isFavList" class="empty-msg">
+    <div v-if="isFavList" class="empty-msg">
       <p>The list is empty</p>
     </div>
   </div>

@@ -6,6 +6,7 @@
       onSearch,
       deleteRecipe,
       toggleFavorite,
+      navigateToAddNew,
     }"
   />
 </template>
@@ -23,6 +24,7 @@ import { filterRecipesByCommaSeparatedText } from "./business/filterRecipeBusine
 import { mapRecipeListModelToVm } from "./mapper";
 import { Recipe } from "./viewModel";
 import RecipeListPage from "./Page.vue";
+import { baseRoutes } from "../../router";
 
 export default Vue.extend({
   name: "RecipeListPageContainer",
@@ -91,6 +93,10 @@ export default Vue.extend({
       );
       this.recipes = newRecipes;
       saveInLocalStorage("recipes", newRecipes);
+    },
+    navigateToAddNew(): void {
+      console.log("click");
+      this.$router.push(baseRoutes.addNew);
     },
   },
 });
