@@ -14,7 +14,6 @@ export const mockRecipes: Recipe[] = [
     id: 1,
     name: "Veggie Crustless Quiche",
     difficulty: "Medium",
-    favorite: false,
     imgUrl: veggieCrustlessQuiche,
     time: 20,
     description:
@@ -38,7 +37,6 @@ export const mockRecipes: Recipe[] = [
     id: 2,
     name: "Homemade Strawberry Cake",
     difficulty: "Medium",
-    favorite: false,
     imgUrl: homemadeStrawberryCake,
     time: 10,
     description:
@@ -66,7 +64,6 @@ export const mockRecipes: Recipe[] = [
     id: 3,
     name: "Broccoli Cheesy Bread",
     difficulty: "Difficult",
-    favorite: false,
     imgUrl: broccoliCheesyBread,
     time: 15,
     description:
@@ -91,7 +88,6 @@ export const mockRecipes: Recipe[] = [
     id: 4,
     name: "Perfect Omelet",
     difficulty: "Easy",
-    favorite: false,
     imgUrl: perfectOmelet,
     time: 5,
     description:
@@ -107,7 +103,6 @@ export const mockRecipes: Recipe[] = [
     id: 5,
     name: "Sweet Potato Pancakes",
     difficulty: "Easy",
-    favorite: false,
     imgUrl: sweetPotatoPancakes,
     time: 25,
     description:
@@ -138,7 +133,6 @@ export const mockRecipes: Recipe[] = [
     id: 6,
     name: "No-Bake Pumpkin Cheesecake",
     difficulty: "Medium",
-    favorite: false,
     imgUrl: noBakePumpkinCheesecake,
     time: 25,
     description:
@@ -165,7 +159,6 @@ export const mockRecipes: Recipe[] = [
     id: 7,
     name: "Polenta Fries",
     difficulty: "Difficult",
-    favorite: false,
     imgUrl: polentaFries,
     time: 40,
     description:

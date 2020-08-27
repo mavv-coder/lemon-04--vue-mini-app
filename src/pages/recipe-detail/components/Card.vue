@@ -77,6 +77,6 @@ export default Vue.extend({
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 20px;
+  margin: 30px 0 12px 0;
 }
 </style>
