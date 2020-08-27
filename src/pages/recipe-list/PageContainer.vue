@@ -7,12 +7,12 @@
 <script lang="ts">
 import Vue from "vue";
 import { fetchRecipes } from "../../rest-api/api/recipe";
-// import {
-//   checkInLocalStorage,
-//   getFromLocalStorage,
-//   saveInLocalStorage,
-//   deleteFromLocalStorage,
-// } from "../../../common/helpers";
+import {
+  checkInLocalStorage,
+  getFromLocalStorage,
+  saveInLocalStorage,
+  deleteFromLocalStorage,
+} from "../../common/helpers";
 import { filterRecipesByCommaSeparatedText } from "./business/filterRecipeBusiness";
 import { mapRecipeListModelToVm } from "./mapper";
 import { Recipe } from "./viewModel";
@@ -36,16 +36,18 @@ export default Vue.extend({
     },
   },
   created() {
-    // if (checkInLocalStorage("recipes")) {
-    //   this.recipes = getFromLocalStorage("recipes");
-    // } else {
-    fetchRecipes()
-      .then((recipes) => {
-        this.recipes = mapRecipeListModelToVm(recipes);
-        // saveInLocalStorage("recipes", recipes);
-      })
-      .catch((error) => console.log(error));
-    // }
+    // Get recipes from Local Storage if they are there
+    if (checkInLocalStorage("recipes")) {
+      this.recipes = getFromLocalStorage("recipes");
+    } else {
+      fetchRecipes()
+        .then((recipes) => {
+          // Get recipes from API and save them in app and LocalStorage
+          this.recipes = mapRecipeListModelToVm(recipes);
+          saveInLocalStorage("recipes", recipes);
+        })
+        .catch((error) => console.log(error));
+    }
     // if (checkInLocalStorage("favList")) {
     //   this.favList = getFromLocalStorage("favList");
     // }
@@ -55,9 +57,12 @@ export default Vue.extend({
       this.searchText = value;
     },
     deleteRecipe(id: number): void {
-      if (window.confirm("Are you sure to delete this recipe")) {
+      if (window.confirm("Are you sure to delete this recipe?")) {
         const newRecipes = this.recipes.filter((x) => x.id !== id);
+        // Delete from app
         this.recipes = newRecipes;
+        // Delete from LocalStorage
+        saveInLocalStorage("recipes", newRecipes);
 
         // const newRecipes = getFromLocalStorage("recipes").filter(
         //   (x) => x.id !== id
