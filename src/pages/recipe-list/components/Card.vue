@@ -22,7 +22,7 @@
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
 import { baseRoutes } from "../../../router";
-import { Recipe } from "../viewModel";
+import { Recipe } from "../../../common/model";
 import CardFooterComponent from "./CardFooter.vue";
 import CardImageComponent from "./CardImage.vue";
 import CardTextComponent from "./CardText.vue";

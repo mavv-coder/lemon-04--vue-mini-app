@@ -20,7 +20,7 @@
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
 import { AppLayout } from "../../common/layouts";
-import { Recipe } from "./viewModel";
+import { Recipe } from "../../common/model";
 import { SearchBarComponent } from "./components";
 import { CardComponent } from "./components";
 

@@ -1,54 +1,55 @@
 <template>
   <app-layout>
-    <v-card class="card">
-      <div class="img-container">
+    <card-component v-bind="{ recipe, navigateToEdit }" />
+    <!-- <v-card class="card"> -->
+    <!-- <div class="img-container">
         <img :src="recipe.imgUrl" :alt="recipe.name" />
-      </div>
+      </div> -->
 
-      <div class="title-container">
-        <h1 class="recipe-title">
-          {{ recipe.name }}
-        </h1>
-        <div class="icon-container">
-          <v-icon class="edit-icon" @click="navigateToEdit(recipe.id)"
-            >mdi-pencil</v-icon
+    <!-- <div class="title-container">
+      <h1 class="recipe-title">
+        {{ recipe.name }}
+      </h1>
+      <div class="icon-container">
+        <v-icon class="edit-icon" @click="navigateToEdit(recipe.id)"
+          >mdi-pencil</v-icon
+        >
+      </div>
+    </div> -->
+    <div class="time-container">
+      <v-icon>mdi-clock-time-four-outline</v-icon>
+      <span class="time-text">{{ `${recipe.time}'` }}</span>
+    </div>
+
+    <div class="recipe-text">
+      <p class="recipe-description">
+        {{ recipe.description }}
+      </p>
+      <p class="ingredient-title">Ingredients:</p>
+      <ul class="ingredient-list">
+        <template v-for="(ingredient, index) in recipe.ingredients">
+          <li :key="`${ingredient}-${index}`" class="ingredient-container">
+            <v-icon size="20" color="#D32F2F">mdi-chevron-right</v-icon>
+            <div class="ingredient">{{ ingredient }}</div>
+          </li>
+        </template>
+      </ul>
+      <p class="ingredient-title">Steps:</p>
+      <ul class="recipe-steps">
+        <template v-for="(step, index) in recipe.steps">
+          <li
+            :key="`${Math.floor(Math.random())}-${index}`"
+            class="step-container"
           >
-        </div>
-      </div>
-      <div class="time-container">
-        <v-icon>mdi-clock-time-four-outline</v-icon>
-        <span class="time-text">{{ `${recipe.time}'` }}</span>
-      </div>
-
-      <div class="recipe-text">
-        <p class="recipe-description">
-          {{ recipe.description }}
-        </p>
-        <p class="ingredient-title">Ingredients:</p>
-        <ul class="ingredient-list">
-          <template v-for="(ingredient, index) in recipe.ingredients">
-            <li :key="`${ingredient}-${index}`" class="ingredient-container">
-              <v-icon size="20" color="#D32F2F">mdi-chevron-right</v-icon>
-              <div class="ingredient">{{ ingredient }}</div>
-            </li>
-          </template>
-        </ul>
-        <p class="ingredient-title">Steps:</p>
-        <ul class="recipe-steps">
-          <template v-for="(step, index) in recipe.steps">
-            <li
-              :key="`${Math.floor(Math.random())}-${index}`"
-              class="step-container"
-            >
-              <p class="step-number">{{ index + 1 }}</p>
-              <div class="step">{{ step }}</div>
-            </li>
-          </template>
-        </ul>
-        <v-divider></v-divider>
-        <v-btn small color="primary" @click="navigateBack">Go back</v-btn>
-      </div>
-    </v-card>
+            <p class="step-number">{{ index + 1 }}</p>
+            <div class="step">{{ step }}</div>
+          </li>
+        </template>
+      </ul>
+    </div>
+    <v-divider></v-divider>
+    <v-btn small color="primary" @click="navigateBack">Go back</v-btn>
+    <!-- </v-card> -->
   </app-layout>
 </template>
 
@@ -56,11 +57,12 @@
 import Vue, { PropOptions } from "vue";
 import { AppLayout } from "../../common/layouts";
 import { baseRoutes } from "../../router";
-import { Recipe } from "./viewModel";
+import { Recipe } from "../../common/model";
+import { CardComponent } from "./components";
 
 export default Vue.extend({
   name: "RecipeDetailPage",
-  components: { AppLayout },
+  components: { AppLayout, CardComponent },
   props: {
     recipe: { require: true } as PropOptions<Recipe>,
   },
@@ -75,13 +77,13 @@ export default Vue.extend({
 });
 </script>
 <style scoped>
-.card {
+/* .card {
   width: 70%;
   margin: 0 auto;
   padding: 20px;
-}
+} */
 
-.title-container {
+/* .title-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -94,19 +96,18 @@ export default Vue.extend({
   text-transform: uppercase;
   font-size: 25px;
   font-weight: 400;
-}
+} */
 
-.img-container {
-  width: 100%;
-}
 .ingredient-container {
   display: flex;
   align-items: baseline;
 }
-
-.img-container img {
+/* .img-container {
   width: 100%;
 }
+.img-container img {
+  width: 100%;
+} */
 
 .recipe-text {
   width: 100%;

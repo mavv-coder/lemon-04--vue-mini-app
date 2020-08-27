@@ -29,7 +29,7 @@
 
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
-import { Recipe } from "../viewModel";
+import { Recipe } from "../../../common/model";
 
 interface Props {
   recipe: PropOptions<Recipe>;

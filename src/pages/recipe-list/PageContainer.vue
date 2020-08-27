@@ -18,11 +18,10 @@ import {
   checkInLocalStorage,
   getFromLocalStorage,
   saveInLocalStorage,
-  deleteFromLocalStorage,
 } from "../../common/helpers";
+import { Recipe } from "../../common/model";
 import { filterRecipesByCommaSeparatedText } from "./business/filterRecipeBusiness";
 import { mapRecipeListModelToVm } from "./mapper";
-import { Recipe } from "./viewModel";
 import RecipeListPage from "./Page.vue";
 import { baseRoutes } from "../../router";
 
