@@ -1,6 +1,6 @@
 <template>
   <app-layout>
-    <card-component v-bind="{ recipe, navigateToEdit }" />
+    <card-component v-bind="{ recipe, navigateToEdit, navigateBack }" />
     <!-- <v-card class="card"> -->
     <!-- <div class="img-container">
         <img :src="recipe.imgUrl" :alt="recipe.name" />
@@ -22,18 +22,18 @@
     </div>
 
     <div class="recipe-text">
-      <p class="recipe-description">
+      <!-- <p class="recipe-description">
         {{ recipe.description }}
-      </p>
-      <p class="ingredient-title">Ingredients:</p>
-      <ul class="ingredient-list">
+      </p> -->
+      <!-- <p class="ingredient-title">Ingredients:</p> -->
+      <!-- <ul class="ingredient-list">
         <template v-for="(ingredient, index) in recipe.ingredients">
           <li :key="`${ingredient}-${index}`" class="ingredient-container">
             <v-icon size="20" color="#D32F2F">mdi-chevron-right</v-icon>
             <div class="ingredient">{{ ingredient }}</div>
           </li>
         </template>
-      </ul>
+      </ul> -->
       <p class="ingredient-title">Steps:</p>
       <ul class="recipe-steps">
         <template v-for="(step, index) in recipe.steps">
@@ -47,8 +47,8 @@
         </template>
       </ul>
     </div>
-    <v-divider></v-divider>
-    <v-btn small color="primary" @click="navigateBack">Go back</v-btn>
+    <!-- <v-divider></v-divider>
+    <v-btn small color="primary" @click="navigateBack">Go back</v-btn> -->
     <!-- </v-card> -->
   </app-layout>
 </template>
@@ -98,10 +98,17 @@ export default Vue.extend({
   font-weight: 400;
 } */
 
+/* .ingredient-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
 .ingredient-container {
   display: flex;
   align-items: baseline;
-}
+} */
+
 /* .img-container {
   width: 100%;
 }
@@ -114,24 +121,19 @@ export default Vue.extend({
   margin-top: 15px;
 }
 
-.recipe-description {
+/* .recipe-description {
   margin-top: 30px;
-}
+} */
 
-.ingredient-title {
+/* .ingredient-title {
   font-weight: 700;
   margin-top: 30px;
 }
 
 .ingredient {
   text-transform: capitalize;
-}
+} */
 .recipe-steps {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.ingredient-list {
   list-style: none;
   margin: 0;
   padding: 0;

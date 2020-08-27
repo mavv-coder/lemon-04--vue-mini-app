@@ -1,13 +1,43 @@
 <template>
-  <div></div>
+  <ul class="ingredient-list">
+    <template v-for="(ingredient, index) in recipe.ingredients">
+      <li :key="`${ingredient}-${index}`" class="ingredient-container">
+        <v-icon size="20" color="#D32F2F">mdi-chevron-right</v-icon>
+        <div class="ingredient">{{ ingredient }}</div>
+      </li>
+    </template>
+  </ul>
 </template>
 
 <script lang="ts">
-import Vue from "vue";
+import Vue, { PropOptions } from "vue";
+import { Recipe } from "../../../common/model";
+
+interface Props {
+  recipe: PropOptions<Recipe>;
+}
 
 export default Vue.extend({
   name: "CardIngredientList",
+  props: {
+    recipe: { required: true },
+  } as Props,
 });
 </script>
 
-<style scoped></style>
+<style scoped>
+.ingredient-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.ingredient-container {
+  display: flex;
+  align-items: baseline;
+}
+
+.ingredient {
+  text-transform: capitalize;
+}
+</style>
