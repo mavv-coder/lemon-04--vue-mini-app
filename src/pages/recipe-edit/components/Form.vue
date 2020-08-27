@@ -35,7 +35,6 @@
         recipe,
         ingredient,
         recipeError,
-        recipeErrorIngredients,
         handleAddIngredient,
         onRemoveIngredient,
         handleIngredientValue,
@@ -143,8 +142,6 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
       isFormValid: true,
       ingredient: "",
       step: "",
-      recipeErrorIngredients: this.recipeError.ingredients,
-      recipeErrorStep: this.recipeError.steps,
       // difficultyLevels: ["Easy", "Medium", "Difficult"],
     };
   },
@@ -172,7 +169,6 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
       );
     },
     handleAddIngredient(ingredient: string): void {
-      console.log(this.recipeErrorIngredients);
       if (this.checkifIngredientIsValid()) {
         this.onAddIngredient(ingredient);
         this.ingredient = "";
