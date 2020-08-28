@@ -74,7 +74,6 @@ export default Vue.extend({
       saveInLocalStorage("recipes", newRecipes);
     },
     navigateToAddNew(): void {
-      console.log("click");
       this.$router.push(baseRoutes.addNew);
     },
   },
