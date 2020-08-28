@@ -34,6 +34,7 @@
 <script lang="ts">
 import Vue, { VueConstructor, PropOptions } from "vue";
 import { baseRoutes } from "../../../router";
+import { Recipe } from "../../../common/model";
 import {
   FormRecipeNameComponent,
   FormRecipeIngredientsComponent,
@@ -41,7 +42,7 @@ import {
   FormRecipeStepsComponent,
   FormRecipeButtonsComponent,
 } from "../../../common/components";
-import { Recipe, RecipeError } from "../viewModel";
+import { RecipeError } from "../viewModel";
 
 interface Refs {
   $refs: {
