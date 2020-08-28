@@ -112,22 +112,6 @@ export default Vue.extend({
       };
       this.validateRecipeField(field, this.recipe[field]);
     },
-    // onRemoveIngredient(ingredient: string) {
-    //   this.recipe = {
-    //     ...this.recipe,
-    //     ingredients: this.recipe.ingredients.filter(
-    //       (item) => item !== ingredient
-    //     ),
-    //   };
-    //   this.validateRecipeField("ingredients", this.recipe.ingredients);
-    // },
-    // onRemoveStep(step: string) {
-    //   this.recipe = {
-    //     ...this.recipe,
-    //     steps: this.recipe.steps.filter((item) => item !== step),
-    //   };
-    //   this.validateRecipeField("steps", this.recipe.steps);
-    // },
     validateRecipeField(field, value) {
       validations
         .validateField(field, value)
@@ -141,7 +125,6 @@ export default Vue.extend({
     // Navigation ======================= \\
     navigateBack() {
       this.$router.back();
-      window.scrollTo(0, 0);
     },
     // Snackbar ========================== \\
     showSnackbarError(msg: string) {
