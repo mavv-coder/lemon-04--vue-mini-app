@@ -5,10 +5,9 @@
       recipeError,
       onUpdateRecipe,
       onAddItemToArray,
-      onRemoveIngredient,
       onSave,
       closeSnackbar,
-      onRemoveStep,
+      onRemoveItemFromArray,
       snackbarState,
       snackbarColor,
       snackbarText,
@@ -101,22 +100,29 @@ export default Vue.extend({
     //   };
     //   this.validateRecipeField("steps", this.recipe.steps);
     // },
-    onRemoveIngredient(ingredient: string) {
+    onRemoveItemFromArray(value: string, field: string) {
       this.recipe = {
         ...this.recipe,
-        ingredients: this.recipe.ingredients.filter(
-          (item) => item !== ingredient
-        ),
+        [field]: this.recipe[field].filter((item) => item !== value),
       };
-      this.validateRecipeField("ingredients", this.recipe.ingredients);
+      this.validateRecipeField(field, this.recipe[field]);
     },
-    onRemoveStep(step: string) {
-      this.recipe = {
-        ...this.recipe,
-        steps: this.recipe.steps.filter((item) => item !== step),
-      };
-      this.validateRecipeField("steps", this.recipe.steps);
-    },
+    // onRemoveIngredient(ingredient: string) {
+    //   this.recipe = {
+    //     ...this.recipe,
+    //     ingredients: this.recipe.ingredients.filter(
+    //       (item) => item !== ingredient
+    //     ),
+    //   };
+    //   this.validateRecipeField("ingredients", this.recipe.ingredients);
+    // },
+    // onRemoveStep(step: string) {
+    //   this.recipe = {
+    //     ...this.recipe,
+    //     steps: this.recipe.steps.filter((item) => item !== step),
+    //   };
+    //   this.validateRecipeField("steps", this.recipe.steps);
+    // },
     validateRecipeField(field, value) {
       validations
         .validateField(field, value)

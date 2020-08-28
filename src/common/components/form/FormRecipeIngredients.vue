@@ -20,7 +20,9 @@
       <template v-for="(ingredient, index) in recipe.ingredients">
         <v-chip outlined class="ma-2" :key="`${ingredient}_${index}`">
           {{ ingredient }}
-          <v-icon right @click="() => onRemoveIngredient(ingredient)"
+          <v-icon
+            right
+            @click="() => onRemoveItemFromArray(ingredient, 'ingredients')"
             >close</v-icon
           >
         </v-chip>
@@ -38,7 +40,7 @@ interface Props {
   ingredient: PropOptions<string>;
   recipeError: PropOptions<RecipeError>;
   handleAddIngredient: PropOptions<(ingredient: string) => void>;
-  onRemoveIngredient: PropOptions<(ingredient: string) => void>;
+  onRemoveItemFromArray: PropOptions<(value: string, field: string) => void>;
   handleItemValue: PropOptions<(ingredient: string, field: string) => void>;
 }
 
@@ -49,7 +51,7 @@ export default Vue.extend({
     ingredient: { required: true },
     recipeError: { required: true },
     handleAddIngredient: { required: true },
-    onRemoveIngredient: { required: true },
+    onRemoveItemFromArray: { required: true },
     handleItemValue: { required: true },
   } as Props,
 });

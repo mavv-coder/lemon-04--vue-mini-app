@@ -24,7 +24,7 @@
             <v-icon
               right
               color="rgba(0,0,0,.87)"
-              @click="() => onRemoveStep(step)"
+              @click="() => onRemoveItemFromArray(step, 'steps')"
               >close</v-icon
             >
           </div>
@@ -43,7 +43,7 @@ interface Props {
   step: PropOptions<string>;
   recipeError: PropOptions<RecipeError>;
   handleAddStep: PropOptions<(step: string) => void>;
-  onRemoveStep: PropOptions<(step: string) => void>;
+  onRemoveItemFromArray: PropOptions<(value: string, field: string) => void>;
   handleItemValue: PropOptions<(ingredient: string, field: string) => void>;
 }
 
@@ -54,7 +54,7 @@ export default Vue.extend({
     step: { required: true },
     recipeError: { required: true },
     handleAddStep: { required: true },
-    onRemoveStep: { required: true },
+    onRemoveItemFromArray: { required: true },
     handleItemValue: { required: true },
   } as Props,
 });
