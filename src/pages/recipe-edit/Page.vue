@@ -9,9 +9,8 @@
         recipeError,
         onUpdateRecipe,
         onRemoveIngredient,
-        onAddIngredient,
+        onAddItemToArray,
         onRemoveStep,
-        onAddStep,
         onSave,
         navigateBack,
       }"
@@ -32,9 +31,8 @@ interface Props {
   recipeError: PropOptions<RecipeError>;
   onUpdateRecipe: PropOptions<(field: string, value: string) => void>;
   onRemoveIngredient: PropOptions<(ingredient: string) => void>;
-  onAddIngredient: PropOptions<(ingredient: string) => void>;
+  onAddItemToArray: PropOptions<(ingredient: string, field: string) => void>;
   onRemoveStep: PropOptions<(step: string) => void>;
-  onAddStep: PropOptions<(step: string) => void>;
   onSave: PropOptions<() => void>;
   navigateBack: PropOptions<() => void>;
   closeSnackbar: PropOptions<(value: boolean) => void>;
@@ -50,10 +48,9 @@ export default Vue.extend({
     recipe: { required: true },
     recipeError: { required: true },
     onUpdateRecipe: { required: true },
-    onAddStep: { required: true },
+    onAddItemToArray: { required: true },
     onRemoveStep: { required: true },
     onRemoveIngredient: { required: true },
-    onAddIngredient: { required: true },
     navigateBack: { required: true },
     closeSnackbar: { required: true },
     snackbarState: { required: true },

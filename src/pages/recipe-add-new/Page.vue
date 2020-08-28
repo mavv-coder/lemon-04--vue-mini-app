@@ -9,9 +9,8 @@
         recipeError,
         onUpdateRecipe,
         onRemoveIngredient,
-        onAddIngredient,
+        onAddItemToArray,
         onRemoveStep,
-        onAddStep,
         onSave,
         navigateBack,
         handleFileInput,
@@ -33,9 +32,8 @@ interface Props {
   recipeError: PropOptions<RecipeError>;
   onUpdateRecipe: PropOptions<(field: string, value: string) => void>;
   onRemoveIngredient: PropOptions<(ingredient: string) => void>;
-  onAddIngredient: PropOptions<(ingredient: string) => void>;
+  onAddItemToArray: PropOptions<(ingredient: string, field: string) => void>;
   onRemoveStep: PropOptions<(step: string) => void>;
-  onAddStep: PropOptions<(step: string) => void>;
   navigateBack: PropOptions<() => void>;
   handleFileInput: PropOptions<(file: File) => void>;
   onSave: PropOptions<() => void>;
@@ -52,10 +50,9 @@ export default Vue.extend({
     recipe: { required: true },
     recipeError: { required: true },
     onUpdateRecipe: { required: true },
-    onAddStep: { required: true },
+    onAddItemToArray: { required: true },
     onRemoveStep: { required: true },
     onRemoveIngredient: { required: true },
-    onAddIngredient: { required: true },
     navigateBack: { required: true },
     handleFileInput: { required: true },
     onSave: { required: true },

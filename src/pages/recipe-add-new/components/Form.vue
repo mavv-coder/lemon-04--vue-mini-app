@@ -60,9 +60,8 @@ export interface Props {
   onUpdateRecipe: PropOptions<(field: string, value: string) => void>;
   onSave: PropOptions<() => void>;
   onRemoveIngredient: PropOptions<(ingredient: string) => void>;
-  onAddIngredient: PropOptions<(ingredient: string) => void>;
+  onAddItemToArray: PropOptions<(ingredient: string, field: string) => void>;
   onRemoveStep: PropOptions<(step: string) => void>;
-  onAddStep: PropOptions<(step: string) => void>;
   navigateBack: PropOptions<() => void>;
   handleFileInput: PropOptions<(file: File) => void>;
 }
@@ -83,8 +82,7 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
     onUpdateRecipe: { required: true },
     onSave: { required: true },
     onRemoveIngredient: { required: true },
-    onAddIngredient: { required: true },
-    onAddStep: { required: true },
+    onAddItemToArray: { required: true },
     onRemoveStep: { required: true },
     navigateBack: { required: true },
     handleFileInput: { required: true },
@@ -100,24 +98,24 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
     handleItemValue(value: string, field: string): void {
       this[field] = value;
     },
-    handleAddIngredient(ingredient: string): void {
-      if (this.checkIfItemIsValid("ingredient")) {
-        this.onAddIngredient(ingredient);
-        this.ingredient = "";
-      }
-    },
-    handleAddStep(step: string): void {
-      if (this.checkIfItemIsValid("step")) {
-        this.onAddStep(step);
-        this.step = "";
-      }
-    },
     checkIfItemIsValid(field: string): boolean {
       return this[field] === "" ||
         this[field] === undefined ||
         this[field] === null
         ? false
         : true;
+    },
+    handleAddIngredient(ingredient: string): void {
+      if (this.checkIfItemIsValid("ingredient")) {
+        this.onAddItemToArray(ingredient, "ingredients");
+        this.ingredient = "";
+      }
+    },
+    handleAddStep(step: string): void {
+      if (this.checkIfItemIsValid("step")) {
+        this.onAddItemToArray(step, "steps");
+        this.step = "";
+      }
     },
     resultRecipeFieldError(field: string): boolean | string {
       return (

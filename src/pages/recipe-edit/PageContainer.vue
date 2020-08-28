@@ -4,12 +4,11 @@
       recipe,
       recipeError,
       onUpdateRecipe,
-      onAddIngredient,
+      onAddItemToArray,
       onRemoveIngredient,
       onSave,
       closeSnackbar,
       onRemoveStep,
-      onAddStep,
       snackbarState,
       snackbarColor,
       snackbarText,
@@ -100,26 +99,12 @@ export default Vue.extend({
         }
       });
     },
-    // onAddItemToArray(value: string, field: string): void {
-    //   this.recipe = {
-    //     ...this.recipe,
-    //     [field]: [...this.recipe[field], value],
-    //   };
-    //   this.validateRecipeField("ingredients", this.recipe.ingredients);
-    // },
-    onAddIngredient(ingredient: string) {
+    onAddItemToArray(value: string, field: string): void {
       this.recipe = {
         ...this.recipe,
-        ingredients: [...this.recipe.ingredients, ingredient],
+        [field]: [...this.recipe[field], value],
       };
-      this.validateRecipeField("ingredients", this.recipe.ingredients);
-    },
-    onAddStep(step: string) {
-      this.recipe = {
-        ...this.recipe,
-        steps: [...this.recipe.steps, step],
-      };
-      this.validateRecipeField("steps", this.recipe.steps);
+      this.validateRecipeField(field, this.recipe[field]);
     },
     onRemoveIngredient(ingredient: string) {
       this.recipe = {
