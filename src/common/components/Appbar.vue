@@ -75,8 +75,4 @@ export default Vue.extend({
 .user-text {
   margin: 0 12px;
 }
-
-.logout-btn {
-  color: black;
-}
 </style>

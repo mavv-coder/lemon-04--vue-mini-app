@@ -18,7 +18,7 @@
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
 
-interface SnackbarProps {
+interface Props {
   closeSnackbar: PropOptions<(value: boolean) => void>;
   snackbarState: PropOptions<boolean>;
   snackbarColor: PropOptions<string>;
@@ -32,7 +32,7 @@ export default Vue.extend({
     snackbarState: { required: true },
     snackbarColor: { required: true },
     snackbarText: { required: true },
-  } as SnackbarProps,
+  } as Props,
   data() {
     return {
       timeout: -1,

@@ -1,7 +1,6 @@
 <template>
   <div>
     <h3>Select the preparation steps for the recipe</h3>
-
     <div class="form-field">
       <v-text-field
         filled
@@ -44,7 +43,7 @@ interface Props {
   recipeError: PropOptions<RecipeError>;
   handleAddStep: PropOptions<(step: string) => void>;
   onRemoveItemFromArray: PropOptions<(value: string, field: string) => void>;
-  handleItemValue: PropOptions<(ingredient: string, field: string) => void>;
+  handleItemValue: PropOptions<(value: string, field: string) => void>;
 }
 
 export default Vue.extend({

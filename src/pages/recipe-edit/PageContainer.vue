@@ -60,20 +60,20 @@ export default Vue.extend({
     //   .catch((error) => console.log(error));
   },
   methods: {
-    onUpdateRecipe(field: string, value: string) {
+    onUpdateRecipe(field: string, value: string): void {
       this.recipe = {
         ...this.recipe,
         [field]: value,
       };
       this.validateRecipeField(field, value);
     },
-    updateRecipeError(field, result) {
+    updateRecipeError(field: string, result): void {
       this.recipeError = {
         ...this.recipeError,
         [field]: result,
       };
     },
-    onSave() {
+    onSave(): void {
       validations.validateForm(this.recipe).then((result) => {
         if (result.succeeded) {
           // To save the recipe in API
@@ -105,14 +105,14 @@ export default Vue.extend({
       };
       this.validateRecipeField(field, this.recipe[field]);
     },
-    onRemoveItemFromArray(value: string, field: string) {
+    onRemoveItemFromArray(value: string, field: string): void {
       this.recipe = {
         ...this.recipe,
         [field]: this.recipe[field].filter((item) => item !== value),
       };
       this.validateRecipeField(field, this.recipe[field]);
     },
-    validateRecipeField(field, value) {
+    validateRecipeField(field, value): void {
       validations
         .validateField(field, value)
         .then((result) => this.updateRecipeError(field, result));
@@ -123,11 +123,11 @@ export default Vue.extend({
       saveInLocalStorage("recipes", newRecipes);
     },
     // Navigation ======================= \\
-    navigateBack() {
+    navigateBack(): void {
       this.$router.back();
     },
     // Snackbar ========================== \\
-    showSnackbarError(msg: string) {
+    showSnackbarError(msg: string): void {
       msg
         ? (this.snackbarText = msg)
         : (this.snackbarText = "Check the form again, please");

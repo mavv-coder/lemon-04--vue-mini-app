@@ -113,7 +113,7 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
         this.recipeError[field].succeeded || this.recipeError[field].message
       );
     },
-    handleOnSave() {
+    handleOnSave(): void {
       this.$refs.form.validate();
       this.onSave();
     },

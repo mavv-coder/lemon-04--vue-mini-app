@@ -30,7 +30,7 @@ interface Props {
   recipe: PropOptions<Recipe>;
   recipeError: PropOptions<RecipeError>;
   onUpdateRecipe: PropOptions<(field: string, value: string) => void>;
-  onAddItemToArray: PropOptions<(ingredient: string, field: string) => void>;
+  onAddItemToArray: PropOptions<(value: string, field: string) => void>;
   onRemoveItemFromArray: PropOptions<(value: string, field: string) => void>;
   navigateBack: PropOptions<() => void>;
   handleFileInput: PropOptions<(file: File) => void>;

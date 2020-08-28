@@ -1,7 +1,6 @@
 <template>
   <div>
     <h3>Select name, preparation time and difficulty level for the recipe</h3>
-
     <div class="form-field">
       <v-text-field
         filled
@@ -50,11 +49,6 @@ export default Vue.extend({
     return {
       difficultyLevels: ["Easy", "Medium", "Difficult"],
     };
-  },
-  methods: {
-    capitalize(x: string) {
-      return x.charAt(0).toUpperCase() + x.slice(1);
-    },
   },
 });
 </script>

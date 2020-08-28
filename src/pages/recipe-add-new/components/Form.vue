@@ -60,7 +60,7 @@ export interface Props {
   onUpdateRecipe: PropOptions<(field: string, value: string) => void>;
   onSave: PropOptions<() => void>;
   onRemoveItemFromArray: PropOptions<(value: string, field: string) => void>;
-  onAddItemToArray: PropOptions<(ingredient: string, field: string) => void>;
+  onAddItemToArray: PropOptions<(value: string, field: string) => void>;
   navigateBack: PropOptions<() => void>;
   handleFileInput: PropOptions<(file: File) => void>;
 }
@@ -120,12 +120,10 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
         this.recipeError[field].succeeded || this.recipeError[field].message
       );
     },
-    handleOnSave() {
+    handleOnSave(): void {
       this.$refs.form.validate();
       this.onSave();
     },
   },
 });
 </script>
-
-<style scoped></style>

@@ -7,5 +7,12 @@ export const mapRecipeModelToVm = (recipe: model.Recipe): vm.Recipe => ({
 });
 
 export const mapRecipeVmToModel = (recipe: vm.Recipe): model.Recipe => ({
-  ...recipe,
+  id: recipe.id,
+  name: recipe.name,
+  difficulty: recipe.difficulty,
+  imgUrl: recipe.imgUrl,
+  time: recipe.time,
+  description: recipe.description,
+  ingredients: recipe.ingredients,
+  steps: recipe.steps,
 });

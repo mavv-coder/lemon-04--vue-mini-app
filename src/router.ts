@@ -1,10 +1,10 @@
 import Router, { RouteConfig } from "vue-router";
+import { checkInLocalStorage } from "./common/helpers";
 import { LoginPageContainer } from "./pages/login";
 import { RecipeListPageContainer } from "./pages/recipe-list";
 import { EditRecipePageContainer } from "./pages/recipe-edit";
 import { RecipeDetailPageContainer } from "./pages/recipe-detail";
 import { RecipeAddNewPageContainer } from "./pages/recipe-add-new";
-import { checkInLocalStorage } from "./common/helpers";
 
 interface BaseRoutes {
   root: string;
@@ -19,9 +19,9 @@ export const baseRoutes: BaseRoutes = {
   root: "/",
   login: "/login",
   recipe: "/recipe",
-  detail: "/recipe/:id",
-  edit: "/recipe/edit/:id",
   addNew: "/recipe/add",
+  edit: "/recipe/edit/:id",
+  detail: "/recipe/:id",
 };
 
 const routes: RouteConfig[] = [

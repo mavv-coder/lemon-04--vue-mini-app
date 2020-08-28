@@ -41,7 +41,7 @@ interface Props {
   recipeError: PropOptions<RecipeError>;
   handleAddIngredient: PropOptions<(ingredient: string) => void>;
   onRemoveItemFromArray: PropOptions<(value: string, field: string) => void>;
-  handleItemValue: PropOptions<(ingredient: string, field: string) => void>;
+  handleItemValue: PropOptions<(value: string, field: string) => void>;
 }
 
 export default Vue.extend({
