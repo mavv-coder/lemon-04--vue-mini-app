@@ -14,7 +14,7 @@
         recipeError,
         handleAddIngredient,
         onRemoveIngredient,
-        handleIngredientValue,
+        handleItemValue,
       }"
     />
     <form-recipe-description-component
@@ -27,7 +27,7 @@
         recipeError,
         handleAddStep,
         onRemoveStep,
-        handleStepValue,
+        handleItemValue,
       }"
     />
     <form-recipe-buttons-component v-bind="{ handleOnSave, navigateBack }" />
@@ -97,11 +97,8 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
     };
   },
   methods: {
-    handleIngredientValue(value: string): void {
-      this.ingredient = value;
-    },
-    handleStepValue(value: string): void {
-      this.step = value;
+    handleItemValue(value: string, field: string): void {
+      this[field] = value;
     },
     handleAddIngredient(ingredient: string): void {
       if (this.checkifIngredientIsValid()) {

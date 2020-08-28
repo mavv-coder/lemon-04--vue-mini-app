@@ -9,7 +9,7 @@
         placeholder="Add step"
         append-icon="add"
         :value="step"
-        @input="(x) => handleStepValue(x)"
+        @input="(x) => handleItemValue(x, 'step')"
         @click:append="handleAddStep(step)"
       />
       <v-alert :value="!recipeError.steps.succeeded" color="error" outlined>{{
@@ -44,7 +44,7 @@ interface Props {
   recipeError: PropOptions<RecipeError>;
   handleAddStep: PropOptions<(step: string) => void>;
   onRemoveStep: PropOptions<(step: string) => void>;
-  handleStepValue: PropOptions<(step: string) => void>;
+  handleItemValue: PropOptions<(ingredient: string, field: string) => void>;
 }
 
 export default Vue.extend({
@@ -55,7 +55,7 @@ export default Vue.extend({
     recipeError: { required: true },
     handleAddStep: { required: true },
     onRemoveStep: { required: true },
-    handleStepValue: { required: true },
+    handleItemValue: { required: true },
   } as Props,
 });
 </script>

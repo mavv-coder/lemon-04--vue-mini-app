@@ -100,6 +100,13 @@ export default Vue.extend({
         }
       });
     },
+    // onAddItemToArray(value: string, field: string): void {
+    //   this.recipe = {
+    //     ...this.recipe,
+    //     [field]: [...this.recipe[field], value],
+    //   };
+    //   this.validateRecipeField("ingredients", this.recipe.ingredients);
+    // },
     onAddIngredient(ingredient: string) {
       this.recipe = {
         ...this.recipe,

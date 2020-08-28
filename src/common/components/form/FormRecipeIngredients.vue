@@ -8,7 +8,7 @@
         placeholder="Add ingredient"
         append-icon="add"
         :value="ingredient"
-        @input="(x) => handleIngredientValue(x)"
+        @input="(x) => handleItemValue(x, 'ingredient')"
         @click:append="handleAddIngredient(ingredient)"
       />
       <v-alert
@@ -39,7 +39,7 @@ interface Props {
   recipeError: PropOptions<RecipeError>;
   handleAddIngredient: PropOptions<(ingredient: string) => void>;
   onRemoveIngredient: PropOptions<(ingredient: string) => void>;
-  handleIngredientValue: PropOptions<(ingredient: string) => void>;
+  handleItemValue: PropOptions<(ingredient: string, field: string) => void>;
 }
 
 export default Vue.extend({
@@ -50,7 +50,7 @@ export default Vue.extend({
     recipeError: { required: true },
     handleAddIngredient: { required: true },
     onRemoveIngredient: { required: true },
-    handleIngredientValue: { required: true },
+    handleItemValue: { required: true },
   } as Props,
 });
 </script>
