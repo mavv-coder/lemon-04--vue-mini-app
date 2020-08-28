@@ -23,7 +23,8 @@
 import Vue, { PropOptions } from "vue";
 import { AppLayout } from "../../common/layouts";
 import { SnackbarComponent } from "../../common/components";
-import { Recipe, RecipeError } from "./viewModel";
+import { Recipe } from "../../common/model";
+import { RecipeError } from "./viewModel";
 import { FormComponent } from "./components";
 
 interface Props {

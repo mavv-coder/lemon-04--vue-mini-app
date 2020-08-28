@@ -135,7 +135,6 @@ export default Vue.extend({
         .then((result) => this.updateRecipeError(field, result));
     },
     saveRecipeToLocalStorage(recipe: Recipe): void {
-      console.log(recipe);
       const recipes = getFromLocalStorage("recipes");
       const newRecipes = recipes.map((x) => (x.id === recipe.id ? recipe : x));
       saveInLocalStorage("recipes", newRecipes);

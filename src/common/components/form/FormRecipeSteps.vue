@@ -73,7 +73,9 @@ h3 {
 
 .step-container {
   display: flex;
+  width: 100%;
   font-size: 14px;
+  justify-content: space-between;
   padding: 6px 12px;
   align-items: center;
   border-radius: 16px;
