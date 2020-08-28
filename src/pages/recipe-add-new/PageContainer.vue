@@ -121,7 +121,7 @@ export default Vue.extend({
       newRecipes.push(this.recipe);
       saveInLocalStorage("recipes", newRecipes);
     },
-    handleFileInput(file): void {
+    handleFileInput(file: File): void {
       const reader = new FileReader();
       reader.readAsDataURL(file);
       reader.onload = (event) => {

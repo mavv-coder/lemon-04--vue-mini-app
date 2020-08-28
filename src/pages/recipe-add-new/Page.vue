@@ -37,7 +37,7 @@ interface Props {
   onRemoveStep: PropOptions<(step: string) => void>;
   onAddStep: PropOptions<(step: string) => void>;
   navigateBack: PropOptions<() => void>;
-  handleFileInput: PropOptions<() => void>;
+  handleFileInput: PropOptions<(file: File) => void>;
   onSave: PropOptions<() => void>;
   closeSnackbar: PropOptions<(value: boolean) => void>;
   snackbarState: PropOptions<boolean>;

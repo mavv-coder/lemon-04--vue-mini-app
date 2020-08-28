@@ -64,7 +64,7 @@ export interface Props {
   onRemoveStep: PropOptions<(step: string) => void>;
   onAddStep: PropOptions<(step: string) => void>;
   navigateBack: PropOptions<() => void>;
-  handleFileInput: PropOptions<() => void>;
+  handleFileInput: PropOptions<(file: File) => void>;
 }
 
 export default (Vue as VueConstructor<Vue & Refs>).extend({

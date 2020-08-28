@@ -16,14 +16,17 @@
 <script lang="ts">
 import Vue, { PropOptions } from "vue";
 
+export interface Props {
+  handleFileInput: PropOptions<(file: File) => void>;
+  resultRecipeFieldError: PropOptions<(field: string) => boolean | string>;
+}
+
 export default Vue.extend({
   name: "FormRecipeImageComponent",
   props: {
     handleFileInput: { required: true },
-    resultRecipeFieldError: { required: true } as PropOptions<
-      (field: string) => boolean | string
-    >,
-  },
+    resultRecipeFieldError: { required: true },
+  } as Props,
 });
 </script>
 
