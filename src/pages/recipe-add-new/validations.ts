@@ -27,8 +27,8 @@ const validationSchema: ValidationSchema = {
     description: [
       {
         validator: Validators.minLength,
-        customArgs: { length: 200 },
-        message: "Description must have 200 characters at least",
+        customArgs: { length: 50 },
+        message: "Description must have 50 characters at least",
       },
       {
         validator: Validators.required,

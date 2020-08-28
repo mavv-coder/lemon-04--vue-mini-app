@@ -22,6 +22,7 @@ export interface RecipeError {
   description: ValidationResult;
   time: ValidationResult;
   steps: ValidationResult;
+  difficulty: ValidationResult;
 }
 
 export const createEmptyRecipeError = (): RecipeError => ({
@@ -30,4 +31,5 @@ export const createEmptyRecipeError = (): RecipeError => ({
   description: createDefaultValidationResult(),
   time: createDefaultValidationResult(),
   steps: createDefaultValidationResult(),
+  difficulty: createDefaultValidationResult(),
 });

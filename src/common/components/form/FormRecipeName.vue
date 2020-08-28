@@ -22,6 +22,7 @@
         label="Difficulty"
         :items="difficultyLevels"
         :value="recipe.difficulty"
+        :rules="[resultRecipeFieldError('difficulty')]"
         @input="(difficulty) => onUpdateRecipe('difficulty', difficulty)"
       ></v-select>
     </div>

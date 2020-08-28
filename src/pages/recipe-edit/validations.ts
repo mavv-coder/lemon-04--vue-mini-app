@@ -8,6 +8,7 @@ import { hasItems } from "../../common/validations/hasItems";
 const validationSchema: ValidationSchema = {
   field: {
     name: [Validators.required],
+    difficulty: [Validators.required],
     ingredients: [
       {
         validator: hasItems,

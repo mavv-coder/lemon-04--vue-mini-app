@@ -1,7 +1,6 @@
 <template>
   <div>
     <h3>Select a description for the recipe</h3>
-
     <div class="form-field">
       <v-textarea
         label="Description"
