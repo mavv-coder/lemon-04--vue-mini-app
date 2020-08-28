@@ -71,6 +71,7 @@ export default Vue.extend({
 
           this.saveRecipeToLocalStorage(this.recipe);
           this.$router.back();
+          window.scrollTo(0, 0);
         } else {
           this.showSnackbarError("");
           this.recipeError = {
@@ -134,6 +135,7 @@ export default Vue.extend({
     // Navigation ======================= \\
     navigateBack() {
       this.$router.back();
+      window.scrollTo(0, 0);
     },
     // Snackbar ========================== \\
     showSnackbarError(msg: string) {

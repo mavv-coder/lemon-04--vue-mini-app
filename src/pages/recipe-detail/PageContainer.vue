@@ -39,9 +39,11 @@ export default Vue.extend({
   methods: {
     navigateBack() {
       this.$router.back();
+      window.scrollTo(0, 0);
     },
     navigateToEdit(id: number): void {
       this.$router.push(`${baseRoutes.recipe}/edit/${id}`);
+      window.scrollTo(0, 0);
     },
   },
 });

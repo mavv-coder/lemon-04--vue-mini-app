@@ -75,6 +75,7 @@ export default Vue.extend({
     },
     navigateToAddNew(): void {
       this.$router.push(baseRoutes.addNew);
+      window.scrollTo(0, 0);
     },
   },
 });
