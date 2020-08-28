@@ -21,7 +21,7 @@
 <script lang="ts">
 import Vue from "vue";
 import RecipeEditPage from "./Page.vue";
-import { Recipe } from "../../rest-api/model";
+import { Recipe } from "../../common/model";
 import { fetchRecipeById, save } from "../../rest-api/api/recipe";
 import {
   saveInLocalStorage,
@@ -78,15 +78,18 @@ export default Vue.extend({
     onSave() {
       validations.validateForm(this.recipe).then((result) => {
         if (result.succeeded) {
-          const recipe = mapRecipeVmToModel(this.recipe);
-          save(recipe)
-            .then((message) => {
-              this.$router.back();
-              this.saveRecipeToLocalStorage(recipe);
-            })
-            .catch((error) => {
-              this.showSnackbarError(error);
-            });
+          // To save the recipe in API
+          // const recipe = mapRecipeVmToModel(this.recipe);
+          // save(recipe)
+          //   .then((message) => {
+          //     this.$router.back();
+          //     this.saveRecipeToLocalStorage(recipe);
+          //   })
+          //   .catch((error) => {
+          //     this.showSnackbarError(error);
+          //   });
+          this.saveRecipeToLocalStorage(this.recipe);
+          this.$router.back();
         } else {
           this.showSnackbarError("");
           this.recipeError = {
