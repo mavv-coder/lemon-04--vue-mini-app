@@ -101,26 +101,21 @@ export default (Vue as VueConstructor<Vue & Refs>).extend({
       this[field] = value;
     },
     handleAddIngredient(ingredient: string): void {
-      if (this.checkifIngredientIsValid()) {
+      if (this.checkIfItemIsValid("ingredient")) {
         this.onAddIngredient(ingredient);
         this.ingredient = "";
       }
     },
     handleAddStep(step: string): void {
-      if (this.checkifStepIsValid()) {
+      if (this.checkIfItemIsValid("step")) {
         this.onAddStep(step);
         this.step = "";
       }
     },
-    checkifIngredientIsValid(): boolean {
-      return this.ingredient === "" ||
-        this.ingredient === undefined ||
-        this.ingredient === null
-        ? false
-        : true;
-    },
-    checkifStepIsValid(): boolean {
-      return this.step === "" || this.step === undefined || this.step === null
+    checkIfItemIsValid(field: string): boolean {
+      return this[field] === "" ||
+        this[field] === undefined ||
+        this[field] === null
         ? false
         : true;
     },
