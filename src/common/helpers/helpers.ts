@@ -1,7 +1,7 @@
 import { Recipe } from "../model";
 
 export const checkInLocalStorage = (key: string): boolean =>
-  localStorage.getItem(key) === null ? false : true;
+  localStorage.getItem(key) !== null;
 
 export const saveInLocalStorage = (key: string, value: any): void => {
   localStorage.setItem(key, JSON.stringify(value));
