@@ -15,7 +15,8 @@
     "vue.js",
     "samples",
     "typescript",
-    "webpack"
+    "webpack",
+    "vuetify"
   ],
   "author": "Miguel Ángel Vázquez Vera",
   "license": "MIT",
